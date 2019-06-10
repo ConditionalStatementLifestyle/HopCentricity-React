@@ -69,7 +69,7 @@ body {
 
 .navbar {
   font-size: 18px;
-  background-image: linear-gradient(260deg, #2376ae 0%, #c16ecf 100%);
+  background-image: linear-gradient(260deg, #f07878 0%, #04f020 100%);
   border: 1px solid rgba(0, 0, 0, 0.2);
   padding-bottom: 10px;
 }
@@ -147,3 +147,53 @@ body {
       color: rgba(255, 255, 255, 1);
   }
 }
+
+.logoDiv {
+  width: 5px;
+  height: 5px;
+}
+
+.cardBackground {
+  background-image: linear-gradient(260deg, #1dd7a5 0%, #f4d736 100%);
+  background-color: yellow;
+  text-align: center;
+}
+
+.buttonSize {
+  height: 125px;
+  width: 300px;
+  display: inline-block;
+  margin: 40px;
+  /* font-family: 'Josefin Sans', sans-serif; */
+}
+
+.outerButton {
+  /* display: table;
+  position: absolute; */
+  /* top: 0;
+  left: 0; */
+  /* height: 100%;
+  width: 100%; */
+}
+
+.innerButton {
+  margin-left: auto;
+  margin-right: auto;
+  width: 800px;
+  text-align: center;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 18px;
+}
+
+.innerCard {
+  margin-left: auto;
+  margin-right: auto;
+  width: 300px;
+  text-align: center;
+  margin-bottom: 50px;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+/* .menuButton {
+  height: 100px;
+} */

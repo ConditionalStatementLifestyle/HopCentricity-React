@@ -5,7 +5,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import 'semantic-ui-css/semantic.min.css';
 import { BrowserRouter as Router, Route } from "react-router-dom";
-
+import 'font-awesome/css/font-awesome.min.css';
 ReactDOM.render(
 <Router>
 <Route path="" component={App}/>

@@ -6,7 +6,7 @@ const LoginPage = (props) => {
   return (
     <div>
         <Login
-        setUsernameAndPassword={props.setUsernameAndPassword}
+        setStateUsernameEmailToken={props.setStateUsernameEmailToken}
         user={props.user}
         />
     </div>

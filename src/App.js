@@ -18,9 +18,29 @@ class App extends React.Component {
         token: ''
       }
     }
+    // this.getUserDataIfRefreshed()
   }
 
-  setUsernameAndPassword = (data) => {
+  getUserDataIfRefreshed = () => {
+    if (localStorage.getItem('HopCentricity_Token') !== null) {
+      let user = {...this.state.user}
+      user.email = localStorage.getItem('HopCentricity_Email')
+      user.username = localStorage.getItem('HopCentricity_Username')
+      user.token = localStorage.getItem('HopCentricity_Token')
+      this.setState(
+        {user},
+        () => {
+          this.props.history.push('/menu')
+        })
+        console.log('here is state',this.state.user)
+    }
+  }
+
+  componentWillMount() {
+    this.getUserDataIfRefreshed()
+  }
+
+  setStateUsernameEmailToken = (data) => {
     let user = {...this.state.user}
     user.email = data.email
     user.username = data.raw.names[0].displayName
@@ -34,6 +54,8 @@ class App extends React.Component {
 
   handleLogout = () => {
     localStorage.removeItem('HopCentricity_Token')
+    localStorage.removeItem('HopCentricity_Email')
+    localStorage.removeItem('HopCentricity_Username')
     let user = {
       email: '',
       username: '',
@@ -53,7 +75,7 @@ class App extends React.Component {
         {this.state.user.token !== ''?
         <Navbar handleLogout={this.handleLogout}/>:null}
         <PageRouter 
-        setUsernameAndPassword={this.setUsernameAndPassword}
+        setStateUsernameEmailToken={this.setStateUsernameEmailToken}
         user={this.state.user}/>
       </div>
     )

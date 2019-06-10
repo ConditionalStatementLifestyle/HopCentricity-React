@@ -25,7 +25,9 @@ class Login extends React.Component {
           provider.me().then((data) => {
             // console.log("data: ", data);
             localStorage.setItem("HopCentricity_Token", provider.id_token)
-            this.props.setUsernameAndPassword(data)
+            localStorage.setItem("HopCentricity_Email", data.email)
+            localStorage.setItem("HopCentricity_Username", data.raw.names[0].displayName)
+            this.props.setStateUsernameEmailToken(data)
           this.sendAuth()
           });
         });
