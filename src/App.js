@@ -1,11 +1,9 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import LoginPage from './Pages/LoginPage'
 import Navbar from './Components/Navbar'
-// import Navbar from 'HopCentricity-React/src/Components/Login.js'
+import PageRouter from './PageRouter'
 
-import {BrowserRouter as Router, Route, Link, NavLink} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Link, NavLink, Redirect} from 'react-router-dom'
 import { withRouter } from "react-router";
 // public key: KZeepwzkDFgCnpzuCx43quqVMD4
 
@@ -16,7 +14,8 @@ class App extends React.Component {
     this.state = {
       user: {
         email: '',
-        username: ''
+        username: '',
+        token: ''
       }
     }
   }
@@ -25,30 +24,42 @@ class App extends React.Component {
     let user = {...this.state.user}
     user.email = data.email
     user.username = data.raw.names[0].displayName
-    this.setState({user})
+    user.token = localStorage.getItem('HopCentricity_Token')
+    this.setState(
+      {user},
+      () => {
+        this.props.history.push('/menu')
+      })
   }
 
   handleLogout = () => {
     localStorage.removeItem('HopCentricity_Token')
-    let user = {...this.state.user}
-    this.setState({user})
+    let user = {
+      email: '',
+      username: '',
+      token: ''
+    }
+    this.setState({user},
+      () => {
+        this.props.history.push('/login')
+      })
   }
 
 
   render() {
+    
     return (
       <div>
-      <Navbar handleLogout={this.handleLogout}/>
-      <Router>
-        <Route path='/' component={() => <LoginPage
+        {this.state.user.token !== ''?
+        <Navbar handleLogout={this.handleLogout}/>:null}
+        <PageRouter 
         setUsernameAndPassword={this.setUsernameAndPassword}
-        user={this.state.user}
-        />}/>
-      </Router>
+        user={this.state.user}/>
       </div>
     )
   }
 }
 
 
-export default App;
+export default withRouter(App);
+

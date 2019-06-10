@@ -50,9 +50,18 @@ class Login extends React.Component {
 
       render() {
         return (
-          <a href="" onClick={this.handleClick.bind(this)} className="btn btn-social btn-github">
-                   <span className="fa fa-github"></span> Sign in with Google
-          </a>
+          <div className="outer">
+            <div className="middle">
+              <div className="inner">
+                <h2 className="ui teal image header" onClick={this.handleClick.bind(this)}>
+                  <img src="https://img.icons8.com/color/48/000000/google-logo.png" className="image cursor"></img>
+                  <div className="content cursor">
+                    Log-in with Google
+                  </div> 
+                </h2>           
+              </div>  
+            </div>
+          </div>
         )
       }
 }
