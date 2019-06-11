@@ -1,55 +1,50 @@
 import React from 'react'
 import hopCard from '../hopCard.png'
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
+import { withRouter } from "react-router-dom";
 
-const Menu = (props) => {
 
-  
+class Menu extends React.Component {
 
-  return (
-    <div className="outerCard">
-      <div className="middle">
-        <div className="innerCard">
-          <div className="ui card cardBackground">
-            <div className="image">
-              <img src={hopCard}></img>
-            </div>
-            <div className="content">
-              <a className="header">Logged in as {props.user.username}</a>
-              <div className="meta">
-                <span className="date">Congrats on Being a Hop Lover</span>
+  render() {
+    return (
+      <div className="outerCard">
+        <div className="middle">
+          <div className="innerCard">
+            <div className="ui card cardBackground">
+              <div className="image">
+                <img src={hopCard} alt='oh no'></img>
               </div>
-              <div className="description">
-                
+              <div className="content">
+                <div className="header">Logged in as {this.props.user.username}</div>
+                <div className="meta">
+                  <span className="date">Congrats on Being a Hop Lover</span>
+                </div>
+                <div className="description">
+                  
+                </div>
               </div>
-            </div>
-            <div className="extra content">
-              <a>
-                <i className="user icon"></i>
-                # of Reviews here
-              </a>
+              <div className="extra content">
+                  <i className="user icon"></i>
+                  # of Reviews here
+              </div>
             </div>
           </div>
-        </div>
-        <div className="outerButton">
-          <div className="innerButton">
-          <a href='/search'>
-            <button class="ui button menuButton" 
-            onClick={() => props.falsifyInitialMenuRedirect()}>
-              Search Hoppy Beers
-            </button>
-          </a>
-          <a href='/profile'>
-            <button class="ui button menuButton">
-              Your Hoppy Profile
-            </button>
-          </a>
+          <div className="outerButton">
+            <div className="innerButton">
+              <button className="ui button menuButton" onClick={() => this.props.history.push('/search')}>
+                Search Hoppy Beers
+              </button>
+              <button className="ui button menuButton" onClick={() => this.props.history.push('/profile')}>
+                Your Hoppy Profile
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  )
-
+    )
+  }
 }
 
-export default Menu
+export default withRouter(Menu)
+

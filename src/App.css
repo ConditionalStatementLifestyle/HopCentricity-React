@@ -208,3 +208,17 @@ body {
 /* .menuButton {
   height: 100px;
 } */
+
+.width {
+  width:50%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.searchSelectionWidth {
+  width: 20%;
+  margin-left: auto;
+  margin-right: auto;
+}

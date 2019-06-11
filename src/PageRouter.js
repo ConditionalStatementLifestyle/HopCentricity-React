@@ -3,24 +3,21 @@ import Menu from './Pages/Menu'
 import LoginPage from './Pages/LoginPage'
 import Search from './Pages/Search'
 import Profile from './Pages/Profile'
-import {BrowserRouter as Router, Route, Link, NavLink, Redirect} from 'react-router-dom'
+import {BrowserRouter as Router, Route} from 'react-router-dom'
 
 const PageRouter = (props) => {
 
   return (
     <Router>
-      <Route path='/menu' render={() => <Menu user={props.user} falsifyInitialMenuRedirect={props.falsifyInitialMenuRedirect}/>}/>
-      <Route path='/search' render={() => <Search user={props.user}/>}/>
-      <Route path='/profile' render={() => <Profile user={props.user}/>}/>
-      <Route path='/login' render={() => <LoginPage
+      <Route exact path='/menu' render={() => <Menu user={props.user} handlePageChange={props.handlePageChange}/>}/>
+      <Route exact path='/search' render={() => <Search user={props.user}/>}/>
+      <Route exact path='/profile' render={() => <Profile user={props.user}/>}/>
+      <Route exact path='/login' render={() => <LoginPage
         setStateUsernameEmailToken={props.setStateUsernameEmailToken}
         user={props.user}/>}/>
-      <Route path="/" render={() => props.user.token === ''?
+      {/* <Route exact path="/" render={() => props.user.token === ''?
         <Redirect to='/login'/>:
-        null}/>
-      <Route path="/" render={() => props.user.token !== '' && props.menuRedirect?
-        <Redirect to='/menu'/>:
-        null}/>
+        null}/> */}
     </Router>
   )
 

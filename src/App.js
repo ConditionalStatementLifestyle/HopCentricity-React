@@ -1,10 +1,14 @@
 import React from 'react';
 import './App.css';
+import Menu from './Pages/Menu'
+import LoginPage from './Pages/LoginPage'
+import Search from './Pages/Search'
+import Profile from './Pages/Profile'
+// import logo from './hop.png'
 import Navbar from './Components/Navbar'
-import PageRouter from './PageRouter'
 
-import {BrowserRouter as Router, Route, Link, NavLink, Redirect} from 'react-router-dom'
-import { withRouter } from "react-router";
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
+// import { withRouter } from "react-router-dom";
 // public key: KZeepwzkDFgCnpzuCx43quqVMD4
 
 class App extends React.Component {
@@ -17,7 +21,7 @@ class App extends React.Component {
         username: '',
         token: ''
       },
-      initialMenuRedirect: false
+      page: ''
     }
     // this.getUserDataIfRefreshed()
   }
@@ -28,13 +32,12 @@ class App extends React.Component {
       user.email = localStorage.getItem('HopCentricity_Email')
       user.username = localStorage.getItem('HopCentricity_Username')
       user.token = localStorage.getItem('HopCentricity_Token')
-      this.setState(
-        {user,
-        initialMenuRedirect: true},
-        () => {
-          this.props.history.push('/menu')
-        })
-        console.log('here is state',this.state.user)
+      this.setState({user})
+        // console.log('here is state',this.state.user)
+        // ,
+        // () => {
+        //   this.props.history.push('/menu')
+        // }
     }
   }
 
@@ -47,12 +50,7 @@ class App extends React.Component {
     user.email = data.email
     user.username = data.raw.names[0].displayName
     user.token = localStorage.getItem('HopCentricity_Token')
-    this.setState(
-      {user,
-      initialMenuRedirect: true},
-      () => {
-        this.props.history.push('/menu')
-      })
+    this.setState({user})
   }
 
   handleLogout = () => {
@@ -64,48 +62,46 @@ class App extends React.Component {
       username: '',
       token: ''
     }
-    this.setState(
-      {user,
-      initialMenuRedirect: false},
-      () => {
-        this.props.history.push('/login')
-      })
+    this.setState({user})
   }
 
-  falsifyInitialMenuRedirect = () => {
-    console.log(this.state.initialMenuRedirect)
-    if (this.state.initialMenuRedirect) {
-      this.setState({
-        initialMenuRedirect: false
-      },
-      () => {
-        this.props.history.push('/Search')
-      })
-      // debugger
-    }
+  handlePageChange = (page) => {
+    this.setState({page})
   }
 
+ toggle = () => {
+    let mainNav = document.getElementById("js-menu");
+    mainNav.classList.toggle("active");
+  }
 
   render() {
     
     return (
       <div>
-        {this.state.user.token !== ''?
-        <Navbar 
-          handleLogout={this.handleLogout}
-          falsifyInitialMenuRedirect={this.falsifyInitialMenuRedirect}
-        />:null}
-        <PageRouter 
-          setStateUsernameEmailToken={this.setStateUsernameEmailToken}
-          user={this.state.user}
-          menuRedirect={this.state.initialMenuRedirect}
-          falsifyInitialMenuRedirect={this.falsifyInitialMenuRedirect}
-        />
+        <Router>
+          {this.state.user.token !== ''?  
+            <Navbar handleLogout={this.handleLogout}/>:
+              null}
+          <Route exact path='/menu' render={() => <Menu user={this.state.user} handlePageChange={this.handlePageChange}/>}/>
+          <Route exact path='/search' render={() => <Search user={this.state.user}/>}/>
+          <Route exact path='/profile' render={() => <Profile user={this.state.user}/>}/>
+          <Route exact path='/login' render={() => 
+            <LoginPage
+              setStateUsernameEmailToken={this.setStateUsernameEmailToken}
+              user={this.state.user}/>}
+            />
+        </Router>
       </div>
     )
   }
 }
 
+export default App;
 
-export default withRouter(App);
-
+// /* 
+// </Router>
+//         <PageRouter 
+//           setStateUsernameEmailToken={this.setStateUsernameEmailToken}
+//           user={this.state.user}
+//           handlePageChange={this.handlePageChange}
+//         /> */

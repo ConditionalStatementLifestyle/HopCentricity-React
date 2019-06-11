@@ -1,6 +1,9 @@
 import React from 'react'
-import Logout from './Logout'
+// import Logout from './Logout'
 import logo from '../hop.png'
+import {Link} from 'react-router-dom'
+
+
 const Navbar = (props) => {
 
   const toggle = () => {
@@ -11,27 +14,24 @@ const Navbar = (props) => {
 
   return (
     <div>
-      <nav className="navbar">
-              <span className="navbar-toggle" id="js-navbar-toggle" onClick={() => toggle()}>
-                  <i className="fas fa-bars"></i>
-              </span>
-                <a href="#" className='cursor'>
-                  <img src={logo} alt=''></img>
-                </a>
-              <ul className="main-nav" id="js-menu">
-                  <li>
-                      <a href="/Search" className="nav-links" onClick={() => 
-                      props.falsifyInitialMenuRedirect()}>Search</a>
-                  </li>
-                  <li>
-                      <a href="#" className="nav-links">Profile</a>
-                  </li>
-                  <li>
-                      <a href="#" className="nav-links" onClick={() => props.handleLogout()}>Logout</a>
-                  </li>
-              </ul>
-          </nav>
-    </div>
+    <nav className="navbar">
+            <span className="navbar-toggle" id="js-navbar-toggle" onClick={() => toggle()}>
+                <i className="fas fa-bars"></i>
+            </span>
+              <Link to="/menu" className='cursor'><img src={logo} alt=''></img></Link>
+            <ul className="main-nav" id="js-menu">
+                <li>
+                  <Link to="/search" className='nav-links'>Search</Link>
+                </li>
+                <li>
+                  <Link to="/profile" className='nav-links'>Profile</Link>
+                </li>
+                <li>
+                  <Link to="/login" className="nav-links" onClick={() => props.handleLogout()}>Logout</Link>
+                </li>
+            </ul>
+        </nav>
+      </div>
   )
 
 }
