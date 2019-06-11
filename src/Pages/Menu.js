@@ -7,7 +7,7 @@ const Menu = (props) => {
   
 
   return (
-    <div className="outer">
+    <div className="outerCard">
       <div className="middle">
         <div className="innerCard">
           <div className="ui card cardBackground">
@@ -15,7 +15,7 @@ const Menu = (props) => {
               <img src={hopCard}></img>
             </div>
             <div className="content">
-              <a className="header">Logged In as {props.user.username}</a>
+              <a className="header">Logged in as {props.user.username}</a>
               <div className="meta">
                 <span className="date">Congrats on Being a Hop Lover</span>
               </div>
@@ -34,7 +34,8 @@ const Menu = (props) => {
         <div className="outerButton">
           <div className="innerButton">
           <a href='/search'>
-            <button class="ui button menuButton">
+            <button class="ui button menuButton" 
+            onClick={() => props.falsifyInitialMenuRedirect()}>
               Search Hoppy Beers
             </button>
           </a>

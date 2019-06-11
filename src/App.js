@@ -16,7 +16,8 @@ class App extends React.Component {
         email: '',
         username: '',
         token: ''
-      }
+      },
+      initialMenuRedirect: false
     }
     // this.getUserDataIfRefreshed()
   }
@@ -28,7 +29,8 @@ class App extends React.Component {
       user.username = localStorage.getItem('HopCentricity_Username')
       user.token = localStorage.getItem('HopCentricity_Token')
       this.setState(
-        {user},
+        {user,
+        initialMenuRedirect: true},
         () => {
           this.props.history.push('/menu')
         })
@@ -46,7 +48,8 @@ class App extends React.Component {
     user.username = data.raw.names[0].displayName
     user.token = localStorage.getItem('HopCentricity_Token')
     this.setState(
-      {user},
+      {user,
+      initialMenuRedirect: true},
       () => {
         this.props.history.push('/menu')
       })
@@ -61,10 +64,25 @@ class App extends React.Component {
       username: '',
       token: ''
     }
-    this.setState({user},
+    this.setState(
+      {user,
+      initialMenuRedirect: false},
       () => {
         this.props.history.push('/login')
       })
+  }
+
+  falsifyInitialMenuRedirect = () => {
+    console.log(this.state.initialMenuRedirect)
+    if (this.state.initialMenuRedirect) {
+      this.setState({
+        initialMenuRedirect: false
+      },
+      () => {
+        this.props.history.push('/Search')
+      })
+      // debugger
+    }
   }
 
 
@@ -73,10 +91,16 @@ class App extends React.Component {
     return (
       <div>
         {this.state.user.token !== ''?
-        <Navbar handleLogout={this.handleLogout}/>:null}
+        <Navbar 
+          handleLogout={this.handleLogout}
+          falsifyInitialMenuRedirect={this.falsifyInitialMenuRedirect}
+        />:null}
         <PageRouter 
-        setStateUsernameEmailToken={this.setStateUsernameEmailToken}
-        user={this.state.user}/>
+          setStateUsernameEmailToken={this.setStateUsernameEmailToken}
+          user={this.state.user}
+          menuRedirect={this.state.initialMenuRedirect}
+          falsifyInitialMenuRedirect={this.falsifyInitialMenuRedirect}
+        />
       </div>
     )
   }

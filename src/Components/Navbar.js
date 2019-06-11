@@ -15,15 +15,13 @@ const Navbar = (props) => {
               <span className="navbar-toggle" id="js-navbar-toggle" onClick={() => toggle()}>
                   <i className="fas fa-bars"></i>
               </span>
-                <a href="#" >
+                <a href="#" className='cursor'>
                   <img src={logo} alt=''></img>
                 </a>
               <ul className="main-nav" id="js-menu">
                   <li>
-                      <a href="#" className="nav-links">Home</a>
-                  </li>
-                  <li>
-                      <a href="#" className="nav-links">Search</a>
+                      <a href="/Search" className="nav-links" onClick={() => 
+                      props.falsifyInitialMenuRedirect()}>Search</a>
                   </li>
                   <li>
                       <a href="#" className="nav-links">Profile</a>
