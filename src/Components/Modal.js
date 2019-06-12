@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import { Button, Header, Image, Modal } from 'semantic-ui-react'
+import hopCard from '../hopCard.png'
+import ReviewForm from './ReviewForm'
+
 
 class ReviewModal extends Component {
   state = { open: false }
@@ -15,25 +18,31 @@ class ReviewModal extends Component {
         <Button className='fluid ui teal button 'onClick={this.show('blurring')}>Review</Button>
 
         <Modal dimmer={dimmer} open={open} onClose={this.close}>
-          <Modal.Header>Select a Photo</Modal.Header>
+          <Modal.Header>How do you feel about this beer?</Modal.Header>
           <Modal.Content image>
-            <Image wrapped size='medium' src='https://react.semantic-ui.com/images/avatar/large/rachel.png' />
+            <Image wrapped size='medium' src={this.props.img_url} />
             <Modal.Description>
-              <Header>Default Profile Image</Header>
-              <p>We've found the following gravatar image associated with your e-mail address.</p>
-              <p>Is it okay to use this photo?</p>
+              <Header size='large'>{this.props.name}</Header>
+              <Header>{this.props.brewery}</Header>
+              <div>{this.props.type}</div><br></br>
+              <div>{this.props.ibu} IBU</div><br></br>
+              <div>{this.props.abv}%</div><br></br>
+              <div>Rating {this.props.rating}</div><br></br>
             </Modal.Description>
           </Modal.Content>
           <Modal.Actions>
             <Button color='black' onClick={this.close}>
-              Nope
-            </Button>
-            <Button
-              positive
-              icon='checkmark'
-              labelPosition='right'
-              content="Yep, that's me"
-              onClick={this.close}
+              No Feelings On This
+            </Button><br></br>
+            <ReviewForm 
+                id={this.props.id}
+                name={this.props.name}
+                brewery={this.props.brewery}
+                ibu={this.props.ibu}
+                style={this.props.style}
+                img_url={this.props.img_url}
+                rating={this.props.rating}
+                abv={this.props.abv}
             />
           </Modal.Actions>
         </Modal>

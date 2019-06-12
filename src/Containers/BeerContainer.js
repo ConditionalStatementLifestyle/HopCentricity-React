@@ -13,13 +13,15 @@ const BeerContainer = (props) => {
                   beerItem.brewery = beerItem.brewery.name
               }
               return <BeerCard 
-                key={beerItem.id} 
+                key={beerItem.id}
+                id={beerItem.id}
                 name={beerItem.name}
                 brewery={beerItem.brewery}
                 ibu={beerItem.ibu}
                 style={beerItem.style}
                 img_url={beerItem.img_url}
                 rating={beerItem.rating}
+                abv={beerItem.abv}
                 />
           }) }
         </div>

@@ -14,7 +14,7 @@ class BeerTypeForm extends React.Component {
             <h3>IPA Type</h3>
                 <form class="ui form" onSubmit={this.handleSubmit}>
                     <div>
-                        <select className="ui fluid dropdown" id='dropdown' onChange={this.changeSelection}>
+                        <select className="ui fluid dropdown" id='dropdown'>
                             <option value='IPA - New England'>IPA - New England</option>
                             <option value="IPA - Imperial / Double">IPA - Imperial / Double</option>
                             <option value="IPA - American">IPA - American</option>

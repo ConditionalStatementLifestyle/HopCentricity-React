@@ -32,9 +32,19 @@ const BeerCard = (props) => {
                         <p>
                             <div>{titleCase(props.style)}</div><br></br>
                             <div>{props.ibu} IBU</div><br></br>
+                            <div>{props.abv}%</div><br></br>
                             <div>Rating {props.rating}</div>
                         </p>
-                        <ReviewModal />
+                        <ReviewModal  
+                            id={props.id}
+                            name={titleCase(props.name)}
+                            brewery={titleCase(props.brewery)}
+                            ibu={props.ibu}
+                            style={props.style}
+                            img_url={props.img_url}
+                            rating={props.rating}
+                            abv={props.abv}
+                        />
                     </div>
             </div>
         </div>
