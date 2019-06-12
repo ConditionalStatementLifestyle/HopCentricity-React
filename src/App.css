@@ -222,3 +222,13 @@ body {
   margin-left: auto;
   margin-right: auto;
 }
+
+.center {
+  text-align: center;
+  border-radius: 11px;
+}
+
+.cardMargin {
+  margin-top: 10px;
+  margin-bottom: 4px;
+}

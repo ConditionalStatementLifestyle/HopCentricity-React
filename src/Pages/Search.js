@@ -4,13 +4,19 @@ import React from 'react'
 import BeerNameForm from '../Components/BeerNameForm'
 import BreweryForm from '../Components/BreweryForm'
 import BeerTypeForm from '../Components/BeerTypeForm'
+import BeerContainer from '../Containers/BeerContainer'
 
 class Search extends React.Component {
     constructor(props) {
         super(props);
         this.state = { 
-            type: 'beername'
+            type: 'beername',
+            beers: []
          }
+    }
+
+    renderBeers = (beers) => {
+        this.setState({beers})
     }
 
     changeForm = () => {
@@ -21,13 +27,13 @@ class Search extends React.Component {
     renderFormByTypeSelection = () => {
         let type = this.state.type
         if (type === 'beername') {
-            return <BeerNameForm/>
+            return <BeerNameForm renderBeers={this.renderBeers}/>
         }   
         else if (type === 'beertype') {
-            return <BeerTypeForm/>
+            return <BeerTypeForm renderBeers={this.renderBeers}/>
         }   
         else if (type === 'brewery') {
-            return <BreweryForm/>        
+            return <BreweryForm enderBeers={this.renderBeers}/>        
         }
         else {
             return null
@@ -36,17 +42,20 @@ class Search extends React.Component {
 
     render() { 
         return (
-            <div className='width'>
-                <br></br>
-                    <h2>Search By</h2>
-                    <div className='searchSelectionWidth'>
-                    <select id='SearchType' className="ui fluid dropdown" onChange={() => this.changeForm()}>
-                        <option value="beername" ref={this.searchType}>IPA Name</option>
-                        <option value="beertype" ref={this.searchType}>IPA Type</option>
-                        <option value="brewery" ref={this.searchType}>Brewery</option>
-                    </select><br></br>
-                    </div>
-            {this.renderFormByTypeSelection()}
+            <div>
+                <div className='width'>
+                    <br></br>
+                        <h2>Search By</h2>
+                        <div className='searchSelectionWidth'>
+                        <select id='SearchType' className="ui fluid dropdown" onChange={() => this.changeForm()}>
+                            <option value="beername" ref={this.searchType}>IPA Name</option>
+                            <option value="beertype" ref={this.searchType}>IPA Type</option>
+                            <option value="brewery" ref={this.searchType}>Brewery</option>
+                        </select><br></br>
+                        </div>
+                    {this.renderFormByTypeSelection()}
+                </div>
+                <BeerContainer beers={this.state.beers}/>
           </div>
          )
     }
