@@ -9,23 +9,23 @@ class BeerNameForm extends React.Component {
 
     handleSubmit = (ev) => {
         ev.preventDefault()
-        this.searchForBeerName()
+        this.props.searchForBeers(this.query.current.value,'beername')
     }
 
-    searchForBeerName = () => {
-        fetch('http://localhost:3000/api/v1/beers', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              type: 'beername',
-              query: this.query.current.value
-            })
-          })
-          .then(res => res.json())
-          .then(json => this.props.renderBeers(json))
-    }
+    // searchForBeerName = () => {
+    //     fetch('http://localhost:3000/api/v1/beers', {
+    //         method: 'POST',
+    //         headers: {
+    //           'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify({
+    //           type: 'beername',
+    //           query: this.query.current.value
+    //         })
+    //       })
+    //       .then(res => res.json())
+    //       .then(json => this.props.renderBeers(json))
+    // }
 
     render() { 
         return ( 

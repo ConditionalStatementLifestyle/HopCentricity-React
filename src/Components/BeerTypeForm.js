@@ -1,22 +1,26 @@
 import React from 'react'
 
 class BeerTypeForm extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {  }
+
+    handleSubmit = (ev) => {
+        ev.preventDefault()
+        let selection = document.getElementById('dropdown').value
+        this.props.searchForBeers(selection,'beertype')
     }
+    
     render() {
         return (
             <div>
             <h3>IPA Type</h3>
-                <form class="ui form">
+                <form class="ui form" onSubmit={this.handleSubmit}>
                     <div>
-                        <select className="ui fluid dropdown">
-                            <option value='IPA'>IPA</option>
+                        <select className="ui fluid dropdown" id='dropdown' onChange={this.changeSelection}>
+                            <option value='IPA - New England'>IPA - New England</option>
                             <option value="IPA - Imperial / Double">IPA - Imperial / Double</option>
+                            <option value="IPA - American">IPA - American</option>
+                            <option value="IPA - Milkshake">IPA - Milkshake</option>
+                            <option value="IPA - Session / India Session Ale">IPA - Session / India Session Ale</option>
                             <option value="IPA - White">IPA - White</option>
-                            <option value="IPA - American">IPA - American</option>
-                            <option value="IPA - American">IPA - American</option>
                         </select>
                     </div>
                     <br></br>

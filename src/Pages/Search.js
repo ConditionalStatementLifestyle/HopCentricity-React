@@ -15,6 +15,21 @@ class Search extends React.Component {
          }
     }
 
+    searchForBeers = (query, type) => {
+        fetch('http://localhost:3000/api/v1/beers', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              type: type,
+              query: query
+            })
+          })
+          .then(res => res.json())
+          .then(json => this.renderBeers(json))
+    }
+
     renderBeers = (beers) => {
         this.setState({beers})
     }
@@ -27,13 +42,13 @@ class Search extends React.Component {
     renderFormByTypeSelection = () => {
         let type = this.state.type
         if (type === 'beername') {
-            return <BeerNameForm renderBeers={this.renderBeers}/>
+            return <BeerNameForm searchForBeers={this.searchForBeers}/>
         }   
         else if (type === 'beertype') {
-            return <BeerTypeForm renderBeers={this.renderBeers}/>
+            return <BeerTypeForm searchForBeers={this.searchForBeers}/>
         }   
         else if (type === 'brewery') {
-            return <BreweryForm enderBeers={this.renderBeers}/>        
+            return <BreweryForm searchForBeers={this.searchForBeers}/>        
         }
         else {
             return null

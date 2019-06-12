@@ -9,10 +9,13 @@ const BeerContainer = (props) => {
               if (beerItem.img_url === "https://untappd.akamaized.net/site/assets/images/temp/badge-beer-default.png") {
                   beerItem.img_url = null
               }
+              if (typeof beerItem.brewery !== 'string') {
+                  beerItem.brewery = beerItem.brewery.name
+              }
               return <BeerCard 
                 key={beerItem.id} 
                 name={beerItem.name}
-                brewery={beerItem.brewery.name}
+                brewery={beerItem.brewery}
                 ibu={beerItem.ibu}
                 style={beerItem.style}
                 img_url={beerItem.img_url}

@@ -1,5 +1,6 @@
-import React from 'react'
+import React from 'react';
 import Pineapple from '../pineapple.png'
+import ReviewModal from './Modal';
 
 const BeerCard = (props) => {
 
@@ -24,16 +25,17 @@ const BeerCard = (props) => {
                 </div>
             <div className="content">
                 <div className="header">{titleCase(props.name)}</div>
-                <div className="meta">
-                <span className="category">{titleCase(props.brewery)}</span>
-                </div>
-                <div className="description">
-                <p>
-                <div>{titleCase(props.style)}</div><br></br>
-                <div>{props.ibu} IBU</div><br></br>
-                <div>Rating {props.rating}</div>
-                </p>
-                </div>
+                    <div className="meta">
+                        <span className="category">{titleCase(props.brewery)}</span>
+                    </div>
+                    <div className="description">
+                        <p>
+                            <div>{titleCase(props.style)}</div><br></br>
+                            <div>{props.ibu} IBU</div><br></br>
+                            <div>Rating {props.rating}</div>
+                        </p>
+                        <ReviewModal />
+                    </div>
             </div>
         </div>
         <br></br><br></br>
