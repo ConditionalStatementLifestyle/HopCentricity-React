@@ -21,7 +21,7 @@ class App extends React.Component {
         username: '',
         token: ''
       },
-      page: ''
+      reviews: []
     }
     // this.getUserDataIfRefreshed()
   }
@@ -33,16 +33,38 @@ class App extends React.Component {
       user.username = localStorage.getItem('HopCentricity_Username')
       user.token = localStorage.getItem('HopCentricity_Token')
       this.setState({user})
-        // console.log('here is state',this.state.user)
-        // ,
-        // () => {
-        //   this.props.history.push('/menu')
-        // }
+      this.getProfileData(user.email)
     }
   }
 
   componentWillMount() {
     this.getUserDataIfRefreshed()
+  }
+
+  getProfileData = (email) => {
+    fetch('http://localhost:3000/api/v1/userReviews', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: email
+      })
+    })
+    .then(res => res.json())
+    .then(json => this.setReviews(json))
+  }
+
+  setReviews = (reviews) => {
+    if (reviews.length > 0) {
+      this.setState({reviews})
+    }
+  }
+
+  pushReviewInApp = (review) => {
+    let reviews = this.state.reviews
+    reviews.push(review)
+    this.setState({reviews})
   }
 
   setStateUsernameEmailToken = (data) => {
@@ -65,10 +87,6 @@ class App extends React.Component {
     this.setState({user})
   }
 
-  handlePageChange = (page) => {
-    this.setState({page})
-  }
-
  toggle = () => {
     let mainNav = document.getElementById("js-menu");
     mainNav.classList.toggle("active");
@@ -82,9 +100,9 @@ class App extends React.Component {
           {this.state.user.token !== ''?  
             <Navbar handleLogout={this.handleLogout}/>:
               null}
-          <Route exact path='/menu' render={() => <Menu user={this.state.user} handlePageChange={this.handlePageChange}/>}/>
-          <Route exact path='/search' render={() => <Search user={this.state.user}/>}/>
-          <Route exact path='/profile' render={() => <Profile user={this.state.user}/>}/>
+          <Route exact path='/menu' render={() => <Menu user={this.state.user} reviews={this.state.reviews.length}/>}/>
+          <Route exact path='/search' render={() => <Search user={this.state.user} pushReviewInApp={this.props.pushReviewInApp}/>}/>
+          <Route exact path='/profile' render={() => <Profile user={this.state.user} reviews={this.state.reviews} />}/>
           <Route exact path='/login' render={() => 
             <LoginPage
               setStateUsernameEmailToken={this.setStateUsernameEmailToken}

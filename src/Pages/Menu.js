@@ -25,17 +25,16 @@ class Menu extends React.Component {
                 </div>
               </div>
               <div className="extra content">
-                  <i className="user icon"></i>
-                  # of Reviews here
+                  You've Reviewed {this.props.reviews} Beers
               </div>
             </div>
           </div>
           <div className="outerButton">
             <div className="innerButton">
-              <button className="ui button menuButton" onClick={() => this.props.history.push('/search')}>
+              <button className="ui inverted teal button menuButton" onClick={() => this.props.history.push('/search')}>
                 Search Hoppy Beers
               </button>
-              <button className="ui button menuButton" onClick={() => this.props.history.push('/profile')}>
+              <button className="ui inverted teal button menuButton" onClick={() => this.props.history.push('/profile')}>
                 Your Hoppy Profile
               </button>
             </div>

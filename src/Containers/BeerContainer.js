@@ -22,6 +22,7 @@ const BeerContainer = (props) => {
                 img_url={beerItem.img_url}
                 rating={beerItem.rating}
                 abv={beerItem.abv}
+                pushReviewInApp={props.pushReviewInApp}
                 />
           }) }
         </div>

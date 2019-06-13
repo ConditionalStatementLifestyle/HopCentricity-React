@@ -44,6 +44,7 @@ const BeerCard = (props) => {
                             img_url={props.img_url}
                             rating={props.rating}
                             abv={props.abv}
+                            pushReviewInApp={props.pushReviewInApp}
                         />
                     </div>
             </div>

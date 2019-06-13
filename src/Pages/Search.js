@@ -70,7 +70,10 @@ class Search extends React.Component {
                         </div>
                     {this.renderFormByTypeSelection()}
                 </div>
-                <BeerContainer beers={this.state.beers}/>
+                <BeerContainer 
+                beers={this.state.beers}
+                pushReviewInApp={this.props.pushReviewInApp}
+                />
           </div>
          )
     }

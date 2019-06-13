@@ -53,7 +53,7 @@ class Login extends React.Component {
           <div className="outer">
             <div className="middle">
               <div className="inner">
-                <h2 className="ui teal image header" onClick={this.handleClick.bind(this)}>
+                <h2 className="ui teal image header cursor" onClick={this.handleClick.bind(this)}>
                   <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt='' className="image cursor"></img>
                   <div className="content cursor">
                     Log-in with Google

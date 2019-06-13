@@ -10,6 +10,8 @@ class ReviewModal extends Component {
   show = dimmer => () => this.setState({ dimmer, open: true })
   close = () => this.setState({ open: false })
 
+  
+
   render() {
     const { open, dimmer } = this.state
 
@@ -32,7 +34,7 @@ class ReviewModal extends Component {
           </Modal.Content>
           <Modal.Actions>
             <Button color='black' onClick={this.close}>
-              No Feelings On This
+              No Feelings On this
             </Button><br></br>
             <ReviewForm 
                 id={this.props.id}
@@ -43,6 +45,8 @@ class ReviewModal extends Component {
                 img_url={this.props.img_url}
                 rating={this.props.rating}
                 abv={this.props.abv}
+                close={this.close}
+                pushReviewInApp={this.props.pushReviewInApp}
             />
           </Modal.Actions>
         </Modal>

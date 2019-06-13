@@ -21,8 +21,8 @@ const Navbar = (props) => {
             <Link to="/menu" className='cursor'>
               <img src={logo} alt=''></img>
             </Link>
-            <div className='nav-title'>Hop Centricity</div>
-          <div>
+            <div className='nav-title'></div>
+          <div >
             <ul className="main-nav" id="js-menu">
               <li>
                 <Link to="/search" className='nav-links'>Search</Link>

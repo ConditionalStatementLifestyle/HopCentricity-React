@@ -27,6 +27,7 @@ const ReviewForm = (props) => {
     let rating = document.getElementById('dropdown').value
     let content = document.getElementById('area').value
     submitReview(content, rating, props)
+    props.close()
   }
 
   const submitReview = (content, rating, props) => {
@@ -51,11 +52,11 @@ const ReviewForm = (props) => {
         })
       })
       .then(res => res.json())
-      .then(json => checkData(json))
+      .then(json => pushData(json))
   }
 
-  const checkData = (review) => {
-    debugger
+  const pushData = (review) => {
+    this.props.pushReviewInApp(review)
   }
 
     return (
