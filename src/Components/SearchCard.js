@@ -1,8 +1,8 @@
 import React from 'react';
 import Pineapple from '../pineapple.png'
-import ReviewModal from './Modal';
+import ReviewModal from './ReviewModal';
 
-const BeerCard = (props) => {
+const SearchCard = (props) => {
 
     const titleCase = (str) => {
         str = str.toLowerCase().split(' ');
@@ -19,9 +19,9 @@ const BeerCard = (props) => {
 
     return (
         <div>
-            <div className="ui centered raised link card">
+            <div className="ui raised link card">
                 <div className="center floated author">
-                    <img alt='oh no' className="image center cardMargin" src={props.img_url === null?Pineapple:props.img_url}></img>
+                    <img alt='oh no' className="image  cardMargin cardImage" src={props.img_url === null?Pineapple:props.img_url}></img>
                 </div>
             <div className="content">
                 <div className="header">{titleCase(props.name)}</div>
@@ -48,6 +48,7 @@ const BeerCard = (props) => {
                         />
                     </div>
             </div>
+        
         </div>
         <br></br><br></br>
         </div>
@@ -55,4 +56,4 @@ const BeerCard = (props) => {
 }
 
 
-export default BeerCard;
+export default SearchCard;

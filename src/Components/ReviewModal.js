@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Button, Header, Image, Modal } from 'semantic-ui-react'
-import hopCard from '../hopCard.png'
 import ReviewForm from './ReviewForm'
 
 

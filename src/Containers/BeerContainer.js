@@ -1,10 +1,11 @@
 import React from 'react'
-import BeerCard from '../Components/BeerCard'
+import SearchCard from '../Components/SearchCard'
 
 const BeerContainer = (props) => {
 
     return (
         <div><br></br><br></br>
+         <div className='ui centered three column grid'><br></br><br></br>
           {props.beers.map(beerItem => {
               if (beerItem.img_url === "https://untappd.akamaized.net/site/assets/images/temp/badge-beer-default.png") {
                   beerItem.img_url = null
@@ -12,7 +13,7 @@ const BeerContainer = (props) => {
               if (typeof beerItem.brewery !== 'string') {
                   beerItem.brewery = beerItem.brewery.name
               }
-              return <BeerCard 
+              return <SearchCard 
                 key={beerItem.name}
                 id={beerItem.id}
                 name={beerItem.name}
@@ -25,6 +26,7 @@ const BeerContainer = (props) => {
                 pushReviewToProfile={props.pushReviewToProfile}
                 />
           }) }
+        </div>
         </div>
     )
 }

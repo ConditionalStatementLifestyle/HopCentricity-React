@@ -4,7 +4,7 @@ import Menu from './Pages/Menu'
 import LoginPage from './Pages/LoginPage'
 import Search from './Pages/Search'
 import Profile from './Pages/Profile'
-import {BrowserRouter as Router, Route, Redirect, Link} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom'
 import Navbar from './Components/Navbar'
 // import { withRouter } from "react-router-dom";
 // public key: KZeepwzkDFgCnpzuCx43quqVMD4
@@ -51,6 +51,7 @@ class App extends React.Component {
     this.state.reviews.map(review => {
         totalUserRatings += parseFloat(review.rating)
         totalGlobalRatings += parseFloat(review.beer.rating)
+        return null
     })
     let userAverage = totalUserRatings/length
     let globalAverage = totalGlobalRatings/length

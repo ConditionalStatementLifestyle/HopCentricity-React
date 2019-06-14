@@ -20,7 +20,7 @@ const ReviewCard = (props) => {
         <div>
             <div className="ui raised link card">
                 <div className="center floated author">
-                    <img className="image center cardMargin" src={props.img_url === null?Pineapple:props.img_url} alt='oh no'></img>
+                    <img className="image center cardMargin cardImage" src={props.img_url === null?Pineapple:props.img_url} alt='oh no'></img>
                 </div>
             <div className="content">
                 <div className="header">{titleCase(props.name)}</div><br></br>
