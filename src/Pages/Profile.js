@@ -13,9 +13,9 @@ class Profile extends React.Component {
         }
     }
 
-    componentWillUpdate() {
-        let interval = 1/(this.props.hopmeter.hopRating/55000)
-        setInterval(() => this.toggleVisiblity(),interval)
+    setInterval = () => {
+        let interval = 1/(this.props.hopmeter.hopRating/80000)
+        setInterval(this.toggleVisiblity,interval)
     }
 
     toggleVisiblity = () => {
@@ -23,10 +23,15 @@ class Profile extends React.Component {
         this.setState({visible}) 
     }
 
+    componentWillUnmount() {
+        clearInterval(this.toggleVisiblity)
+    }
+
     render() { 
         const { visible } = this.state
         return ( 
             <div><br></br><br></br>
+            {this.setInterval()}
                 <div className="ui vertical stripe segment">
                     <div className="ui middle aligned stackable grid container">
                     <div className="row">
@@ -53,12 +58,11 @@ class Profile extends React.Component {
                     <div className="ui red inverted progress meter">
                         <Progress 
                         percent={this.props.hopmeter.hopRating} 
-                        color={this.props.hopmeter.color} 
+                        color={this.props.hopmeter.color}
                         active 
                         size='large'
-                        inverted progress>
+                        inverted progress/>
                         {this.props.hopmeter.hopRating}%
-                        </Progress>
                     </div>
                     </div>
                 </div><br></br><br></br><br></br><br></br>

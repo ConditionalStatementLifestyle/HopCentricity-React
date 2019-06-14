@@ -6,6 +6,10 @@ import Search from './Pages/Search'
 import Profile from './Pages/Profile'
 import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom'
 import Navbar from './Components/Navbar'
+import AudioPlayer from "react-h5-audio-player";
+import mp3_file from './AdiosTurdNuggets.ogg';
+
+
 // import { withRouter } from "react-router-dom";
 // public key: KZeepwzkDFgCnpzuCx43quqVMD4
 
@@ -142,6 +146,7 @@ setHopmeterRating = (hopRating) => {
       token: ''
     }
     this.setState({user})
+    this.player.audio.play()
   }
 
  toggle = () => {
@@ -153,10 +158,16 @@ setHopmeterRating = (hopRating) => {
     
     return (
       <div>
+          <AudioPlayer
+            hidePlayer={true}
+            src={mp3_file}
+            volume={1.0}
+            ref={c => (this.player = c)}
+          />
         <Router>
           {this.state.user.token !== ''?  
             <Navbar handleLogout={this.handleLogout}/>:
-              null}
+            <Redirect to='/login'/>  }
           <Route exact path='/' render={() => <Redirect to='/menu'/>}/>
           <Route exact path='/menu' render={() => <Menu user={this.state.user} reviews={this.state.reviews.length}/>}/>
           <Route exact path='/search' render={() => <Search user={this.state.user} pushReviewToProfile={this.pushReviewToProfile}/>}/>
