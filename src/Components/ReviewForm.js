@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 // const options = [
 //   { key: '1', text: '1', value: '1' },
@@ -31,7 +31,7 @@ const ReviewForm = (props) => {
   }
 
   const submitReview = (content, rating, props) => {
-      let email = localStorage.getItem('HopCentricity_Email')
+    let email = localStorage.getItem('HopCentricity_Email')
     fetch('http://localhost:3000/api/v1/reviews', {
         method: 'POST',
         headers: {
@@ -56,7 +56,7 @@ const ReviewForm = (props) => {
   }
 
   const pushData = (review) => {
-    this.props.pushReviewInApp(review)
+    props.pushReviewToProfile(review)
   }
 
     return (

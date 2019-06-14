@@ -72,7 +72,7 @@ class Search extends React.Component {
                 </div>
                 <BeerContainer 
                 beers={this.state.beers}
-                pushReviewInApp={this.props.pushReviewInApp}
+                pushReviewToProfile={this.props.pushReviewToProfile}
                 />
           </div>
          )

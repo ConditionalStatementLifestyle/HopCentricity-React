@@ -46,7 +46,7 @@ class ReviewModal extends Component {
                 rating={this.props.rating}
                 abv={this.props.abv}
                 close={this.close}
-                pushReviewInApp={this.props.pushReviewInApp}
+                pushReviewToProfile={this.props.pushReviewToProfile}
             />
           </Modal.Actions>
         </Modal>

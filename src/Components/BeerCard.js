@@ -21,7 +21,7 @@ const BeerCard = (props) => {
         <div>
             <div className="ui centered raised link card">
                 <div className="center floated author">
-                    <img className="image center cardMargin" src={props.img_url === null?Pineapple:props.img_url}></img>
+                    <img alt='oh no' className="image center cardMargin" src={props.img_url === null?Pineapple:props.img_url}></img>
                 </div>
             <div className="content">
                 <div className="header">{titleCase(props.name)}</div>
@@ -44,7 +44,7 @@ const BeerCard = (props) => {
                             img_url={props.img_url}
                             rating={props.rating}
                             abv={props.abv}
-                            pushReviewInApp={props.pushReviewInApp}
+                            pushReviewToProfile={props.pushReviewToProfile}
                         />
                     </div>
             </div>

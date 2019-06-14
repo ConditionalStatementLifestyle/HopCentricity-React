@@ -19,9 +19,9 @@ const Navbar = (props) => {
             <i className="fas fa-bars"></i>
           </span>
             <Link to="/menu" className='cursor'>
-              <img src={logo} alt=''></img>
+              <div className='nav-icon'><img src={logo} alt=''></img></div>
             </Link>
-            <div className='nav-title'></div>
+            <div className='nav-title'>Hop Centricity</div>
           <div >
             <ul className="main-nav" id="js-menu">
               <li>

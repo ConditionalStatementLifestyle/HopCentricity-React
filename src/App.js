@@ -4,10 +4,8 @@ import Menu from './Pages/Menu'
 import LoginPage from './Pages/LoginPage'
 import Search from './Pages/Search'
 import Profile from './Pages/Profile'
-// import logo from './hop.png'
+import {BrowserRouter as Router, Route, Redirect, Link} from 'react-router-dom'
 import Navbar from './Components/Navbar'
-
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
 // import { withRouter } from "react-router-dom";
 // public key: KZeepwzkDFgCnpzuCx43quqVMD4
 
@@ -20,6 +18,11 @@ class App extends React.Component {
         email: '',
         username: '',
         token: ''
+      },
+      hopmeter: {
+        hopRating: 0,
+        color: '',
+        thought: ''
       },
       reviews: []
     }
@@ -41,6 +44,56 @@ class App extends React.Component {
     this.getUserDataIfRefreshed()
   }
 
+  getHopmeterRating = () => {
+    let totalUserRatings = 0
+    let totalGlobalRatings = 0
+    let length = this.state.reviews.length
+    this.state.reviews.map(review => {
+        totalUserRatings += parseFloat(review.rating)
+        totalGlobalRatings += parseFloat(review.beer.rating)
+    })
+    let userAverage = totalUserRatings/length
+    let globalAverage = totalGlobalRatings/length
+    let diff = userAverage - globalAverage
+    let hopRating = (diff * 20) + 50
+    hopRating = parseInt(hopRating * length/50)
+    this.setHopmeterRating(hopRating)
+}
+
+setHopmeterRating = (hopRating) => {
+  let hopmeter = {...this.state.hopmeter}
+    if (hopRating < 25) {
+        hopmeter.hopRating = hopRating
+        hopmeter.color = 'red'
+        hopmeter.thought = "Seems like you don't want hops in your life" 
+        this.setState({hopmeter})
+    }
+        
+    else if (hopRating < 50 && hopRating > 25) {
+        hopmeter.hopRating = hopRating
+        hopmeter.color = 'orange'
+        hopmeter.thought = "Looks like hops could treat you better, keep hopping around" 
+        this.setState({hopmeter})
+    }
+        
+    else if (hopRating < 75 && hopRating > 50) {
+        hopmeter.hopRating = hopRating
+        hopmeter.color = 'teal'
+        hopmeter.thought = "You and the hops are on a similar wavelength, keep it hoppy"
+        this.setState({hopmeter})
+    }
+        
+    else if (hopRating > 75) {
+        hopmeter.hopRating = hopRating
+        hopmeter.color = 'green'
+        hopmeter.thought = "You and hops have become one, rejoice" 
+        this.setState({hopmeter})
+    }
+    else {
+        return null
+    }
+}
+
   getProfileData = (email) => {
     fetch('http://localhost:3000/api/v1/userReviews', {
       method: 'POST',
@@ -53,18 +106,21 @@ class App extends React.Component {
     })
     .then(res => res.json())
     .then(json => this.setReviews(json))
+    .then( _ => this.getHopmeterRating())
   }
 
   setReviews = (reviews) => {
     if (reviews.length > 0) {
       this.setState({reviews})
+
     }
   }
 
-  pushReviewInApp = (review) => {
+  pushReviewToProfile = (review) => {
     let reviews = this.state.reviews
     reviews.push(review)
     this.setState({reviews})
+    this.getHopmeterRating()
   }
 
   setStateUsernameEmailToken = (data) => {
@@ -100,9 +156,10 @@ class App extends React.Component {
           {this.state.user.token !== ''?  
             <Navbar handleLogout={this.handleLogout}/>:
               null}
+          <Route exact path='/' render={() => <Redirect to='/menu'/>}/>
           <Route exact path='/menu' render={() => <Menu user={this.state.user} reviews={this.state.reviews.length}/>}/>
-          <Route exact path='/search' render={() => <Search user={this.state.user} pushReviewInApp={this.props.pushReviewInApp}/>}/>
-          <Route exact path='/profile' render={() => <Profile user={this.state.user} reviews={this.state.reviews} />}/>
+          <Route exact path='/search' render={() => <Search user={this.state.user} pushReviewToProfile={this.pushReviewToProfile}/>}/>
+          <Route exact path='/profile' render={() => <Profile user={this.state.user} reviews={this.state.reviews} hopmeter={this.state.hopmeter}/>}/>
           <Route exact path='/login' render={() => 
             <LoginPage
               setStateUsernameEmailToken={this.setStateUsernameEmailToken}

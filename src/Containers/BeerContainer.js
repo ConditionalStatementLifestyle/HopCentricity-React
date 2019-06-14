@@ -13,7 +13,7 @@ const BeerContainer = (props) => {
                   beerItem.brewery = beerItem.brewery.name
               }
               return <BeerCard 
-                key={beerItem.id}
+                key={beerItem.name}
                 id={beerItem.id}
                 name={beerItem.name}
                 brewery={beerItem.brewery}
@@ -22,7 +22,7 @@ const BeerContainer = (props) => {
                 img_url={beerItem.img_url}
                 rating={beerItem.rating}
                 abv={beerItem.abv}
-                pushReviewInApp={props.pushReviewInApp}
+                pushReviewToProfile={props.pushReviewToProfile}
                 />
           }) }
         </div>
