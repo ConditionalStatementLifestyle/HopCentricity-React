@@ -280,4 +280,32 @@ body {
 
 .cardImage {
   height: 100px;
+  display:inline-block;
+}
+
+.searchCardTransition-enter {
+  opacity: 0.01;
+  /* width: 0px; */
+}
+
+.searchCardTransition-enter.searchCardTransition-enter-active {
+  opacity: 1;
+  /* width: 100px; */
+  transition: 900ms;
+}
+
+.searchCardTransition-leave {
+  opacity: 1;
+  /* width: 100px; */
+}
+
+.searchCardTransition-leave.example-leave-active {
+  opacity: 0.01;
+  /* width: 0px; */
+  transition: 500ms;
+}
+
+.block-display {
+  display:inline-block;
+  margin: 50px;
 }

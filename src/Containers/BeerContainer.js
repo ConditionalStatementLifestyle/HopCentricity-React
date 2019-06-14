@@ -1,11 +1,13 @@
 import React from 'react'
 import SearchCard from '../Components/SearchCard'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 const BeerContainer = (props) => {
 
     return (
         <div><br></br><br></br>
          <div className='ui centered three column grid'><br></br><br></br>
+         <ReactCSSTransitionGroup transitionName="searchCardTransition" transitionEnterTimeout={1000} transitionLeaveTimeout={700}>
           {props.beers.map(beerItem => {
               if (beerItem.img_url === "https://untappd.akamaized.net/site/assets/images/temp/badge-beer-default.png") {
                   beerItem.img_url = null
@@ -26,8 +28,9 @@ const BeerContainer = (props) => {
                 pushReviewToProfile={props.pushReviewToProfile}
                 />
           }) }
+            </ReactCSSTransitionGroup>
         </div>
-        </div>
+    </div>
     )
 }
 

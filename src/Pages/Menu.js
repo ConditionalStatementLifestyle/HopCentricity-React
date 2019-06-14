@@ -6,6 +6,10 @@ import { withRouter } from "react-router-dom";
 
 class Menu extends React.Component {
 
+  componentWillMount() {
+    this.props.getProfileData()
+  }
+
   render() {
     return (
       <div className="outerCard">

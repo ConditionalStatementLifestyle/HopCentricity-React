@@ -3,6 +3,8 @@ import hopCard from '../hopCard.png'
 import ReviewCard from '../Components/ReviewCard'
 import { Progress } from 'semantic-ui-react'
 import { Image, Transition } from 'semantic-ui-react'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+
 
 class Profile extends React.Component {
 
@@ -65,28 +67,30 @@ class Profile extends React.Component {
                         {this.props.hopmeter.hopRating}%
                     </div>
                     </div>
-                </div><br></br><br></br><br></br><br></br>
-                <div className='ui centered three column grid'><br></br><br></br>
-                {this.props.reviews.map(reviewItem => {
-                    if (reviewItem.beer.img_url === "https://untappd.akamaized.net/site/assets/images/temp/badge-beer-default.png") {
-                        reviewItem.beer.img_url = null
-                    }
-                    return <ReviewCard 
-                        key={reviewItem.beer.id}
-                        id={reviewItem.beer.id}
-                        name={reviewItem.beer.name}
-                        brewery={reviewItem.beer.brewery}
-                        ibu={reviewItem.beer.ibu}
-                        style={reviewItem.beer.style}
-                        img_url={reviewItem.beer.img_url}
-                        rating={reviewItem.beer.rating}
-                        abv={reviewItem.beer.abv}
-                        userRating={reviewItem.rating}
-                        content={reviewItem.content}
-                        />
-                        }) 
-                        }
-                        </div>
+                    </div><br></br><br></br><br></br><br></br>
+                    <div className='ui centered three column grid'><br></br><br></br>
+                        {/* <ReactCSSTransitionGroup transitionName="searchCardTransition" transitionEnterTimeout={1000} transitionLeaveTimeout={1000}> */}
+                            {this.props.reviews.map(reviewItem => {
+                                if (reviewItem.beer.img_url === "https://untappd.akamaized.net/site/assets/images/temp/badge-beer-default.png") {
+                                    reviewItem.beer.img_url = null
+                                }
+                                return <ReviewCard 
+                                    key={reviewItem.beer.id}
+                                    id={reviewItem.beer.id}
+                                    name={reviewItem.beer.name}
+                                    brewery={reviewItem.beer.brewery}
+                                    ibu={reviewItem.beer.ibu}
+                                    style={reviewItem.beer.style}
+                                    img_url={reviewItem.beer.img_url}
+                                    rating={reviewItem.beer.rating}
+                                    abv={reviewItem.beer.abv}
+                                    userRating={reviewItem.rating}
+                                    content={reviewItem.content}
+                                    />
+                                    }) 
+                                    }
+                        {/* </ReactCSSTransitionGroup> */}
+                </div>
             </div>
          );
     }

@@ -40,7 +40,7 @@ class Navbar extends React.Component {
                 <Link onClick={() => this.robot()} to="/profile" className='nav-links'>Profile</Link>
               </li>
               <li>
-                <Link onClick={() => this.robot()} to="/login" className="nav-links" onClick={() => this.props.handleLogout()}>Logout</Link>
+                <Link to="/login" className="nav-links" onClick={() => this.props.handleLogout()}>Logout</Link>
               </li>
               </ul>
             </div>

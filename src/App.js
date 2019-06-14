@@ -40,7 +40,7 @@ class App extends React.Component {
       user.username = localStorage.getItem('HopCentricity_Username')
       user.token = localStorage.getItem('HopCentricity_Token')
       this.setState({user})
-      this.getProfileData(user.email)
+      this.getProfileData()
     }
   }
 
@@ -99,7 +99,8 @@ setHopmeterRating = (hopRating) => {
     }
 }
 
-  getProfileData = (email) => {
+  getProfileData = () => {
+    let email = this.state.user.email
     fetch('http://localhost:3000/api/v1/userReviews', {
       method: 'POST',
       headers: {
@@ -169,7 +170,7 @@ setHopmeterRating = (hopRating) => {
             <Navbar handleLogout={this.handleLogout}/>:
             <Redirect to='/login'/>  }
           <Route exact path='/' render={() => <Redirect to='/menu'/>}/>
-          <Route exact path='/menu' render={() => <Menu user={this.state.user} reviews={this.state.reviews.length}/>}/>
+          <Route exact path='/menu' render={() => <Menu user={this.state.user} reviews={this.state.reviews.length} getProfileData={this.getProfileData}/>}/>
           <Route exact path='/search' render={() => <Search user={this.state.user} pushReviewToProfile={this.pushReviewToProfile}/>}/>
           <Route exact path='/profile' render={() => <Profile user={this.state.user} reviews={this.state.reviews} hopmeter={this.state.hopmeter}/>}/>
           <Route exact path='/login' render={() => 

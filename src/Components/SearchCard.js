@@ -18,10 +18,11 @@ const SearchCard = (props) => {
     }
 
     return (
-        <div>
-            <div className="ui raised link card">
+        <div className='block-display'>
+            <div className='ui centered grid'> 
+            <div className='ui card'>
                 <div className="center floated author">
-                    <img alt='oh no' className="image  cardMargin cardImage" src={props.img_url === null?Pineapple:props.img_url}></img>
+                    <img alt='oh no' className="image cardMargin cardImage" src={props.img_url === null?Pineapple:props.img_url}></img>
                 </div>
             <div className="content">
                 <div className="header">{titleCase(props.name)}</div>
@@ -47,10 +48,9 @@ const SearchCard = (props) => {
                             pushReviewToProfile={props.pushReviewToProfile}
                         />
                     </div>
-            </div>
-        
+                </div>
         </div>
-        <br></br><br></br>
+        </div><br></br><br></br><br></br><br></br>
         </div>
     )
 }
