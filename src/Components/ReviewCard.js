@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Pineapple from '../pineapple.png'
+import EditModal from './EditModal';
 
 const ReviewCard = (props) => {
+
+    const [show, setShow] = useState(false)
 
     const titleCase = (str) => {
         str = str.toLowerCase().split(' ');
@@ -16,10 +19,16 @@ const ReviewCard = (props) => {
         return str.join(' ');
     }
 
+    const turnShowOff = () => {
+        setShow(false)
+    }
+
     return (
         <div>
-            <div className="ui raised link card">
+            <div className="ui raised link card" onClick={() => setShow(true)}>
                 <div className="center floated author">
+                    <EditModal show={show} turnShowOff={turnShowOff}/>
+                    <button className='edit-spacer'></button>
                     <img className="image center cardMargin cardImage" src={props.img_url === null?Pineapple:props.img_url} alt='oh no'></img>
                 </div>
             <div className="content">
