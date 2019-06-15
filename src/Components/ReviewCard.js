@@ -25,12 +25,24 @@ const ReviewCard = (props) => {
 
     return (
         <div>
-            <div className="ui raised link card" onClick={() => setShow(true)}>
+            <div className="ui raised link card" onClick={() => setShow(true)}><br></br>
                 <div className="center floated author">
-                    <EditModal show={show} turnShowOff={turnShowOff}/>
+                    <EditModal 
+                    show={show} 
+                    turnShowOff={turnShowOff}
+                    name={titleCase(props.name)}
+                    style={props.style}
+                    globalRating={props.rating}
+                    userRating={props.userRating}
+                    content={props.content}
+                    img_url={props.img_url}
+                    ibu={props.ibu}
+                    abv={props.abv}
+                    id={props.reviewId}
+                    />
                     <button className='edit-spacer'></button>
                     <img className="image center cardMargin cardImage" src={props.img_url === null?Pineapple:props.img_url} alt='oh no'></img>
-                </div>
+                </div><br></br>
             <div className="content">
                 <div className="header">{titleCase(props.name)}</div><br></br>
 

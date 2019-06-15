@@ -310,19 +310,3 @@ body {
   margin: 50px;
 }
 
-.edit-button {
-  float: left;
-  /* margin: 4px; */
-}
-
-.edit-button-div {
-  margin: 4px;
-}
-
-.edit-spacer {
-  float: right;
-  width: 36px;
-  background: transparent;
-  color:white;
-  border-color: white;
-}

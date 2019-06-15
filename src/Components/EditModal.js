@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Button, Header, Image, Modal } from 'semantic-ui-react'
 import ReviewForm from './ReviewForm'
+import Pineapple from '../pineapple.png'
+
 
 
 class EditModal extends Component {
@@ -12,36 +14,31 @@ class EditModal extends Component {
     this.props.turnShowOff()
   }
 
-  checkShow = () => {
-    // Need Solution To This
-    // if (this.props.show === true) {
-    //   this.show('blurring')
-    // }
+  static getDerivedStateFromProps(props, state) {
+    if (props.show !== state.open) {
+      return {
+        open: props.show
+      };
+    }
+    return null;
   }
-
 
   render() {
     const { open, dimmer } = this.state
 
     return (
       <div>
-      <div className='edit-button-div'>
-        <Button className='circular ui icon button teal edit-button'onClick={this.show('blurring')}>
-        <i class="edit icon"></i>
-        </Button>
-        </div>
-        {this.checkShow()}
         <Modal dimmer={dimmer} open={open} onClose={this.close}>
           <Modal.Header>How do you feel about this beer?</Modal.Header>
           <Modal.Content image>
-            <Image wrapped size='medium' src={this.props.img_url} />
+            <Image wrapped size='medium' src={this.props.img_url === null?Pineapple:this.props.img_url} />
             <Modal.Description>
               <Header size='large'>{this.props.name}</Header>
-              <Header>{this.props.brewery}</Header>
-              <div>{this.props.type}</div><br></br>
+              {/* <Header>{this.props.brewery}</Header> */}
+              <div>{this.props.style}</div><br></br>
               <div>{this.props.ibu} IBU</div><br></br>
               <div>{this.props.abv}%</div><br></br>
-              <div>Rating {this.props.rating}</div><br></br>
+              <div>Global Rating {this.props.globalRating}</div><br></br>
             </Modal.Description>
           </Modal.Content>
           <Modal.Actions>
@@ -49,7 +46,7 @@ class EditModal extends Component {
               No Feelings On this
             </Button><br></br>
             <ReviewForm 
-                id={this.props.id}
+                reviewId={this.props.reviewId}
                 name={this.props.name}
                 brewery={this.props.brewery}
                 ibu={this.props.ibu}

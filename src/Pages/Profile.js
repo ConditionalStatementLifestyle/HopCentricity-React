@@ -86,6 +86,7 @@ class Profile extends React.Component {
                                     abv={reviewItem.beer.abv}
                                     userRating={reviewItem.rating}
                                     content={reviewItem.content}
+                                    reviewId={reviewItem.id}
                                     />
                                     }) 
                                     }
