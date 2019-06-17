@@ -16,10 +16,12 @@ class Profile extends React.Component {
     }
 
     componentWillMount() {
-        if (this.props.reviews > 0) {
-          let interval = 1/(this.props.hopmeter.hopRating/80000)
-          setInterval(this.toggleVisiblity,interval)
-        }
+        this.props.getProfileData()
+    }
+
+    componentDidMount() {
+        let interval = 10000
+        setInterval(this.toggleVisiblity,interval)
     }
 
     toggleVisiblity = () => {
@@ -45,7 +47,7 @@ class Profile extends React.Component {
                         <p>You have reviewed {this.props.reviews.length} beers so far</p>
                         </div>
                         <div className="six wide right floated column">
-                        <Transition visible={visible} duration={1/(this.props.hopmeter.hopRating/50000)}>
+                        <Transition animation={'pulse'} duration={9800} visible={visible}>
                             <Image src={hopCard} className="ui large rounded image" />
                         </Transition>
                         </div>
@@ -77,17 +79,12 @@ class Profile extends React.Component {
                                 }
                                 return <ReviewCard
                                     key={reviewItem.beer.id}
-                                    id={reviewItem.beer.id}
-                                    name={reviewItem.beer.name}
-                                    brewery={reviewItem.beer.brewery}
-                                    ibu={reviewItem.beer.ibu}
-                                    style={reviewItem.beer.style}
-                                    img_url={reviewItem.beer.img_url}
-                                    rating={reviewItem.beer.rating}
-                                    abv={reviewItem.beer.abv}
-                                    userRating={reviewItem.rating}
+                                    beer={reviewItem.beer}
                                     content={reviewItem.content}
                                     reviewId={reviewItem.id}
+                                    userRating={reviewItem.rating}
+                                    updateReview={this.props.updateReview}
+                                    removeReview={this.props.removeReview}
                                     />
                                     })
                                     }

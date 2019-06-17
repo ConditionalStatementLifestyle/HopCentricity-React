@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Header, Image, Modal } from 'semantic-ui-react'
-import ReviewForm from './ReviewForm'
+import EditReviewForm from './EditReviewForm'
+import AreYouSure from './AreYouSure'
 import Pineapple from '../pineapple.png'
 
 
@@ -23,6 +24,19 @@ class EditModal extends Component {
     return null;
   }
 
+  titleCase = (str) => {
+    str = str.toLowerCase().split(' ');
+    for (var i = 0; i < str.length; i++) {
+        if (str[i] === 'ipa') {
+            str[i] = 'IPA'
+        }
+        else {
+            str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1); 
+        }
+    }
+    return str.join(' ');
+}
+
   render() {
     const { open, dimmer } = this.state
 
@@ -31,31 +45,24 @@ class EditModal extends Component {
         <Modal dimmer={dimmer} open={open} onClose={this.close}>
           <Modal.Header>How do you feel about this beer?</Modal.Header>
           <Modal.Content image>
-            <Image wrapped size='medium' src={this.props.img_url === null?Pineapple:this.props.img_url} />
+            <Image wrapped size='medium' src={this.props.beer.img_url === null?Pineapple:this.props.beer.img_url} />
             <Modal.Description>
-              <Header size='large'>{this.props.name}</Header>
+              <Header size='large'>{this.titleCase(this.props.beer.name)}</Header>
               {/* <Header>{this.props.brewery}</Header> */}
-              <div>{this.props.style}</div><br></br>
-              <div>{this.props.ibu} IBU</div><br></br>
-              <div>{this.props.abv}%</div><br></br>
-              <div>Global Rating {this.props.globalRating}</div><br></br>
+              <div>{this.props.beer.style}</div><br></br>
+              <div>{this.props.beer.ibu} IBU</div><br></br>
+              <div>{this.props.beer.abv}%</div><br></br>
+              <div>Global Rating {this.props.beer.rating}</div><br></br>
             </Modal.Description>
           </Modal.Content>
           <Modal.Actions>
-            <Button color='black' onClick={this.close}>
-              No Feelings On this
-            </Button><br></br>
-            <ReviewForm 
+            <AreYouSure removeReview={this.props.removeReview} reviewId={this.props.reviewId}/>
+            <EditReviewForm
                 reviewId={this.props.reviewId}
-                name={this.props.name}
-                brewery={this.props.brewery}
-                ibu={this.props.ibu}
-                style={this.props.style}
-                img_url={this.props.img_url}
-                rating={this.props.rating}
-                abv={this.props.abv}
                 close={this.close}
-                pushReviewToProfile={this.props.pushReviewToProfile}
+                userRating={this.props.userRating}
+                content={this.props.content}
+                updateReview={this.props.updateReview}
             />
           </Modal.Actions>
         </Modal>

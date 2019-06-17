@@ -129,6 +129,24 @@ setHopmeterRating = (hopRating) => {
     this.getHopmeterRating()
   }
 
+  updateReview = (updatedReview) => {
+    let reviews = this.state.reviews
+    let index = reviews.findIndex(review => {
+      return review.id === updatedReview.id
+    })
+    reviews.splice(index,1,updatedReview)
+    this.setState({ reviews })
+  }
+
+  removeReview = (id) => {
+    let reviews = this.state.reviews
+    let index = reviews.findIndex(review => {
+      return review.id === id
+    })
+    reviews.splice(index,1)
+    this.setState({ reviews })
+  }
+
   setStateUsernameEmailToken = (data) => {
     let user = {...this.state.user}
     user.email = data.email
@@ -165,7 +183,7 @@ setHopmeterRating = (hopRating) => {
           <Route exact path='/' render={() => <Redirect to='/menu'/>}/>
           <Route exact path='/menu' render={() => <Menu user={this.state.user} reviews={this.state.reviews.length} getProfileData={this.getProfileData}/>}/>
           <Route exact path='/search' render={() => <Search user={this.state.user} pushReviewToProfile={this.pushReviewToProfile}/>}/>
-          <Route exact path='/profile' render={() => <Profile user={this.state.user} reviews={this.state.reviews} hopmeter={this.state.hopmeter}/>}/>
+          <Route exact path='/profile' render={() => <Profile user={this.state.user} reviews={this.state.reviews} getProfileData={this.getProfileData} hopmeter={this.state.hopmeter} updateReview={this.updateReview} removeReview={this.removeReview}/>}/>
           <Route exact path='/login' render={() => <LoginPage setStateUsernameEmailToken={this.setStateUsernameEmailToken} user={this.state.user}/>}/>
         </Router>
       </div>

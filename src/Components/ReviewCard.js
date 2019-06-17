@@ -30,28 +30,24 @@ const ReviewCard = (props) => {
                     <EditModal 
                     show={show} 
                     turnShowOff={turnShowOff}
-                    name={titleCase(props.name)}
-                    style={props.style}
-                    globalRating={props.rating}
+                    beer={props.beer}
                     userRating={props.userRating}
                     content={props.content}
-                    img_url={props.img_url}
-                    ibu={props.ibu}
-                    abv={props.abv}
-                    id={props.reviewId}
+                    reviewId={props.reviewId}
+                    updateReview={props.updateReview}
+                    removeReview={props.removeReview}
                     />
-                    <button className='edit-spacer'></button>
-                    <img className="image center cardMargin cardImage" src={props.img_url === null?Pineapple:props.img_url} alt='oh no'></img>
+                    <img className="image center cardMargin cardImage" src={props.beer.img_url === null?Pineapple:props.beer.img_url} alt='oh no'></img>
                 </div><br></br>
             <div className="content">
-                <div className="header">{titleCase(props.name)}</div><br></br>
+                <div className="header">{titleCase(props.beer.name)}</div><br></br>
 
                     <div className="description">
                         <p>
-                            <div>{titleCase(props.style)}</div><br></br>
+                            <div>{titleCase(props.beer.style)}</div><br></br>
                             {/* <div>{props.ibu} IBU</div><br></br>
                             <div>{props.abv}%</div><br></br> */}
-                            <div>Global Rating {props.rating}</div><br></br>
+                            <div>Global Rating {props.beer.rating}</div><br></br>
                             <div>Your Rating: {props.userRating}</div><br></br>
                         </p>
                         <p>
