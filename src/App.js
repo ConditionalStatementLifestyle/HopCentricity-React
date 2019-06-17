@@ -70,28 +70,28 @@ setHopmeterRating = (hopRating) => {
     if (hopRating < 25) {
         hopmeter.hopRating = hopRating
         hopmeter.color = 'red'
-        hopmeter.thought = "Seems like you don't want hops in your life" 
+        hopmeter.thought = "Seems like you don't want hops in your life"
         this.setState({hopmeter})
     }
-        
+
     else if (hopRating < 50 && hopRating > 25) {
         hopmeter.hopRating = hopRating
         hopmeter.color = 'orange'
-        hopmeter.thought = "Looks like hops could treat you better, keep hopping around" 
+        hopmeter.thought = "Looks like hops could treat you better, keep hopping around"
         this.setState({hopmeter})
     }
-        
+
     else if (hopRating < 75 && hopRating > 50) {
         hopmeter.hopRating = hopRating
         hopmeter.color = 'teal'
         hopmeter.thought = "You and the hops are on a similar wavelength, keep it hoppy"
         this.setState({hopmeter})
     }
-        
+
     else if (hopRating > 75) {
         hopmeter.hopRating = hopRating
         hopmeter.color = 'green'
-        hopmeter.thought = "You and hops have become one, rejoice" 
+        hopmeter.thought = "You and hops have become one, rejoice"
         this.setState({hopmeter})
     }
     else {
@@ -156,28 +156,17 @@ setHopmeterRating = (hopRating) => {
   }
 
   render() {
-    
+
     return (
       <div>
-          <AudioPlayer
-            hidePlayer={true}
-            src={mp3_file}
-            volume={1.0}
-            ref={c => (this.player = c)}
-          />
+          <AudioPlayer hidePlayer={true} src={mp3_file} volume={1.0} ref={c => (this.player = c)}/>
         <Router>
-          {this.state.user.token !== ''?  
-            <Navbar handleLogout={this.handleLogout}/>:
-            <Redirect to='/login'/>  }
+          {this.state.user.token !== ''? <Navbar handleLogout={this.handleLogout}/>:<Redirect to='/login'/>}
           <Route exact path='/' render={() => <Redirect to='/menu'/>}/>
           <Route exact path='/menu' render={() => <Menu user={this.state.user} reviews={this.state.reviews.length} getProfileData={this.getProfileData}/>}/>
           <Route exact path='/search' render={() => <Search user={this.state.user} pushReviewToProfile={this.pushReviewToProfile}/>}/>
           <Route exact path='/profile' render={() => <Profile user={this.state.user} reviews={this.state.reviews} hopmeter={this.state.hopmeter}/>}/>
-          <Route exact path='/login' render={() => 
-            <LoginPage
-              setStateUsernameEmailToken={this.setStateUsernameEmailToken}
-              user={this.state.user}/>}
-            />
+          <Route exact path='/login' render={() => <LoginPage setStateUsernameEmailToken={this.setStateUsernameEmailToken} user={this.state.user}/>}/>
         </Router>
       </div>
     )
@@ -186,9 +175,9 @@ setHopmeterRating = (hopRating) => {
 
 export default App;
 
-// /* 
+// /*
 // </Router>
-//         <PageRouter 
+//         <PageRouter
 //           setStateUsernameEmailToken={this.setStateUsernameEmailToken}
 //           user={this.state.user}
 //           handlePageChange={this.handlePageChange}

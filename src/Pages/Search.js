@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-expressions */
-//MAKE SURE FORM FOR BEER REVIEW IS A MODAL AND NOT ANOTHER 
+//MAKE SURE FORM FOR BEER REVIEW IS A MODAL AND NOT ANOTHER
 import React from 'react'
 import BeerNameForm from '../Components/BeerNameForm'
 import BreweryForm from '../Components/BreweryForm'
@@ -9,13 +9,20 @@ import BeerContainer from '../Containers/BeerContainer'
 class Search extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { 
+        this.state = {
             type: 'beername',
             beers: []
          }
     }
 
-    searchForBeers = (query, type) => {
+    setStateAsync = (state) => {
+        return new Promise((resolve) => {
+        this.setState(state, resolve)
+        });
+    }
+
+    async searchForBeers(query, type) {
+        await this.setStateAsync({ beers: [] })
         fetch('http://localhost:3000/api/v1/beers', {
             method: 'POST',
             headers: {
@@ -30,6 +37,12 @@ class Search extends React.Component {
           .then(json => this.renderBeers(json))
     }
 
+    // setStateAsync = (state) => {
+    //     return new Promise((resolve) => {
+    //     this.setState(state, resolve)
+    //     });
+    // }
+
     renderBeers = (beers) => {
         this.setState({beers})
     }
@@ -43,19 +56,19 @@ class Search extends React.Component {
         let type = this.state.type
         if (type === 'beername') {
             return <BeerNameForm searchForBeers={this.searchForBeers}/>
-        }   
+        }
         else if (type === 'beertype') {
             return <BeerTypeForm searchForBeers={this.searchForBeers}/>
-        }   
+        }
         else if (type === 'brewery') {
-            return <BreweryForm searchForBeers={this.searchForBeers}/>        
+            return <BreweryForm searchForBeers={this.searchForBeers}/>
         }
         else {
             return null
         }
     }
 
-    render() { 
+    render() {
         return (
             <div>
                 <div className='width'>
@@ -70,15 +83,10 @@ class Search extends React.Component {
                         </div>
                     {this.renderFormByTypeSelection()}
                 </div>
-                <BeerContainer 
-                beers={this.state.beers}
-                pushReviewToProfile={this.props.pushReviewToProfile}
-                />
+                <BeerContainer beers={this.state.beers} pushReviewToProfile={this.props.pushReviewToProfile}/>
           </div>
          )
     }
 }
- 
+
 export default Search;
-
-

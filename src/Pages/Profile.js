@@ -9,31 +9,32 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 class Profile extends React.Component {
 
     constructor() {
-        super() 
+        super()
         this.state = {
             visible: true
         }
     }
 
-    setInterval = () => {
-        let interval = 1/(this.props.hopmeter.hopRating/80000)
-        setInterval(this.toggleVisiblity,interval)
+    componentWillMount() {
+        if (this.props.reviews > 0) {
+          let interval = 1/(this.props.hopmeter.hopRating/80000)
+          setInterval(this.toggleVisiblity,interval)
+        }
     }
 
     toggleVisiblity = () => {
         let visible = !this.state.visible
-        this.setState({visible}) 
+        this.setState({visible})
     }
 
     componentWillUnmount() {
         clearInterval(this.toggleVisiblity)
     }
 
-    render() { 
+    render() {
         const { visible } = this.state
-        return ( 
+        return (
             <div><br></br><br></br>
-            {this.setInterval()}
                 <div className="ui vertical stripe segment">
                     <div className="ui middle aligned stackable grid container">
                     <div className="row">
@@ -58,10 +59,10 @@ class Profile extends React.Component {
                     <div className='meter'>Hop-o-meter Thoughts: {this.props.hopmeter.thought}</div>
                     <div className='ui inverted segment'>
                     <div className="ui red inverted progress meter">
-                        <Progress 
-                        percent={this.props.hopmeter.hopRating} 
+                        <Progress
+                        percent={this.props.hopmeter.hopRating}
                         color={this.props.hopmeter.color}
-                        active 
+                        active
                         size='large'
                         inverted progress/>
                         {this.props.hopmeter.hopRating}%
@@ -74,7 +75,7 @@ class Profile extends React.Component {
                                 if (reviewItem.beer.img_url === "https://untappd.akamaized.net/site/assets/images/temp/badge-beer-default.png") {
                                     reviewItem.beer.img_url = null
                                 }
-                                return <ReviewCard 
+                                return <ReviewCard
                                     key={reviewItem.beer.id}
                                     id={reviewItem.beer.id}
                                     name={reviewItem.beer.name}
@@ -88,7 +89,7 @@ class Profile extends React.Component {
                                     content={reviewItem.content}
                                     reviewId={reviewItem.id}
                                     />
-                                    }) 
+                                    })
                                     }
                         {/* </ReactCSSTransitionGroup> */}
                 </div>
@@ -96,5 +97,5 @@ class Profile extends React.Component {
          );
     }
 }
- 
+
 export default Profile;

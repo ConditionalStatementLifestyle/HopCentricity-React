@@ -250,15 +250,15 @@ body {
 }
 
 .nav-icon:hover img{
-  -webkit-transform:scale(1.1); 
-  -moz-transform:scale(1.1); 
-  -ms-transform:scale(1.1); 
-  -o-transform:scale(1.1); 
+  -webkit-transform:scale(1.1);
+  -moz-transform:scale(1.1);
+  -ms-transform:scale(1.1);
+  -o-transform:scale(1.1);
   transform:scale(1.1);
-  -webkit-transition: all 1s ease; 
-  -moz-transition: all 1s ease; 
-  -ms-transition: all 1s ease; 
-  -o-transition: all 1s ease; 
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -ms-transition: all 1s ease;
+  -o-transition: all 1s ease;
   transition: all 1s ease;
 }
 
@@ -302,11 +302,10 @@ body {
 .searchCardTransition-leave.example-leave-active {
   opacity: 0.01;
   /* width: 0px; */
-  transition: 500ms;
+  transition: 9ms;
 }
 
 .block-display {
   display:inline-block;
   margin: 50px;
 }
-
