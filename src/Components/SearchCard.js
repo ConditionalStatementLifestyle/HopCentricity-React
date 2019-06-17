@@ -18,7 +18,7 @@ const SearchCard = (props) => {
     }
 
     return (
-        <div className='block-display'>
+        <div id='beer-card' className='block-display'>
             <div className='ui centered grid'> 
             <div className='ui card'>
                 <div className="center floated author">
@@ -54,6 +54,5 @@ const SearchCard = (props) => {
         </div>
     )
 }
-
 
 export default SearchCard;

@@ -7,7 +7,7 @@ const BeerContainer = (props) => {
     return (
         <div><br></br><br></br>
          <div className='ui centered three column grid'><br></br><br></br>
-         <ReactCSSTransitionGroup transitionName="searchCardTransition" transitionEnterTimeout={700} transitionLeaveTimeout={10}>
+         <ReactCSSTransitionGroup transitionName="searchCardTransition" transitionEnterTimeout={700} transitionLeaveTimeout={200}>
           {props.beers.map(beerItem => {
               if (beerItem.img_url === "https://untappd.akamaized.net/site/assets/images/temp/badge-beer-default.png") {
                   beerItem.img_url = null
@@ -27,7 +27,7 @@ const BeerContainer = (props) => {
                 abv={beerItem.abv}
                 pushReviewToProfile={props.pushReviewToProfile}
                 />
-          }) }
+          })}
             </ReactCSSTransitionGroup>
         </div>
     </div>

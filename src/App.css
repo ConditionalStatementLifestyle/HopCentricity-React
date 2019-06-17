@@ -302,7 +302,7 @@ body {
 .searchCardTransition-leave.example-leave-active {
   opacity: 0.01;
   /* width: 0px; */
-  transition: 9ms;
+  transition: 150ms;
 }
 
 .block-display {

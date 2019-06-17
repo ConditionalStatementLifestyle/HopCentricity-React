@@ -15,35 +15,32 @@ class Search extends React.Component {
          }
     }
 
-    setStateAsync = (state) => {
-        return new Promise((resolve) => {
-        this.setState(state, resolve)
-        });
-    }
-
-    async searchForBeers(query, type) {
-        await this.setStateAsync({ beers: [] })
-        fetch('http://localhost:3000/api/v1/beers', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              type: type,
-              query: query
-            })
-          })
-          .then(res => res.json())
-          .then(json => this.renderBeers(json))
-    }
-
     // setStateAsync = (state) => {
     //     return new Promise((resolve) => {
     //     this.setState(state, resolve)
     //     });
     // }
 
+    searchForBeers = (query, type) => {
+        this.setState({beers: [] },
+            () => {
+        fetch('http://localhost:3000/api/v1/beers', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            type: type,
+            query: query
+        })
+        })
+        .then(res => res.json())
+        .then(json => this.renderBeers(json))}
+        )
+    }
+
     renderBeers = (beers) => {
+        this.setState({ beers: [] })
         this.setState({beers})
     }
 
