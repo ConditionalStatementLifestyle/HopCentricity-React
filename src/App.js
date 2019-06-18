@@ -177,7 +177,7 @@ setHopmeterRating = (hopRating) => {
 
     return (
       <div>
-          <AudioPlayer hidePlayer={true} src={mp3_file} volume={1.0} ref={c => (this.player = c)}/>
+        <AudioPlayer hidePlayer={true} src={mp3_file} volume={1.0} ref={c => (this.player = c)}/>
         <Router>
           {this.state.user.token !== ''? <Navbar handleLogout={this.handleLogout}/>:<Redirect to='/login'/>}
           <Route exact path='/' render={() => <Redirect to='/menu'/>}/>
@@ -192,11 +192,3 @@ setHopmeterRating = (hopRating) => {
 }
 
 export default App;
-
-// /*
-// </Router>
-//         <PageRouter
-//           setStateUsernameEmailToken={this.setStateUsernameEmailToken}
-//           user={this.state.user}
-//           handlePageChange={this.handlePageChange}
-//         /> */

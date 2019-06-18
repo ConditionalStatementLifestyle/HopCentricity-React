@@ -36,11 +36,11 @@
 }
 
 .outer {
-  /* display: table; */
-  /* position: absolute; */
+  display: table; 
+  position: absolute;
   top: 0;
   left: 0;
-  height: 50%;
+  height: 100%;
   width: 100%;
 }
 
@@ -301,6 +301,28 @@ body {
 }
 
 .searchCardTransition-leave.example-leave-active {
+  opacity: 0.01;
+  /* width: 0px; */
+  transition: 150ms;
+}
+
+.pageTransition-enter {
+  opacity: 0.01;
+  /* width: 0px; */
+}
+
+.pageTransition-enter.pageTransition-enter-active {
+  opacity: 1;
+  /* width: 100px; */
+  transition: 1000ms;
+}
+
+.pageTransition-leave {
+  opacity: 1;
+  /* width: 100px; */
+}
+
+.pageTransition-leave.example-leave-active {
   opacity: 0.01;
   /* width: 0px; */
   transition: 150ms;

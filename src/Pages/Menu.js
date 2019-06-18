@@ -1,7 +1,7 @@
 import React from 'react'
-// import ReactDOM from 'react-dom';
 import { withRouter } from "react-router-dom";
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+
 import back0 from '../back0.jpg'
 import back1 from '../back1.jpg'
 import back2 from '../back2.jpg'
@@ -38,13 +38,22 @@ class Menu extends React.Component {
       date: '',
       time: '',
       AMPM: '',
-      disablePopup: false
+      disablePopup: false,
+      visible: false
     }
   }
 
   componentWillMount() {
     this.props.getProfileData() 
     setInterval( () => this.handleTime(),1500)
+  }
+
+  componentDidMount() {
+    this.setState({visible: true})
+  }
+  
+  componentWillUnmount() {
+    this.setState({visible: false})
   }
 
   handleTime = () => {
@@ -59,6 +68,32 @@ class Menu extends React.Component {
     })
   }
 
+  getPage = () => {
+    if (this.state.visible === true) {
+      return (
+        <div>
+          <div className='menu-top' style={ sectionStyle }><br></br><br></br><br></br><br></br>
+              {/* <div className='menu-date'>{ this.state.date }</div> */}
+              <ReactCSSTransitionGroup transitionName="searchCardTransition" transitionEnterTimeout={700} transitionLeaveTimeout={200}>
+                {this.getTime()}
+              </ReactCSSTransitionGroup>
+            </div><br></br>
+              
+            <div className="outerButton">
+              <div className="innerButton">
+                <button className="ui inverted teal button menuButton huge" onClick={() => this.props.history.push('/search')}>
+                  Search Hoppy Beers
+                </button>
+                <button className="ui inverted teal button menuButton huge" onClick={() => this.props.history.push('/profile')}>
+                  Your Hoppy Profile
+                </button>
+              </div>
+            </div>
+          </div>
+      )
+    }
+  }
+
   getTime = () => {
     if (this.state.time !== '') {
       return <div className='menu-time'><li>{ this.state.time + this.state.AMPM }</li></div>
@@ -66,28 +101,12 @@ class Menu extends React.Component {
   }
 
   render() {
-    const { isDisabled } = this.state.disablePopup
     return (
       <div>
-        <div className='menu-top' style={ sectionStyle }><br></br><br></br><br></br><br></br>
-          {/* <div className='menu-date'>{ this.state.date }</div> */}
-          <ReactCSSTransitionGroup transitionName="searchCardTransition" transitionEnterTimeout={700} transitionLeaveTimeout={200}>
-            {this.getTime()}
-          </ReactCSSTransitionGroup>
-        </div><br></br>
-          
-        <div className="outerButton">
-          <div className="innerButton">
-            <button className="ui inverted teal button menuButton huge" onClick={() => this.props.history.push('/search')}>
-              Search Hoppy Beers
-            </button>
-            <button className="ui inverted teal button menuButton huge" onClick={() => this.props.history.push('/profile')}>
-              Your Hoppy Profile
-            </button>
-          </div>
-        </div>
+      <ReactCSSTransitionGroup transitionName="pageTransition" transitionEnterTimeout={1500} transitionLeaveTimeout={200}>
+        {this.getPage()}
+    </ReactCSSTransitionGroup>
     </div>
-    
     )
   }
 }
