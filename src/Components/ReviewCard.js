@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Pineapple from '../pineapple.png'
 import EditModal from './EditModal';
-import { Popup, Card, Image, Rating } from 'semantic-ui-react'
+import { Popup, Rating } from 'semantic-ui-react'
 
 const ReviewCard = (props) => {
 

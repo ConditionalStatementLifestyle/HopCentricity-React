@@ -10,9 +10,6 @@ import AudioPlayer from "react-h5-audio-player";
 import mp3_file from './AdiosTurdNuggets.ogg';
 
 
-// import { withRouter } from "react-router-dom";
-// public key: KZeepwzkDFgCnpzuCx43quqVMD4
-
 class App extends React.Component {
 
   constructor() {
@@ -30,7 +27,7 @@ class App extends React.Component {
       },
       reviews: []
     }
-    // this.getUserDataIfRefreshed()
+
   }
 
   getUserDataIfRefreshed = () => {

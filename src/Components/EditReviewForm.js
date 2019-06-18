@@ -1,34 +1,25 @@
 import React from 'react'
-
-// const options = [
-//   { key: '1', text: '1', value: '1' },
-//   { key: '1.25', text: '1.25', value: '1.25' },
-//   { key: '1.5', text: '1.5', value: '1.5' },
-//   { key: '1.75', text: '1.75', value: '1.75' },
-//   { key: '2', text: '2', value: '2' },
-//   { key: '2.25', text: '2.25', value: '2.25' },
-//   { key: '2.5', text: '2.5', value: '2.5' },
-//   { key: '2.75', text: '2.75', value: '2.75' },
-//   { key: '3', text: '3', value: '3' },
-//   { key: '3.25', text: '3.25', value: '3.25' },
-//   { key: '3.5', text: '3.5', value: '3.5' },
-//   { key: '3.75', text: '3.75', value: '3.75' },
-//   { key: '4', text: '4', value: '4' },
-//   { key: '4.25', text: '4.25', value: '4.25' },
-//   { key: '4.5', text: '4.5', value: '4.5' },
-//   { key: '4.75', text: '4.75', value: '4.75' },
-//   { key: '5', text: '5', value: '5' }
-// ]
+import Slider from './Slider'
 
 class EditReviewForm extends React.Component {
 
+    constructor() {
+        super() 
+        this.state = {
+            slider: ''
+        }
+    }
+
     componentDidMount() {
-        let rating = document.getElementById('dropdown')
         let content = document.getElementById('area')
-        rating.value = this.props.userRating
+        this.setState({slider: this.props.userRating})
         if (this.props.content !== '') {
             content.value = this.props.content
         }
+    }
+
+    adjust = (slider) => {
+        this.setState({slider})
     }
 
     handleSubmit = (ev) => {
@@ -66,30 +57,7 @@ class EditReviewForm extends React.Component {
             <div><br></br>
                 <form className="ui form" onSubmit={this.handleSubmit}>
                     <div className="field">
-                        <label>Rating</label>
-                        <select 
-                            className="ui fluid dropdown" 
-                            id='dropdown' 
-                            label="Rating"
-                            placeholder='3'>
-                            <option value='1'>1</option>
-                            <option value="1.25">1.25</option>
-                            <option value="1.5">1.5</option>
-                            <option value="1.75">1.75</option>
-                            <option value="2">2</option>
-                            <option value="2.25">2.25</option>
-                            <option value='2.5'>2.5</option>
-                            <option value="2.75">2.75</option>
-                            <option value="3">3</option>
-                            <option value="3.25">3.25</option>
-                            <option value="3.5">3.5</option>
-                            <option value="3.75">3.75</option>
-                            <option value="4">4</option>
-                            <option value="4.25">4.25</option>
-                            <option value="4.5">4.5</option>
-                            <option value="4.75">4.75</option>
-                            <option value="5">5</option>
-                        </select><br></br>
+                        <Slider adjust={adjust} position={slider}/><br></br>
                     </div>
                         <div className="field">
                             <label>Thoughts On This</label>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Header, Image, Modal } from 'semantic-ui-react'
+import { Header, Image, Modal } from 'semantic-ui-react'
 import EditReviewForm from './EditReviewForm'
 import AreYouSure from './AreYouSure'
 import Pineapple from '../pineapple.png'
@@ -43,7 +43,7 @@ class EditModal extends Component {
     return (
       <div>
         <Modal dimmer={dimmer} open={open} onClose={this.close}>
-          <Modal.Header>Edit This Beer</Modal.Header>
+          <Modal.Header>Edit This Review</Modal.Header>
           <Modal.Content image>
             <Image wrapped size='medium' src={this.props.beer.img_url === null?Pineapple:this.props.beer.img_url} />
             <Modal.Description>
