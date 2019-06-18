@@ -12,7 +12,8 @@ class EditReviewForm extends React.Component {
 
     componentDidMount() {
         let content = document.getElementById('area')
-        this.setState({slider: this.props.userRating})
+        let userRating = this.props.userRating
+        this.setState({slider: userRating})
         if (this.props.content !== '') {
             content.value = this.props.content
         }
@@ -24,15 +25,14 @@ class EditReviewForm extends React.Component {
 
     handleSubmit = (ev) => {
         ev.preventDefault()
-        let rating = document.getElementById('dropdown').value
         let content = document.getElementById('area').value
-        if (this.props.content !== content || this.props.rating !== rating) {
-            this.submitEditReview(content, rating, this.props.reviewId)
+        if (this.props.content !== content || this.props.userRating !== this.state.slider) {
+            this.submitEditReview(content, this.props.reviewId)
         }
         this.props.close()
     }
 
-    submitEditReview = (content, rating, id) => {
+    submitEditReview = (content, id) => {
         fetch('http://localhost:3000/api/v1/review/' + id, {
             method: 'PATCH',
             headers: {
@@ -41,7 +41,7 @@ class EditReviewForm extends React.Component {
             body: JSON.stringify({
                 id: id,
                 content: content,
-                rating: rating
+                rating: this.state.slider
             })
         })
         .then(res => res.json())
@@ -57,7 +57,7 @@ class EditReviewForm extends React.Component {
             <div><br></br>
                 <form className="ui form" onSubmit={this.handleSubmit}>
                     <div className="field">
-                        <Slider adjust={adjust} position={slider}/><br></br>
+                        <Slider adjust={this.adjust} position={this.state.slider}/><br></br>
                     </div>
                         <div className="field">
                             <label>Thoughts On This</label>

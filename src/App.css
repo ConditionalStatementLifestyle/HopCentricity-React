@@ -377,7 +377,6 @@ body {
   text-align: center;
 }
 
-/* Mouse-over effects */
 .slider:hover {
   opacity: 1; /* Fully shown on mouse-over */
 }
@@ -387,10 +386,12 @@ body {
   -webkit-appearance: none;
   appearance: none;
   /* step: 1; */
-  width: 25px; /* Set a specific slider handle width */
-  height: 25px; /* Slider handle height */
-  background: #4CAF50; /* Green background */
-  cursor: pointer; /* Cursor on hover */
+  width: 50px; /* Set a specific slider handle width */
+  height: 25px;
+  border-radius: 3px; 
+  /* background: rgb(0, 0, 0); */
+  background-image: linear-gradient(260deg, black 0%, #c9c5f4 100%);
+  cursor: pointer;
 }
 
 .slider::-moz-range-thumb {

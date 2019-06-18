@@ -1,22 +1,27 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Slider from './Slider'
 
-const ReviewForm = (props) => {
+class ReviewForm extends React.Component {
 
-    const [slider, setSlider] = useState('3.25')
-
-    const adjust = (position) => {
-        setSlider(position)
+    constructor() {
+        super()
+        this.state = {
+            slider: '3.0'
+        }
     }
 
-    const handleSubmit = (ev) => {
+    adjust = (position) => {
+        this.setState({ slider: position })
+    }
+
+    handleSubmit = (ev) => {
         ev.preventDefault()
         let content = document.getElementById('area').value
-        submitReview(content, props)
-        props.close()
+        this.submitReview(content)
+        this.props.close()
     }
 
-    const submitReview = (content, props) => {
+    submitReview = (content) => {
         let email = localStorage.getItem('HopCentricity_Email')
         fetch('http://localhost:3000/api/v1/reviews', {
             method: 'POST',
@@ -24,32 +29,33 @@ const ReviewForm = (props) => {
             'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                beerId: props.id,
+                beerId: this.props.id,
                 email: email,
                 content: content,
-                userRating: slider,
-                beer: props.name,
-                brewery: props.brewery,
-                style: props.style,
-                ibu: props.ibu,
-                abv: props.abv,
-                rating: props.rating,
-                img_url: props.img_url
+                userRating: this.state.slider,
+                beer: this.props.name,
+                brewery: this.props.brewery,
+                style: this.props.style,
+                ibu: this.props.ibu,
+                abv: this.props.abv,
+                rating: this.props.rating,
+                img_url: this.props.img_url
             })
         })
         .then(res => res.json())
-        .then(json => pushData(json))
+        .then(json => this.pushData(json))
     }
 
-    const pushData = (review) => {
-        props.pushReviewToProfile(review)
+    pushData = (review) => {
+        this.props.pushReviewToProfile(review)
     }
-
+ 
+    render() {
         return (
             <div><br></br>
-                <form className="ui form" onSubmit={handleSubmit}>
+                <form className="ui form" onSubmit={this.handleSubmit}>
                     <div className="centered field">
-                        <Slider adjust={adjust} position={slider}/><br></br>
+                        <Slider adjust={this.adjust} position={this.state.slider}/><br></br>
                     </div>
                         <div className="field">
                             <label>Thoughts On This</label>
@@ -65,9 +71,8 @@ const ReviewForm = (props) => {
                     <button className="ui button" type="submit">Submit</button>
             </form>
             </div>
-
         )
-
+    }
 }
 
 export default ReviewForm
