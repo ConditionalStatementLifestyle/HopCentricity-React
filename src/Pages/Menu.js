@@ -1,8 +1,33 @@
 import React from 'react'
-import hopCard from '../hopCard.png'
 // import ReactDOM from 'react-dom';
 import { withRouter } from "react-router-dom";
-import Background from '../back1.jpg'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import back0 from '../back0.jpg'
+import back1 from '../back1.jpg'
+import back2 from '../back2.jpg'
+import back3 from '../back3.jpg'
+import back4 from '../back4.jpg'
+import back5 from '../back5.jpg'
+import back6 from '../back6.jpg'
+
+var images = {
+  0: `url(${back0})`,
+  1: `url(${back1})`,
+  2: `url(${back2})`,
+  3: `url(${back3})`,
+  4: `url(${back4})`,
+  5: `url(${back5})`,
+  6: `url(${back6})`
+}
+
+var sectionStyle = {
+  width: "100%",
+  height: "800px",
+  backgroundImage: images[`${Math.floor(Math.random()*7)}`],
+  backgroundPosition: 'center',
+  backgroundRepeat: 'no-repeat',
+  backgroundSize: 'cover'
+};
 
 
 class Menu extends React.Component {
@@ -12,7 +37,8 @@ class Menu extends React.Component {
     this.state ={
       date: '',
       time: '',
-      AMPM: ''
+      AMPM: '',
+      disablePopup: false
     }
   }
 
@@ -33,36 +59,39 @@ class Menu extends React.Component {
     })
   }
 
+  getTime = () => {
+    if (this.state.time !== '') {
+      return <div className='menu-time'><li>{ this.state.time + this.state.AMPM }</li></div>
+    }
+  }
+
   render() {
+    const { isDisabled } = this.state.disablePopup
     return (
       <div>
-      <div>
-      <img src={Background} alt='oh no' className='menu-top-image'> 
-              {/* <div className="menu-date">{this.state.date !== ''?this.state.date:null}</div>
-              <div className="menu-time">{this.state.time !== ''?this.state.time + this.state.AMPM:null}</div> */}
-      </img>
-              <div>
-              <div>
-                  You've Reviewed {this.props.reviews} Beers
-              </div>
-              </div><br></br><br></br>
+        <div className='menu-top' style={ sectionStyle }><br></br><br></br><br></br><br></br>
+          {/* <div className='menu-date'>{ this.state.date }</div> */}
+          <ReactCSSTransitionGroup transitionName="searchCardTransition" transitionEnterTimeout={700} transitionLeaveTimeout={200}>
+            {this.getTime()}
+          </ReactCSSTransitionGroup>
+        </div><br></br>
           
-          <div className="outerButton">
-            <div className="innerButton">
-              <button className="ui inverted teal button menuButton huge" onClick={() => this.props.history.push('/search')}>
-                Search Hoppy Beers
-              </button>
-              <button className="ui inverted teal button menuButton huge" onClick={() => this.props.history.push('/profile')}>
-                Your Hoppy Profile
-              </button>
-            </div>
+        <div className="outerButton">
+          <div className="innerButton">
+            <button className="ui inverted teal button menuButton huge" onClick={() => this.props.history.push('/search')}>
+              Search Hoppy Beers
+            </button>
+            <button className="ui inverted teal button menuButton huge" onClick={() => this.props.history.push('/profile')}>
+              Your Hoppy Profile
+            </button>
           </div>
-          </div>
-          </div>
+        </div>
+    </div>
     
     )
   }
 }
 
 export default withRouter(Menu)
+
 

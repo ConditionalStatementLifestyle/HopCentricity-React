@@ -102,7 +102,7 @@ class EditReviewForm extends React.Component {
                             <label>I Agree That I Love Hops</label>
                         </div>
                     </div>
-                    <button className="ui button" type="submit">Submit</button>
+                    <button className="ui button" type="submit">Submit Edit</button>
             </form>
             </div>
 

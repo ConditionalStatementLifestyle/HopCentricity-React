@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import Pineapple from '../pineapple.png'
 import EditModal from './EditModal';
+import { Popup, Card, Image, Rating } from 'semantic-ui-react'
 
 const ReviewCard = (props) => {
 
     const [show, setShow] = useState(false)
+    const [isPopupDisabled, setPopup] = useState(false)
 
     const titleCase = (str) => {
         str = str.toLowerCase().split(' ');
@@ -20,12 +22,22 @@ const ReviewCard = (props) => {
     }
 
     const turnShowOff = () => {
+        setPopup(false)
         setShow(false)
     }
 
     return (
+        <Popup
+        content='Click to Edit or Delete'
+        on={'hover'}
+        disabled={isPopupDisabled}
+        hideOnScroll
+        trigger ={
         <div>
-            <div className="ui raised link card" onClick={() => setShow(true)}><br></br>
+            <div className="ui raised link card" onClick={() => {
+                    setPopup(true)
+                    setShow(true)}
+            }   ><br></br>
                 <div className="center floated author">
                     <EditModal 
                     show={show} 
@@ -58,6 +70,8 @@ const ReviewCard = (props) => {
         </div>
         <br></br><br></br>
         </div>
+        } 
+    />
     )
 }
 

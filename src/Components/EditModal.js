@@ -43,7 +43,7 @@ class EditModal extends Component {
     return (
       <div>
         <Modal dimmer={dimmer} open={open} onClose={this.close}>
-          <Modal.Header>How do you feel about this beer?</Modal.Header>
+          <Modal.Header>Edit This Beer</Modal.Header>
           <Modal.Content image>
             <Image wrapped size='medium' src={this.props.beer.img_url === null?Pineapple:this.props.beer.img_url} />
             <Modal.Description>

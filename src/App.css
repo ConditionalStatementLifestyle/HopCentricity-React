@@ -312,15 +312,26 @@ body {
 }
 
 .menu-time {
-
+  font-size: 100px;
+  color:white;
+  width:100%;
+  display:block;
+  height: 120px;
+  text-align: center;
+  font-family: 'Prata', serif;
+  margin-top:200px;
 }
 
 .menu-date {
+  font-size: 100px;
+  color: white;
+  width: 100%;
+  height: 120px;
+  text-align: center;
+  font-family: 'Prata', serif;
 
 }
 
-.menu-top-image {
-  height: 600px;
-  width:100%;
-  style:transparent;
+.menu-top {
+margin-bottom:50px;
 }
