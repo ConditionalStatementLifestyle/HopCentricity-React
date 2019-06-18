@@ -11,7 +11,8 @@ class Profile extends React.Component {
     constructor() {
         super()
         this.state = {
-            visible: true
+            visible: true,
+            page: false
         }
     }
 
@@ -22,6 +23,7 @@ class Profile extends React.Component {
     componentDidMount() {
         let interval = 10000
         setInterval(this.toggleVisiblity,interval)
+        this.setState({page: true})
     }
 
     toggleVisiblity = () => {
@@ -31,12 +33,15 @@ class Profile extends React.Component {
 
     componentWillUnmount() {
         clearInterval(this.toggleVisiblity)
+        this.setState({page: false})
+
     }
 
-    render() {
+    getPage = () => {
         const { visible } = this.state
-        return (
-            <div><br></br><br></br>
+        if (this.state.page) {
+            return (
+                <div>
                 <div className="ui vertical stripe segment">
                     <div className="ui middle aligned stackable grid container">
                     <div className="row">
@@ -88,8 +93,18 @@ class Profile extends React.Component {
                                     />
                                     })
                                     }
-                        {/* </ReactCSSTransitionGroup> */}
+                    </div>
                 </div>
+            )
+        }
+    }
+
+    render() {
+        return (
+            <div><br></br><br></br>
+                <ReactCSSTransitionGroup transitionName="pageTransition" transitionEnterTimeout={1500} transitionLeaveTimeout={200}>
+                    {this.getPage()}
+                </ReactCSSTransitionGroup>
             </div>
          );
     }

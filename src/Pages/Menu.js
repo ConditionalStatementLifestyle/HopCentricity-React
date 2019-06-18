@@ -39,7 +39,7 @@ class Menu extends React.Component {
       time: '',
       AMPM: '',
       disablePopup: false,
-      visible: false
+      page: false
     }
   }
 
@@ -49,11 +49,11 @@ class Menu extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({visible: true})
+    this.setState({page: true})
   }
   
   componentWillUnmount() {
-    this.setState({visible: false})
+    this.setState({page: false})
   }
 
   handleTime = () => {
@@ -69,7 +69,7 @@ class Menu extends React.Component {
   }
 
   getPage = () => {
-    if (this.state.visible === true) {
+    if (this.state.page === true) {
       return (
         <div>
           <div className='menu-top' style={ sectionStyle }><br></br><br></br><br></br><br></br>
