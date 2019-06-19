@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import Pineapple from '../pineapple.png'
 import EditModal from './EditModal';
-import { Popup, Rating } from 'semantic-ui-react'
+import { Popup } from 'semantic-ui-react'
+
 
 const ReviewCard = (props) => {
 
@@ -28,47 +29,47 @@ const ReviewCard = (props) => {
 
     return (
         <Popup
-        content='Click to Edit or Delete'
-        on={'hover'}
-        disabled={isPopupDisabled}
-        hideOnScroll
-        trigger ={
-        <div>
-            <div className="ui raised link card" onClick={() => {
-                    setPopup(true)
-                    setShow(true)}
-            }   ><br></br>
-                <div className="center floated author">
-                    <EditModal 
-                    show={show} 
-                    turnShowOff={turnShowOff}
-                    beer={props.beer}
-                    userRating={props.userRating}
-                    content={props.content}
-                    reviewId={props.reviewId}
-                    updateReview={props.updateReview}
-                    removeReview={props.removeReview}
-                    />
-                    <img className="image center cardMargin cardImage" src={props.beer.img_url === null?Pineapple:props.beer.img_url} alt='oh no'></img>
-                </div><br></br>
-            <div className="content">
-                <div className="header">{titleCase(props.beer.name)}</div><br></br>
+            content='Click to Edit or Delete'
+            on={'hover'}
+            disabled={isPopupDisabled}
+            hideOnScroll
+            trigger ={
+            <div className='reviewCard'>
+                <div className="ui raised link card" onClick={() => {
+                        setPopup(true)
+                        setShow(true)}
+                }   ><br></br>
+                    <div className="center floated author">
+                        <EditModal 
+                        show={show} 
+                        turnShowOff={turnShowOff}
+                        beer={props.beer}
+                        userRating={props.userRating}
+                        content={props.content}
+                        reviewId={props.reviewId}
+                        updateReview={props.updateReview}
+                        removeReview={props.removeReview}
+                        />
+                        <img className="image center cardMargin cardImage" src={props.beer.img_url === null?Pineapple:props.beer.img_url} alt='oh no'></img>
+                    </div><br></br>
+                <div className="content">
+                    <div className="header">{titleCase(props.beer.name)}</div><br></br>
 
-                    <div className="description">
-                        <p>
-                            <div>{titleCase(props.beer.style)}</div><br></br>
-                            {/* <div>{props.ibu} IBU</div><br></br>
-                            <div>{props.abv}%</div><br></br> */}
-                            <div>Global Rating {props.beer.rating}</div><br></br>
-                            <div>Your Rating: {props.userRating}</div><br></br>
-                        </p>
-                        <p>
-                           {props.content === ''?null:`Your Notes: ${props.content}`}
-                        </p>
-                    </div>
+                        <div className="description">
+                            <p>
+                                <div>{titleCase(props.beer.style)}</div><br></br>
+                                {/* <div>{props.ibu} IBU</div><br></br>
+                                <div>{props.abv}%</div><br></br> */}
+                                <div>Global Rating {props.beer.rating}</div><br></br>
+                                <div>Your Rating: {props.userRating}</div><br></br>
+                            </p>
+                            <p>
+                            {props.content === ''?null:`Your Notes: ${props.content}`}
+                            </p>
+                        </div>
+                </div>
             </div>
-        </div>
-        <br></br><br></br>
+            <br></br><br></br>
         </div>
         } 
     />

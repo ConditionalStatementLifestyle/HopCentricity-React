@@ -10,10 +10,10 @@ class BeerTypeForm extends React.Component {
     
     render() {
         return (
-            <div>
+            <div className='form-height'>
             <h3>IPA Type</h3>
                 <form class="ui form" onSubmit={this.handleSubmit}>
-                    <div>
+                    <div className='dropDown'>
                         <select className="ui fluid dropdown" id='dropdown'>
                             <option value='IPA - New England'>IPA - New England</option>
                             <option value="IPA - Imperial / Double">IPA - Imperial / Double</option>
@@ -23,8 +23,7 @@ class BeerTypeForm extends React.Component {
                             <option value="IPA - White">IPA - White</option>
                         </select>
                     </div>
-                    <br></br>
-                    <button class="ui button" type="submit">Submit</button>
+                    <button class="ui button searchButton" type="submit">Search</button>
                 </form>
             </div>
          );

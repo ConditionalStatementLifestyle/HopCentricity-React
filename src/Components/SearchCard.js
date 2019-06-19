@@ -1,6 +1,8 @@
 import React from 'react';
 import Pineapple from '../pineapple.png'
 import ReviewModal from './ReviewModal';
+import { Popup } from 'semantic-ui-react'
+
 
 const SearchCard = (props) => {
 
@@ -17,10 +19,28 @@ const SearchCard = (props) => {
         return str.join(' ');
     }
 
+    const renderAlreadyReviewed = () => {
+        if (props.alreadyReviewed[`${props.name}`]) {
+            return (
+                <Popup
+                    content='You Drank This'
+                    on={'hover'}
+                    hideOnScroll
+                    trigger ={
+                        <div className="ui left corner label">
+                            <i class="beer icon"></i>
+                        </div>
+                    }>
+                </Popup>
+            )
+        }
+    }
+
     return (
         <div id='beer-card' className='block-display'>
             <div className='ui centered grid'> 
             <div className='ui card'>
+                {renderAlreadyReviewed()}
                 <div className="center floated author">
                     <img alt='oh no' className="image cardMargin cardImage" src={props.img_url === null?Pineapple:props.img_url}></img>
                 </div>

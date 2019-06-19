@@ -1,5 +1,5 @@
 import React from 'react'
-// import Logout from './Logout'
+import AudioRadio from './AudioRadio'
 import logo from '../hop.png'
 import {Link} from 'react-router-dom'
 import AudioPlayer from "react-h5-audio-player";
@@ -13,11 +13,12 @@ class Navbar extends React.Component {
   }
 
   robot = () => {
-    this.player.state.isPlaying = false
-    this.player.clearListenTrack() 
-    this.player.audio.play()
-    // debugger
-
+    if (this.props.audio) {
+      this.player.state.isPlaying = false
+      this.player.clearListenTrack() 
+      this.player.audio.play()
+      // debugger
+    }
   }
 
   render() {
@@ -25,7 +26,7 @@ class Navbar extends React.Component {
     <div>
       <nav className="navbar">
           <span className="navbar-toggle" id="js-navbar-toggle" onClick={() => this.toggle()}>
-            <i className="fas fa-bars"></i>
+            <i className="fa-bars"></i>
           </span>
             <Link to="/menu" className='cursor'>
               <div className='nav-icon'><img src={logo} alt=''></img></div>
@@ -42,9 +43,15 @@ class Navbar extends React.Component {
               <li>
                 <Link to="/login" className="nav-links" onClick={() => this.props.handleLogout()}>Logout</Link>
               </li>
+              <li>
+                <div className='radio-space nav-links'>
+                  <AudioRadio id='radio' className='radio-space' audio={this.props.audio}toggleAudio={this.props.toggleAudio}/>
+                  <div className='audio-text-space'>Audio On/Off</div>
+                </div>
+              </li>
               </ul>
             </div>
-        </nav>
+      </nav>
         <AudioPlayer
             hidePlayer={true}
             src={mp3_file}

@@ -96,7 +96,7 @@ class Menu extends React.Component {
 
   getTime = () => {
     if (this.state.time !== '') {
-      return <div className='menu-time'><li>{ this.state.time + this.state.AMPM }</li></div>
+      return <div className='menu-time'>{ this.state.time + this.state.AMPM }</div>
     }
   }
 

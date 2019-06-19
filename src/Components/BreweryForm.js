@@ -13,13 +13,13 @@ class BreweryForm extends React.Component {
 
     render() { 
         return ( 
-            <div>
+            <div className='form-height'>
                 <h3>Brewery Name</h3>
                 <form class="ui form" onSubmit={this.handleSubmit}>
                     <div className="field">
                         <input type="text" name="first-name" placeholder="Brewery Name" ref={this.query}></input>
                     </div>
-                    <button class="ui button" type="submit">Submit</button>
+                    <button class="ui button searchButton" type="submit">Search</button>
                 </form>
         </div>
          );

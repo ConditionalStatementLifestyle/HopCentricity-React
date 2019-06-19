@@ -82,6 +82,7 @@ body {
 .main-nav {
   list-style-type: none;
   display: none;
+  margin-top:20px;
 }
 
 .nav-links,
@@ -230,7 +231,7 @@ body {
 .nav-title {
   /* margin-top: 70px; */
   /* margin-bottom: 0px; */
-  margin-left: 1%;
+  margin-left: 5%;
   font-size: 30px;
   display:inline-block;
   font-family: 'Prata', serif;
@@ -399,4 +400,32 @@ body {
   height: 25px; /* Slider handle height */
   background: #4CAF50; /* Green background */
   cursor: pointer; /* Cursor on hover */
+}
+
+.dropDown {
+  margin-bottom:13px
+}
+/* 
+.searchButton {
+  height: 38px;
+} */
+
+
+.form-height {
+  height: 12vh;
+}
+
+.radio-space {
+  margin-left: 20px;
+  font-size: 10px;
+  /* margin-top: 10px; */
+  /* display: inline-block; */
+}
+
+.audio-text-space {
+  font-size: 10px;
+}
+
+.reviewCard {
+  margin: 25px;
 }

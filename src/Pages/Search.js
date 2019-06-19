@@ -16,12 +16,6 @@ class Search extends React.Component {
          }
     }
 
-    // setStateAsync = (state) => {
-    //     return new Promise((resolve) => {
-    //     this.setState(state, resolve)
-    //     });
-    // }
-
     componentDidMount() {
         this.setState({page: true})
     }
@@ -90,7 +84,7 @@ class Search extends React.Component {
                             </div>
                         {this.renderFormByTypeSelection()}
                     </div>
-                    <BeerContainer beers={this.state.beers} pushReviewToProfile={this.props.pushReviewToProfile}/>
+                    <BeerContainer beers={this.state.beers} pushReviewToProfile={this.props.pushReviewToProfile} alreadyReviewed={this.props.alreadyReviewed}/>
                 </div>
             )
         }

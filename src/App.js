@@ -25,7 +25,9 @@ class App extends React.Component {
         color: '',
         thought: ''
       },
-      reviews: []
+      reviews: [],
+      audio: false,
+      alreadyReviewed: {}
     }
 
   }
@@ -39,6 +41,11 @@ class App extends React.Component {
       this.setState({user})
       this.getProfileData()
     }
+  }
+
+  toggleAudio = () => {
+    let audio = !this.state.audio
+    this.setState({audio})
   }
 
   componentWillMount() {
@@ -73,8 +80,8 @@ setHopmeterRating = (hopRating) => {
 
     else if (hopRating < 50 && hopRating > 25) {
         hopmeter.hopRating = hopRating
-        hopmeter.color = 'orange'
-        hopmeter.thought = "Looks like hops could treat you better, keep hopping around"
+        hopmeter.color = 'yellow'
+        hopmeter.thought = "Looks like the hops could treat you better, keep hopping around"
         this.setState({hopmeter})
     }
 
@@ -115,8 +122,17 @@ setHopmeterRating = (hopRating) => {
   setReviews = (reviews) => {
     if (reviews.length > 0) {
       this.setState({reviews})
-
     }
+   this.setAlreadyReviewed()
+  }
+
+  setAlreadyReviewed = () => {
+    let alreadyReviewed = {}
+    for(let i = 0; i < this.state.reviews.length; i++) {
+      let beer = this.state.reviews[i].beer.name
+      alreadyReviewed[beer] = true
+    }
+    this.setState({ alreadyReviewed })
   }
 
   pushReviewToProfile = (review) => {
@@ -124,6 +140,7 @@ setHopmeterRating = (hopRating) => {
     reviews.push(review)
     this.setState({reviews})
     this.getHopmeterRating()
+    this.setAlreadyReviewed()
   }
 
   updateReview = (updatedReview) => {
@@ -133,6 +150,7 @@ setHopmeterRating = (hopRating) => {
     })
     reviews.splice(index,1,updatedReview)
     this.setState({ reviews })
+    this.getHopmeterRating()
   }
 
   removeReview = (id) => {
@@ -142,6 +160,8 @@ setHopmeterRating = (hopRating) => {
     })
     reviews.splice(index,1)
     this.setState({ reviews })
+    this.getHopmeterRating()
+    this.setAlreadyReviewed()
   }
 
   setStateUsernameEmailToken = (data) => {
@@ -162,7 +182,9 @@ setHopmeterRating = (hopRating) => {
       token: ''
     }
     this.setState({user})
-    this.player.audio.play()
+    if (this.state.audio) {
+      this.player.audio.play()
+    }
   }
 
  toggle = () => {
@@ -176,10 +198,10 @@ setHopmeterRating = (hopRating) => {
       <div>
         <AudioPlayer hidePlayer={true} src={mp3_file} volume={1.0} ref={c => (this.player = c)}/>
         <Router>
-          {this.state.user.token !== ''? <Navbar handleLogout={this.handleLogout}/>:<Redirect to='/login'/>}
+          {this.state.user.token !== ''? <Navbar audio={this.state.audio} toggleAudio={this.toggleAudio} handleLogout={this.handleLogout}/>:<Redirect to='/login'/>}
           <Route exact path='/' render={() => <Redirect to='/menu'/>}/>
           <Route exact path='/menu' render={() => <Menu user={this.state.user} reviews={this.state.reviews.length} getProfileData={this.getProfileData}/>}/>
-          <Route exact path='/search' render={() => <Search user={this.state.user} pushReviewToProfile={this.pushReviewToProfile}/>}/>
+          <Route exact path='/search' render={() => <Search user={this.state.user} pushReviewToProfile={this.pushReviewToProfile} alreadyReviewed={this.state.alreadyReviewed}/>}/>
           <Route exact path='/profile' render={() => <Profile user={this.state.user} reviews={this.state.reviews} getProfileData={this.getProfileData} hopmeter={this.state.hopmeter} updateReview={this.updateReview} removeReview={this.removeReview}/>}/>
           <Route exact path='/login' render={() => <LoginPage setStateUsernameEmailToken={this.setStateUsernameEmailToken} user={this.state.user}/>}/>
         </Router>
