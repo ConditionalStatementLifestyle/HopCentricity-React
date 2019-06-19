@@ -7,7 +7,8 @@ import { Popup } from 'semantic-ui-react'
 const ReviewCard = (props) => {
 
     const [show, setShow] = useState(false)
-    const [isPopupDisabled, setPopup] = useState(false)
+    const [isPopupDisabled, setPopupDisabled] = useState(false)
+    const [isHovering, setHovering] = useState(false)
 
     const titleCase = (str) => {
         str = str.toLowerCase().split(' ');
@@ -23,8 +24,21 @@ const ReviewCard = (props) => {
     }
 
     const turnShowOff = () => {
-        setPopup(false)
+        setPopupDisabled(false)
         setShow(false)
+    }
+
+    const handleHoverOn = (isHovering) => {
+        setHovering(true)
+        setTimeout(() => {
+
+            if (isHovering) { setPopupDisabled(true) }
+        }, 2000)
+    }
+    
+    const handleHoverOff = () => {
+        setPopupDisabled(false)
+        setHovering(false)
     }
 
     return (
@@ -34,9 +48,9 @@ const ReviewCard = (props) => {
             disabled={isPopupDisabled}
             hideOnScroll
             trigger ={
-            <div className='reviewCard'>
+            <div className='reviewCard' onMouseEnter={handleHoverOn} onMouseLeave={handleHoverOff}>
                 <div className="ui raised link card" onClick={() => {
-                        setPopup(true)
+                        setPopupDisabled(true)
                         setShow(true)}
                 }   ><br></br>
                     <div className="center floated author">
@@ -62,9 +76,8 @@ const ReviewCard = (props) => {
                                 <div>{props.abv}%</div><br></br> */}
                                 <div>Global Rating {props.beer.rating}</div><br></br>
                                 <div>Your Rating: {props.userRating}</div><br></br>
-                            </p>
-                            <p>
-                            {props.content === ''?null:`Your Notes: ${props.content}`}
+                                {props.content === ''?null:`Your Notes: ${props.content}`}
+
                             </p>
                         </div>
                 </div>

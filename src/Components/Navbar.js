@@ -17,7 +17,6 @@ class Navbar extends React.Component {
       this.player.state.isPlaying = false
       this.player.clearListenTrack() 
       this.player.audio.play()
-      // debugger
     }
   }
 
@@ -45,12 +44,12 @@ class Navbar extends React.Component {
               </li>
               <li>
                 <div className='radio-space nav-links'>
-                  <AudioRadio id='radio' className='radio-space' audio={this.props.audio}toggleAudio={this.props.toggleAudio}/>
-                  <div className='audio-text-space'>Audio On/Off</div>
+                  <AudioRadio id='radio' className='radio-space' audio={this.props.audio} toggleAudio={this.props.toggleAudio}/>
+                  <div className='audio-text-space'>Audio Off/On</div>
                 </div>
               </li>
-              </ul>
-            </div>
+            </ul>
+          </div>
       </nav>
         <AudioPlayer
             hidePlayer={true}

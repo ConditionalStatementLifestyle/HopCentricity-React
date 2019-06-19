@@ -17,8 +17,14 @@ class ReviewForm extends React.Component {
     handleSubmit = (ev) => {
         ev.preventDefault()
         let content = document.getElementById('area').value
-        this.submitReview(content)
         this.props.close()
+        if (this.props.style.includes('IPA')) {
+            this.submitReview(content)
+            // Alert User Review Submitted
+        }
+        else {
+            this.props.onlyIpa()
+        }
     }
 
     submitReview = (content) => {
@@ -48,6 +54,7 @@ class ReviewForm extends React.Component {
 
     pushData = (review) => {
         this.props.pushReviewToProfile(review)
+        this.props.reviewAdded()
     }
  
     render() {

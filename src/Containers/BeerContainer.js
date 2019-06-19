@@ -27,6 +27,8 @@ const BeerContainer = (props) => {
                         abv={beerItem.abv}
                         pushReviewToProfile={props.pushReviewToProfile}
                         alreadyReviewed={props.alreadyReviewed}
+                        onlyIpa={props.onlyIpa}
+                        reviewAdded={props.reviewAdded}
                         />
                     })}
             </ReactCSSTransitionGroup>

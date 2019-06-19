@@ -4,6 +4,9 @@ import BreweryForm from '../Components/BreweryForm'
 import BeerTypeForm from '../Components/BeerTypeForm'
 import BeerContainer from '../Containers/BeerContainer'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import OnlyIpa from '../Components/OnlyIpa';
+import { Image, Header, Segment, TransitionablePortal } from 'semantic-ui-react'
+import logo from '../hop.png'
 
 
 class Search extends React.Component {
@@ -12,16 +15,36 @@ class Search extends React.Component {
         this.state = {
             type: 'beername',
             beers: [],
-            page: false
+            page: false,
+            show: false,
+            reviewAddedShow: false
          }
     }
 
     componentDidMount() {
-        this.setState({page: true})
+        this.setState({ page: true })
     }
 
     componentWillUnmount() {
-        this.setState({page: false})
+        this.setState({ page: false })
+    }
+
+    onlyIpaShow = () => {
+        let show = true
+        this.setState({ show })
+        setTimeout(() => this.onlyIpaHide(), 5000)
+    }
+
+    onlyIpaHide = () => {
+        let show = false
+        this.setState({ show })
+    }
+
+    reviewAdded = () => {
+        let reviewAddedShow = true
+        this.setState({ reviewAddedShow })
+        reviewAddedShow = false
+        setTimeout(() => this.setState({ reviewAddedShow }), 4000)
     }
 
     searchForBeers = (query, type) => {
@@ -44,7 +67,7 @@ class Search extends React.Component {
 
     renderBeers = (beers) => {
         this.setState({ beers: [] })
-        this.setState({beers})
+        this.setState({ beers })
     }
 
     changeForm = () => {
@@ -72,6 +95,21 @@ class Search extends React.Component {
         if (this.state.page) {
             return (
                 <div>
+                    <div>
+                        <TransitionablePortal open={this.state.show} transition={ 'fade' } duration={2000}>
+                            <OnlyIpa
+                                onlyIpaHide={this.onlyIpaHide}
+                                show={this.state.show}
+                            />
+                        </TransitionablePortal>
+                        <TransitionablePortal open={this.state.reviewAddedShow} transition={ 'fade' } duration={ 1000 } >
+                            <Segment style={{ left: '40%', position: 'fixed', top: '50%', zIndex: 1000 }}>
+                                <Header>Congrats</Header>
+                                <Image wrapped size='medium' src={logo} />
+                                <p>Your review has been added to your profile page</p>
+                            </Segment>
+                        </TransitionablePortal>
+                    </div>
                     <div className='width'>
                         <br></br>
                             <h2>Search By</h2>
@@ -84,7 +122,13 @@ class Search extends React.Component {
                             </div>
                         {this.renderFormByTypeSelection()}
                     </div>
-                    <BeerContainer beers={this.state.beers} pushReviewToProfile={this.props.pushReviewToProfile} alreadyReviewed={this.props.alreadyReviewed}/>
+                    <BeerContainer 
+                        beers={this.state.beers} 
+                        pushReviewToProfile={this.props.pushReviewToProfile} 
+                        alreadyReviewed={this.props.alreadyReviewed}
+                        onlyIpa={this.onlyIpaShow}
+                        reviewAdded={this.reviewAdded}
+                    />
                 </div>
             )
         }

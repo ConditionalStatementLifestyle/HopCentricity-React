@@ -66,9 +66,12 @@ const SearchCard = (props) => {
                             rating={props.rating}
                             abv={props.abv}
                             pushReviewToProfile={props.pushReviewToProfile}
+                            onlyIpa={props.onlyIpa}
+                            reviewAdded={props.reviewAdded}
+
                         />
-                    </div>
                 </div>
+            </div>
         </div>
         </div><br></br><br></br><br></br><br></br>
         </div>
