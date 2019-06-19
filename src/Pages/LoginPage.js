@@ -1,6 +1,14 @@
 import React from 'react'
 import Login from '../Components/Login'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import posed from 'react-pose';
+
+const Box = posed.div({
+  draggable: true
+
+});
+
+const Example = () => <Box className="box" />;
 
 
 class LoginPage extends React.Component {
@@ -16,17 +24,22 @@ class LoginPage extends React.Component {
     this.setState({page: true})
   } 
 
-  componentWillUnmount() {
-    this.setState({page: false})
-  } 
+  Box = posed.div({
+    draggable: true
+  });
 
-  getPage = () => {
+
+  getPage = (Box) => {
     if (this.state.page) {
       return (
+        <div>
+           <h2 className='login-title'>Hop Centricity</h2>
         <Login
         setStateUsernameEmailToken={this.props.setStateUsernameEmailToken}
         user={this.props.user}
         />
+        <Example />
+        </div>
       )
     }
   }

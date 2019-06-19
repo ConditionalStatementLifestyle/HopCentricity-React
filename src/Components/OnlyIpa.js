@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Image, Header, Icon, Modal } from 'semantic-ui-react'
+import { Image, Header, Modal } from 'semantic-ui-react'
 import logo from '../hop.png'
 
 

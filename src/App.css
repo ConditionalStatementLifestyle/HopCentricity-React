@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Dancing+Script|Sacramento|Tangerine|Yellowtail&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Prata&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Sacramento|Tangerine&display=swap');
 
 .App {
   text-align: center;
@@ -37,23 +38,26 @@
 
 .outer {
   display: table; 
-  position: absolute;
-  top: 0;
+  position: relative;
+  margin-top: 200px;
   left: 0;
-  height: 100%;
+  /* height: 50%; */
   width: 100%;
 }
 
 .middle {
   display: table-cell;
   vertical-align: middle;
-  height: 50%;
+  margin-top: auto;
+  margin-bottom: auto;
+  height: 100;
 }
 
 .inner {
   margin-left: auto;
   margin-right: auto;
   width: 400px;
+  height: 100;
 }
 
 .cursor {
@@ -428,4 +432,27 @@ body {
 
 .reviewCard {
   margin: 25px;
+}
+
+
+.box {
+  width: 150px;
+  height: 150px;
+  background: red;
+  border-color: black;
+  border: 5px;
+  border-width: 5px;
+}
+
+h2.login-title {
+  font-size: 23ch;
+  height: 220px;
+  margin-top: 100px;
+  width: 100%;
+  text-align: center;
+  background: -webkit-linear-gradient(rgb(186, 3, 203), rgb(14, 219, 255));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  /* font-family: 'Tangerine', cursive; */
+  font-family: 'Sacramento', cursive;
 }

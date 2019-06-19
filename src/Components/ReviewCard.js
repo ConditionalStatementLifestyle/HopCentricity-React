@@ -31,7 +31,6 @@ const ReviewCard = (props) => {
     const handleHoverOn = (isHovering) => {
         setHovering(true)
         setTimeout(() => {
-
             if (isHovering) { setPopupDisabled(true) }
         }, 2000)
     }
@@ -68,24 +67,20 @@ const ReviewCard = (props) => {
                     </div><br></br>
                 <div className="content">
                     <div className="header">{titleCase(props.beer.name)}</div><br></br>
-
                         <div className="description">
-                            <p>
+                            <div>
                                 <div>{titleCase(props.beer.style)}</div><br></br>
-                                {/* <div>{props.ibu} IBU</div><br></br>
-                                <div>{props.abv}%</div><br></br> */}
                                 <div>Global Rating {props.beer.rating}</div><br></br>
                                 <div>Your Rating: {props.userRating}</div><br></br>
                                 {props.content === ''?null:`Your Notes: ${props.content}`}
 
-                            </p>
+                            </div>
                         </div>
-                </div>
+                    </div>
+                </div><br></br><br></br>
             </div>
-            <br></br><br></br>
-        </div>
-        } 
-    />
+            } 
+        />
     )
 }
 

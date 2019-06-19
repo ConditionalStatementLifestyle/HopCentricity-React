@@ -50,12 +50,12 @@ const SearchCard = (props) => {
                         <span className="category">{titleCase(props.brewery)}</span>
                     </div>
                     <div className="description">
-                        <p>
+                        <div>
                             <div>{titleCase(props.style)}</div><br></br>
                             <div>{props.ibu} IBU</div><br></br>
                             <div>{props.abv}%</div><br></br>
-                            <div>Rating {props.rating}</div>
-                        </p>
+                            <div>Rating {props.rating}</div><br></br>
+                        </div>
                         <ReviewModal  
                             id={props.id}
                             name={titleCase(props.name)}

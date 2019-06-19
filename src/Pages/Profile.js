@@ -33,8 +33,6 @@ class Profile extends React.Component {
 
     componentWillUnmount() {
         clearInterval(this.toggleVisiblity)
-        this.setState({page: false})
-
     }
 
     getPage = () => {
@@ -63,18 +61,18 @@ class Profile extends React.Component {
                         </div>
                     </div>
                     </div><br></br><br></br>
-                    <div className='meter'>Hop-o-meter Thoughts: {this.props.hopmeter.thought}</div>
-                    <div className='ui inverted segment'>
-                    <div className="ui red inverted progress meter">
-                        <Progress
-                        percent={this.props.hopmeter.hopRating}
-                        color={this.props.hopmeter.color}
-                        active
-                        size='large'
-                        inverted progress/>
-                        {this.props.hopmeter.hopRating}%
-                    </div>
-                    </div>
+                    <div className='meter'>Hop-o-meter: {this.props.hopmeter.thought}</div>
+                        <div className='ui inverted segment'>
+                            <div className="ui red inverted progress meter">
+                                <Progress
+                                percent={this.props.hopmeter.hopRating}
+                                color={this.props.hopmeter.color === ''?'black':this.props.hopmeter.color}
+                                active
+                                size='large'
+                                inverted progress/>
+                                {this.props.hopmeter.hopRating}%
+                            </div>
+                        </div>
                     </div><br></br><br></br><br></br><br></br>
                     <div className='ui centered three column grid'><br></br><br></br>
                         {/* <ReactCSSTransitionGroup transitionName="searchCardTransition" transitionEnterTimeout={1000} transitionLeaveTimeout={1000}> */}

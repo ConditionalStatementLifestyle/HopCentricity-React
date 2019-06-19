@@ -8,6 +8,8 @@ import OnlyIpa from '../Components/OnlyIpa';
 import { Image, Header, Segment, TransitionablePortal } from 'semantic-ui-react'
 import logo from '../hop.png'
 
+const transitions = ['drop']
+
 
 class Search extends React.Component {
     constructor(props) {
@@ -23,10 +25,6 @@ class Search extends React.Component {
 
     componentDidMount() {
         this.setState({ page: true })
-    }
-
-    componentWillUnmount() {
-        this.setState({ page: false })
     }
 
     onlyIpaShow = () => {
@@ -92,17 +90,14 @@ class Search extends React.Component {
     }
 
     getPage = () => {
+        const { drop } = transitions[0]
+        const { duration } = 1000
         if (this.state.page) {
             return (
                 <div>
                     <div>
-                        <TransitionablePortal open={this.state.show} transition={ 'fade' } duration={2000}>
-                            <OnlyIpa
-                                onlyIpaHide={this.onlyIpaHide}
-                                show={this.state.show}
-                            />
-                        </TransitionablePortal>
-                        <TransitionablePortal open={this.state.reviewAddedShow} transition={ 'fade' } duration={ 1000 } >
+                        <OnlyIpa onlyIpaHide={this.onlyIpaHide} show={this.state.show}/>
+                        <TransitionablePortal open={this.state.reviewAddedShow} transition={{ drop,duration }} >
                             <Segment style={{ left: '40%', position: 'fixed', top: '50%', zIndex: 1000 }}>
                                 <Header>Congrats</Header>
                                 <Image wrapped size='medium' src={logo} />

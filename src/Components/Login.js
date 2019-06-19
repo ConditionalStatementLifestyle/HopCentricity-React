@@ -44,7 +44,7 @@ class Login extends React.Component {
           })
         })
         .then(res => res.json)
-        .then( json => console.log('here is fetch return:',json))
+        // .then( json => console.log('here is fetch return:',json))
       }
 
 

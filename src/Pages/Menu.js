@@ -29,7 +29,6 @@ var sectionStyle = {
   backgroundSize: 'cover'
 };
 
-
 class Menu extends React.Component {
 
   constructor() {
@@ -50,10 +49,6 @@ class Menu extends React.Component {
 
   componentDidMount() {
     this.setState({page: true})
-  }
-  
-  componentWillUnmount() {
-    this.setState({page: false})
   }
 
   handleTime = () => {
