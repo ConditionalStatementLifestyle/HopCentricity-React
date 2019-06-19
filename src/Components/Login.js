@@ -25,7 +25,7 @@ class Login extends React.Component {
             localStorage.setItem("HopCentricity_Email", data.email)
             localStorage.setItem("HopCentricity_Username", data.raw.names[0].displayName)
             this.props.setStateUsernameEmailToken(data)
-            this.props.history.push('/menu')
+            // this.props.history.push('/menu') //Uncomment to login directly after OAuth
           this.sendAuth()
           });
         });
@@ -54,7 +54,7 @@ class Login extends React.Component {
             <div className="middle">
               <div className="inner">
                 <h2 className="ui teal image header cursor" onClick={this.handleClick.bind(this)}>
-                  <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt='' className="image cursor"></img>
+                  <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt='' className="image cursor App-logo"></img>
                   <div className="content cursor">
                     Log-in with Google
                   </div> 

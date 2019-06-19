@@ -438,21 +438,47 @@ body {
 .box {
   width: 150px;
   height: 150px;
-  background: red;
+  /* background: red; */
   border-color: black;
   border: 5px;
+  border-radius: 20px;
   border-width: 5px;
+  margin-left: 100px;
+  margin-top: 80%;
+  display: inline-block;
+
 }
 
 h2.login-title {
-  font-size: 23ch;
-  height: 220px;
+  font-size: 20ch;
+  height: 240px;
   margin-top: 100px;
   width: 100%;
   text-align: center;
-  background: -webkit-linear-gradient(rgb(186, 3, 203), rgb(14, 219, 255));
+  background: -webkit-linear-gradient(rgb(238, 44, 135), rgb(14, 219, 255));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   /* font-family: 'Tangerine', cursive; */
   font-family: 'Sacramento', cursive;
+}
+
+.bottle {
+  /* background: -webkit-linear-gradient(rgb(238, 44, 135), rgb(14, 219, 255)); */
+  width: 300px;
+  /* height: 370px; */
+  text-align: center;
+  border-radius: 20px;
+  float: right;
+  margin-right:20px;
+}
+
+.beer-bottle {
+  /* background: transparent; */
+  opacity: 0.6;
+  background: -webkit-linear-gradient(rgb(238, 44, 135), rgb(14, 219, 255));
+  text-align: center;
+}
+
+.hop-login {
+  width: 50px;
 }
