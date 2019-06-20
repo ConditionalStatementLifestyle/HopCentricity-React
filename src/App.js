@@ -27,7 +27,8 @@ class App extends React.Component {
       },
       reviews: [],
       audio: false,
-      alreadyReviewed: {}
+      alreadyReviewed: {},
+      siteEntered: false
     }
 
   }
@@ -172,6 +173,10 @@ setHopmeterRating = (hopRating) => {
     this.setState({user})
   }
 
+  siteEntered = () => {
+    this.setState({siteEntered: true})
+  }
+
   handleLogout = () => {
     localStorage.removeItem('HopCentricity_Token')
     localStorage.removeItem('HopCentricity_Email')
@@ -181,7 +186,10 @@ setHopmeterRating = (hopRating) => {
       username: '',
       token: ''
     }
-    this.setState({user})
+    this.setState({
+      user,
+      siteEntered: false
+    })
     if (this.state.audio) {
       this.player.audio.play()
     }
@@ -198,12 +206,12 @@ setHopmeterRating = (hopRating) => {
       <div>
         <AudioPlayer hidePlayer={true} src={mp3_file} volume={1.0} ref={c => (this.player = c)}/>
         <Router>
-          {this.state.user.token !== ''? <Navbar audio={this.state.audio} toggleAudio={this.toggleAudio} handleLogout={this.handleLogout}/>:<Redirect to='/login'/>}
+          {this.state.siteEntered? <Navbar audio={this.state.audio} toggleAudio={this.toggleAudio} handleLogout={this.handleLogout}/>:<Redirect to='/login'/>}
           <Route exact path='/' render={() => <Redirect to='/menu'/>}/>
           <Route exact path='/menu' render={() => <Menu user={this.state.user} reviews={this.state.reviews.length} getProfileData={this.getProfileData}/>}/>
           <Route exact path='/search' render={() => <Search user={this.state.user} pushReviewToProfile={this.pushReviewToProfile} alreadyReviewed={this.state.alreadyReviewed}/>}/>
           <Route exact path='/profile' render={() => <Profile user={this.state.user} reviews={this.state.reviews} getProfileData={this.getProfileData} hopmeter={this.state.hopmeter} updateReview={this.updateReview} removeReview={this.removeReview}/>}/>
-          <Route exact path='/login' render={() => <LoginPage setStateUsernameEmailToken={this.setStateUsernameEmailToken} user={this.state.user}/>}/>
+          <Route exact path='/login' render={() => <LoginPage siteEntered={this.siteEntered} setStateUsernameEmailToken={this.setStateUsernameEmailToken} user={this.state.user}/>}/>
         </Router>
       </div>
     )

@@ -468,8 +468,10 @@ h2.login-title {
   /* height: 370px; */
   text-align: center;
   border-radius: 20px;
-  float: right;
+  /* float: right; */
   margin-right:20px;
+  margin-left: 80%;
+  display: inline-block;
 }
 
 .beer-bottle {
@@ -477,8 +479,26 @@ h2.login-title {
   opacity: 0.6;
   background: -webkit-linear-gradient(rgb(238, 44, 135), rgb(14, 219, 255));
   text-align: center;
+  display: inline-block;
+  margin-top: 20px;
 }
 
 .hop-login {
   width: 50px;
+  display: inline-block;
+}
+
+h3.login-message {
+  text-align: center;
+  font-size: 3ch;
+  /* background: -webkit-linear-gradient(rgb(38, 244, 6), rgb(255, 255, 14));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; */
+  /* font-family: 'Tangerine', cursive; */
+  font-family: 'Prata', serif;
+  /* height: 60px; */
+}
+
+.login-top-space {
+    height: 14vh;
 }
