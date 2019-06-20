@@ -308,7 +308,7 @@ body {
 .searchCardTransition-leave.example-leave-active {
   opacity: 0.01;
   /* width: 0px; */
-  transition: 150ms;
+  transition: 30ms;
 }
 
 .pageTransition-enter {
@@ -356,7 +356,6 @@ body {
   height: 120px;
   text-align: center;
   font-family: 'Prata', serif;
-
 }
 
 .menu-top {
@@ -368,16 +367,15 @@ body {
   width: 100%;
 }
 
-/* The slider itself */
 .slider {
-  -webkit-appearance: none;  /* Override default CSS styles */
+  -webkit-appearance: none;  
   appearance: none;
-  width: 100%; /* Full-width */
-  height: 25px; /* Specified height */
-  background: #d3d3d3; /* Grey background */
-  outline: none; /* Remove outline */
-  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
-  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  width: 100%; 
+  height: 25px; 
+  background: #d3d3d3; 
+  outline: none; 
+  opacity: 0.7; 
+  -webkit-transition: .2s; 
   transition: opacity .2s;
   text-align: center;
 }

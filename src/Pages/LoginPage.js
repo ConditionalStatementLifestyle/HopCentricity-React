@@ -1,4 +1,4 @@
-import React, { useState, useEffect }  from 'react'
+import React  from 'react'
 import Login from '../Components/Login'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { Transition, Image } from 'semantic-ui-react'
@@ -21,6 +21,7 @@ class LoginPage extends React.Component {
 
   componentDidMount() {
     this.setState({page: true})
+    this.props.setSiteEntered(false)
     setInterval(this.toggleVisiblity,4500)
   }
 
@@ -31,8 +32,6 @@ class LoginPage extends React.Component {
 
   handleMouseEnterHop = () => {
     this.setState({inHop: true})
-    // this.checkIfHopInBeer()
-    // console.log('enter hop',this.state.inHop)
   }
 
   handleMouseLeaveHop = () => {
@@ -49,12 +48,10 @@ class LoginPage extends React.Component {
   }
 
   checkIfHopInBeer = () => {
-    // console.log('checkinbeer hop',this.state.inHop,'beer',this.state.inBeer)
     if (this.state.inBeer && this.state.inHop) {
       if (localStorage.getItem("HopCentricity_Token") !== null) {
-        // console.log('made it')
         this.props.history.push('/menu')
-        this.props.siteEntered()
+        this.props.setSiteEntered(true)
       }
     }
   }
@@ -64,39 +61,54 @@ class LoginPage extends React.Component {
       return (
         <div >
           <div className='login-top-space'>
-           <h2 className='login-title'>Hop Centricity</h2>
-            {localStorage.getItem("HopCentricity_Username") === null?
-            <Login
-          setStateUsernameEmailToken={this.props.setStateUsernameEmailToken}
-          user={this.props.user}
-          />:
-          <ReactCSSTransitionGroup transitionName="pageTransition" transitionEnterTimeout={500} transitionLeaveTimeout={200}>
-          <div className='outer'>\
-            <h3 className='login-message'>
-              Welcome {localStorage.getItem("HopCentricity_Username").split(' ')[0]}, please move the hop into the beer to enter the site
-            </h3>
+            <h2 className='login-title'>Hop Centricity</h2>
+            {
+              localStorage.getItem("HopCentricity_Username") === null ?
+                <Login
+                  setStateUsernameEmailToken={this.props.setStateUsernameEmailToken}
+                  user={this.props.user}
+                />
+              :
+                <ReactCSSTransitionGroup transitionName="pageTransition" transitionEnterTimeout={500} transitionLeaveTimeout={200}>
+                  <div className='outer'>\
+                    <h3 className='login-message'>
+                      Welcome {localStorage.getItem("HopCentricity_Username").split(' ')[0]}, please move the hop into the beer to enter the site
+                    </h3>
+                  </div>
+                </ReactCSSTransitionGroup>
+            }
           </div>
-        </ReactCSSTransitionGroup>}
-        </div>
-        <div className='hop-login' onMouseEnter={this.handleMouseEnterHop} onMouseLeave={this.handleMouseLeaveHop}>
-          <Box />
-        </div>
-        <Transition animation={'bounce'} duration={4000} visible={this.state.visible}>
-          <div className='bottle' 
-            onMouseEnter={this.handleMouseEnterBeer} onMouseLeave={this.handleMouseLeaveBeer}>
-            <Image src={BeerBottle} className="ui medium rounded image beer-bottle" />
+          <div className='hop-login' onMouseEnter={this.handleMouseEnterHop} onMouseLeave={this.handleMouseLeaveHop}>
+            <Box />
           </div>
-        </Transition>
+          <Transition animation={'bounce'} duration={2000} visible={this.state.visible}>
+            <div 
+              className='bottle' 
+              onMouseEnter={this.handleMouseEnterBeer} 
+              onMouseLeave={this.handleMouseLeaveBeer}>
+              <Image src={BeerBottle} className="ui medium rounded image beer-bottle" />
+            </div>
+          </Transition>
         </div>
       )
     }
   }
 
+  // checkPage = () => {
+  //   if (this.props.location.pathname !== '/login') {
+
+  //   }
+  // }
+
   render() {
     return (
       <div>
-          <ReactCSSTransitionGroup transitionName="pageTransition" transitionEnterTimeout={1500} transitionLeaveTimeout={200}>
+          <ReactCSSTransitionGroup 
+            transitionName="pageTransition" 
+            transitionEnterTimeout={1500} 
+            transitionLeaveTimeout={200}>
             {this.getPage()}
+            {/* {this.checkPage()} */}
           </ReactCSSTransitionGroup>
       </div>
     )

@@ -12,10 +12,9 @@ const Logout = (props) => {
 
   return (
     <div>
-      {isTokenSaved()?<button onClick={() => props.handleLogout()} className='ui button'>Logout</button>:null}
+      {isTokenSaved() ? <button onClick={() => props.handleLogout()} className='ui button'>Logout</button> : null}
     </div>
   )
-
 }
 
 export default Logout

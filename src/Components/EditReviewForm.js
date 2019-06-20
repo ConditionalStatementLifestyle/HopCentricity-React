@@ -20,12 +20,13 @@ class EditReviewForm extends React.Component {
     }
 
     adjust = (slider) => {
-        this.setState({slider})
+        this.setState({ slider })
     }
 
     handleSubmit = (ev) => {
         ev.preventDefault()
         let content = document.getElementById('area').value
+        // check if review is any different than old review 
         if (this.props.content !== content || this.props.userRating !== this.state.slider) {
             this.submitEditReview(content, this.props.reviewId)
         }
@@ -36,7 +37,7 @@ class EditReviewForm extends React.Component {
         fetch('http://localhost:3000/api/v1/review/' + id, {
             method: 'PATCH',
             headers: {
-            'Content-Type': 'application/json'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({
                 id: id,
@@ -71,9 +72,8 @@ class EditReviewForm extends React.Component {
                         </div>
                     </div>
                     <button className="ui button" type="submit">Submit Edit</button>
-            </form>
+                </form>
             </div>
-
         )
     }
 }

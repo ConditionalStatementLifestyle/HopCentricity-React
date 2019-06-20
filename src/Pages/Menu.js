@@ -72,8 +72,7 @@ class Menu extends React.Component {
               <ReactCSSTransitionGroup transitionName="searchCardTransition" transitionEnterTimeout={700} transitionLeaveTimeout={200}>
                 {this.getTime()}
               </ReactCSSTransitionGroup>
-            </div><br></br>
-              
+            </div><br></br>             
             <div className="outerButton">
               <div className="innerButton">
                 <button className="ui inverted teal button menuButton huge" onClick={() => this.props.history.push('/search')}>
@@ -98,10 +97,10 @@ class Menu extends React.Component {
   render() {
     return (
       <div>
-      <ReactCSSTransitionGroup transitionName="pageTransition" transitionEnterTimeout={1500} transitionLeaveTimeout={200}>
-        {this.getPage()}
-    </ReactCSSTransitionGroup>
-    </div>
+        <ReactCSSTransitionGroup transitionName="pageTransition" transitionEnterTimeout={1500} transitionLeaveTimeout={200}>
+          {this.getPage()}
+        </ReactCSSTransitionGroup>
+      </div>
     )
   }
 }

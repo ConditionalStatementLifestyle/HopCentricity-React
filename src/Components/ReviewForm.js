@@ -19,10 +19,11 @@ class ReviewForm extends React.Component {
         let content = document.getElementById('area').value
         this.props.close()
         if (this.props.style.includes('IPA')) {
-            this.submitReview(content)
             // Alert User Review Submitted
+            this.submitReview(content)
         }
         else {
+            // Alert User Non-IPA's are now allowed
             this.props.onlyIpa()
         }
     }
@@ -30,9 +31,9 @@ class ReviewForm extends React.Component {
     submitReview = (content) => {
         let email = localStorage.getItem('HopCentricity_Email')
         fetch('http://localhost:3000/api/v1/reviews', {
-            method: 'POST',
-            headers: {
-            'Content-Type': 'application/json'
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({
                 beerId: this.props.id,
@@ -76,7 +77,7 @@ class ReviewForm extends React.Component {
                         </div>
                     </div>
                     <button className="ui button" type="submit">Submit</button>
-            </form>
+                </form>
             </div>
         )
     }

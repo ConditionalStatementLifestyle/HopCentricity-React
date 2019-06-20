@@ -9,15 +9,11 @@ class ReviewModal extends Component {
   show = dimmer => () => this.setState({ dimmer, open: true })
   close = () => this.setState({ open: false })
 
-  
-
   render() {
     const { open, dimmer } = this.state
-
     return (
       <div>
         <Button className='fluid ui teal button 'onClick={this.show('blurring')}>Review</Button>
-
         <Modal dimmer={dimmer} open={open} onClose={this.close}>
           <Modal.Header>How do you feel about this beer?</Modal.Header>
           <Modal.Content image>
@@ -48,7 +44,6 @@ class ReviewModal extends Component {
                 pushReviewToProfile={this.props.pushReviewToProfile}
                 onlyIpa={this.props.onlyIpa}
                 reviewAdded={this.props.reviewAdded}
-
             />
           </Modal.Actions>
         </Modal>

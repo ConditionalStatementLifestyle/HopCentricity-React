@@ -2,7 +2,6 @@ import React from 'react'
 import { Image, Header, Modal } from 'semantic-ui-react'
 import logo from '../hop.png'
 
-
 class OnlyIpa extends React.Component {
   state = { open: false }
 
@@ -23,19 +22,16 @@ class OnlyIpa extends React.Component {
 
   render() {
     const { open, dimmer } = this.state
-
     return (
       <div>
         <Modal dimmer={dimmer} open={open} onClose={this.close}>
           <Modal.Header>Please Understand</Modal.Header>
-          <Modal.Content image>
-          <Image wrapped size='medium' src={logo} />
-            <Modal.Description>
-              <Header size='large'>This site was made in honor of IPAs and thus non-IPA type beers cannot be reviewed</Header>
-              {/* <Header>{this.props.brewery}</Header> */}
-              <div></div><br></br>
-            </Modal.Description>
-          </Modal.Content>
+            <Modal.Content image>
+              <Image wrapped size='medium' src={logo} />
+              <Modal.Description>
+                <Header size='large'>This site was made in honor of IPAs and thus non-IPA type beers cannot be reviewed</Header><br></br>
+              </Modal.Description>
+            </Modal.Content>
           <Modal.Actions>
           </Modal.Actions>
         </Modal>

@@ -4,8 +4,6 @@ import EditReviewForm from './EditReviewForm'
 import AreYouSure from './AreYouSure'
 import Pineapple from '../pineapple.png'
 
-
-
 class EditModal extends Component {
   state = { open: false }
 
@@ -45,10 +43,9 @@ class EditModal extends Component {
         <Modal dimmer={dimmer} open={open} onClose={this.close}>
           <Modal.Header>Edit This Review</Modal.Header>
           <Modal.Content image>
-            <Image wrapped size='medium' src={this.props.beer.img_url === null?Pineapple:this.props.beer.img_url} />
+            <Image wrapped size='medium' src={this.props.beer.img_url === null ? Pineapple : this.props.beer.img_url} />
             <Modal.Description>
               <Header size='large'>{this.titleCase(this.props.beer.name)}</Header>
-              {/* <Header>{this.props.brewery}</Header> */}
               <div>{this.props.beer.style}</div><br></br>
               <div>{this.props.beer.ibu} IBU</div><br></br>
               <div>{this.props.beer.abv}%</div><br></br>

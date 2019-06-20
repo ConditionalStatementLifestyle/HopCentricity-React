@@ -10,7 +10,6 @@ import logo from '../hop.png'
 
 const transitions = ['drop']
 
-
 class Search extends React.Component {
     constructor(props) {
         super(props);
@@ -46,31 +45,33 @@ class Search extends React.Component {
     }
 
     searchForBeers = (query, type) => {
+        //clear old search results in beer container before searching & saving new search results
+        //this is intended to give the card page leave transitions time to transition
         this.setState({beers: [] },
             () => {
-        fetch('http://localhost:3000/api/v1/beers', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            type: type,
-            query: query
-        })
-        })
-        .then(res => res.json())
-        .then(json => this.renderBeers(json))}
+                fetch('http://localhost:3000/api/v1/beers', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    type: type,
+                    query: query
+                })
+                })
+                .then(res => res.json())
+                .then(json => this.renderBeers(json))}
         )
     }
 
     renderBeers = (beers) => {
-        this.setState({ beers: [] })
+        // this.setState({ beers: [] })
         this.setState({ beers })
     }
 
     changeForm = () => {
         let type = document.getElementById('SearchType').value
-        this.setState({type})
+        this.setState({ type })
     }
 
     renderFormByTypeSelection = () => {
@@ -105,16 +106,15 @@ class Search extends React.Component {
                             </Segment>
                         </TransitionablePortal>
                     </div>
-                    <div className='width'>
-                        <br></br>
-                            <h2>Search By</h2>
-                            <div className='searchSelectionWidth'>
+                    <div className='width'><br></br>
+                        <h2>Search By</h2>
+                        <div className='searchSelectionWidth'>
                             <select id='SearchType' className="ui fluid dropdown" onChange={() => this.changeForm()}>
                                 <option value="beername" ref={this.searchType}>IPA Name</option>
                                 <option value="beertype" ref={this.searchType}>IPA Type</option>
                                 <option value="brewery" ref={this.searchType}>Brewery</option>
                             </select><br></br>
-                            </div>
+                        </div>
                         {this.renderFormByTypeSelection()}
                     </div>
                     <BeerContainer 

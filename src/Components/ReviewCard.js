@@ -3,7 +3,6 @@ import Pineapple from '../pineapple.png'
 import EditModal from './EditModal';
 import { Popup } from 'semantic-ui-react'
 
-
 const ReviewCard = (props) => {
 
     const [show, setShow] = useState(false)
@@ -51,7 +50,7 @@ const ReviewCard = (props) => {
                 <div className="ui raised link card" onClick={() => {
                         setPopupDisabled(true)
                         setShow(true)}
-                }   ><br></br>
+                    }><br></br>
                     <div className="center floated author">
                         <EditModal 
                         show={show} 
@@ -63,23 +62,22 @@ const ReviewCard = (props) => {
                         updateReview={props.updateReview}
                         removeReview={props.removeReview}
                         />
-                        <img className="image center cardMargin cardImage" src={props.beer.img_url === null?Pineapple:props.beer.img_url} alt='oh no'></img>
+                        <img className="image center cardMargin cardImage" src={props.beer.img_url === null ? Pineapple : props.beer.img_url} alt='oh no'></img>
                     </div><br></br>
-                <div className="content">
-                    <div className="header">{titleCase(props.beer.name)}</div><br></br>
+                    <div className="content">
+                        <div className="header">{titleCase(props.beer.name)}</div><br></br>
                         <div className="description">
                             <div>
                                 <div>{titleCase(props.beer.style)}</div><br></br>
                                 <div>Global Rating {props.beer.rating}</div><br></br>
                                 <div>Your Rating: {props.userRating}</div><br></br>
-                                {props.content === ''?null:`Your Notes: ${props.content}`}
-
+                                {props.content === '' ? null : `Your Notes: ${props.content}`}
                             </div>
                         </div>
                     </div>
                 </div><br></br><br></br>
             </div>
-            } 
+            }
         />
     )
 }

@@ -3,9 +3,7 @@ import React from 'react'
 class BeerNameForm extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {  }
         this.query = React.createRef()
-        
     }
 
     handleSubmit = (ev) => {
@@ -23,8 +21,8 @@ class BeerNameForm extends React.Component {
                     </div>
                     <button className="ui button searchButton" type="submit">Search</button>
                 </form>
-        </div>
-         );
+            </div>
+        );
     }
 }
 

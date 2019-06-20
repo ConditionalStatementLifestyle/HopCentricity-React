@@ -4,11 +4,11 @@ import Menu from './Pages/Menu'
 import LoginPage from './Pages/LoginPage'
 import Search from './Pages/Search'
 import Profile from './Pages/Profile'
-import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom'
+import NotFound from '.Pages/NotFound'
+import {BrowserRouter as Router, Route, Redirect, withRouter} from 'react-router-dom'
 import Navbar from './Components/Navbar'
 import AudioPlayer from "react-h5-audio-player";
 import mp3_file from './AdiosTurdNuggets.ogg';
-
 
 class App extends React.Component {
 
@@ -28,7 +28,7 @@ class App extends React.Component {
       reviews: [],
       audio: false,
       alreadyReviewed: {},
-      siteEntered: false
+      siteEntered: true
     }
 
   }
@@ -126,7 +126,6 @@ setHopmeterRating = (hopRating) => {
   }
 
   setReviews = (reviews) => {
-    console.log(reviews)
     this.setState({reviews})
     this.setAlreadyReviewed()
   }
@@ -176,10 +175,11 @@ setHopmeterRating = (hopRating) => {
     user.token = localStorage.getItem('HopCentricity_Token')
     this.setState({user})
     this.getProfileData()
+    // this.toggleSiteEntered()
   }
 
-  siteEntered = () => {
-    this.setState({siteEntered: true})
+  setSiteEntered = (siteEntered) => {
+    this.setState({ siteEntered })
   }
 
   handleLogout = () => {
@@ -206,17 +206,18 @@ setHopmeterRating = (hopRating) => {
   }
 
   render() {
-
     return (
       <div>
         <AudioPlayer hidePlayer={true} src={mp3_file} volume={1.0} ref={c => (this.player = c)}/>
         <Router>
-          {this.state.siteEntered? <Navbar audio={this.state.audio} toggleAudio={this.toggleAudio} handleLogout={this.handleLogout}/>:<Redirect to='/login'/>}
+          <Route path='*' exact={true} component={<NotFound />} />
+          {this.state.siteEntered ? <Navbar audio={this.state.audio} toggleAudio={this.toggleAudio} handleLogout={this.handleLogout}/> : null}
+          {this.state.siteEntered || this.state.user.username !== '' ? null : <Redirect to='/login'/>}
           <Route exact path='/' render={() => <Redirect to='/menu'/>}/>
           <Route exact path='/menu' render={() => <Menu user={this.state.user} reviews={this.state.reviews.length} getProfileData={this.getProfileData}/>}/>
           <Route exact path='/search' render={() => <Search user={this.state.user} pushReviewToProfile={this.pushReviewToProfile} alreadyReviewed={this.state.alreadyReviewed}/>}/>
           <Route exact path='/profile' render={() => <Profile user={this.state.user} reviews={this.state.reviews} getProfileData={this.getProfileData} hopmeter={this.state.hopmeter} updateReview={this.updateReview} removeReview={this.removeReview}/>}/>
-          <Route exact path='/login' render={() => <LoginPage siteEntered={this.siteEntered} setStateUsernameEmailToken={this.setStateUsernameEmailToken} user={this.state.user}/>}/>
+          <Route exact path='/login' render={() => <LoginPage setSiteEntered={this.setSiteEntered} setStateUsernameEmailToken={this.setStateUsernameEmailToken} user={this.state.user}/>}/>
         </Router>
       </div>
     )
