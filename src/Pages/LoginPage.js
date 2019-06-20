@@ -94,12 +94,6 @@ class LoginPage extends React.Component {
     }
   }
 
-  // checkPage = () => {
-  //   if (this.props.location.pathname !== '/login') {
-
-  //   }
-  // }
-
   render() {
     return (
       <div>
