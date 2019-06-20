@@ -3,22 +3,21 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { Transition, Image } from 'semantic-ui-react'
 import hopPic from '../hopCard.png'
 
-
-class NotFound extends Component {
+class NotFound extends React.Component {
     constructor(props) {
         super(props);
         this.state = { 
             page: false,
-            visible: false
+            visible: true
         }
     }
 
     componentDidMount() {
         this.setState({page: true})
-        setInterval(this.toggleVisiblity,2000)
+        setInterval(this.toggleVisiblity,4000)
     }
     
-      toggleVisiblity = () => {
+    toggleVisiblity = () => {
         let visible = !this.state.visible
         this.setState({ visible })
     }
@@ -26,19 +25,15 @@ class NotFound extends Component {
     getPage = () => {
         if (this.state.page) {
             return (
-                <div>
-                    
-                    <Transition animation={'jiggle'} duration={1500} visible={this.state.visible}>
-                        <div 
-                        className='bottle' 
-                        onMouseEnter={this.handleMouseEnterBeer} 
-                        onMouseLeave={this.handleMouseLeaveBeer}>
-                        <Image src={hopPic} className="ui medium rounded image" />
-                        </div>
+                <div className='not-found'>
+                    <h3 className='login-message'>The Page You Searched Does Not Exist</h3><br></br>
+                    <Transition animation={'jiggle'} duration={2000} visible={this.state.visible}>
+                        <Image src={hopPic} className="ui medium rounded image not-found-hop" />
                     </Transition>
                 </div>
             )
         }
+        return null
     }
 
     render() { 

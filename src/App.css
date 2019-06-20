@@ -500,3 +500,15 @@ h3.login-message {
 .login-top-space {
     height: 14vh;
 }
+
+.not-found {
+  margin: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.not-found-hop {
+  margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
+}

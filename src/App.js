@@ -4,8 +4,8 @@ import Menu from './Pages/Menu'
 import LoginPage from './Pages/LoginPage'
 import Search from './Pages/Search'
 import Profile from './Pages/Profile'
-import NotFound from '.Pages/NotFound'
-import {BrowserRouter as Router, Route, Redirect, withRouter} from 'react-router-dom'
+import NotFound from './Pages/NotFound'
+import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom'
 import Navbar from './Components/Navbar'
 import AudioPlayer from "react-h5-audio-player";
 import mp3_file from './AdiosTurdNuggets.ogg';
@@ -210,10 +210,11 @@ setHopmeterRating = (hopRating) => {
       <div>
         <AudioPlayer hidePlayer={true} src={mp3_file} volume={1.0} ref={c => (this.player = c)}/>
         <Router>
-          <Route path='*' exact={true} component={<NotFound />} />
           {this.state.siteEntered ? <Navbar audio={this.state.audio} toggleAudio={this.toggleAudio} handleLogout={this.handleLogout}/> : null}
+          <Route path='*' exact={true} render={() => <Redirect to='/404'/>} />
           {this.state.siteEntered || this.state.user.username !== '' ? null : <Redirect to='/login'/>}
           <Route exact path='/' render={() => <Redirect to='/menu'/>}/>
+          <Route exact path='/404' render={() => <NotFound />}/>
           <Route exact path='/menu' render={() => <Menu user={this.state.user} reviews={this.state.reviews.length} getProfileData={this.getProfileData}/>}/>
           <Route exact path='/search' render={() => <Search user={this.state.user} pushReviewToProfile={this.pushReviewToProfile} alreadyReviewed={this.state.alreadyReviewed}/>}/>
           <Route exact path='/profile' render={() => <Profile user={this.state.user} reviews={this.state.reviews} getProfileData={this.getProfileData} hopmeter={this.state.hopmeter} updateReview={this.updateReview} removeReview={this.removeReview}/>}/>
