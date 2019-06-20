@@ -32,7 +32,7 @@ const ReviewCard = (props) => {
         setHovering(true)
         setTimeout(() => {
             if (isHovering) { setPopupDisabled(true) }
-        }, 2000)
+        }, 3000)
     }
     
     const handleHoverOff = () => {

@@ -20,7 +20,7 @@ class Login extends React.Component {
           // Prompts 'welcome' message with User's name on successful login
           // Check console logs for additional User info
           provider.me().then((data) => {
-            // console.log("data: ", data);
+            // debugger
             localStorage.setItem("HopCentricity_Token", provider.id_token)
             localStorage.setItem("HopCentricity_Email", data.email)
             localStorage.setItem("HopCentricity_Username", data.raw.names[0].displayName)
@@ -32,15 +32,18 @@ class Login extends React.Component {
       }
 
       sendAuth = () => {
+        let email = localStorage.getItem('HopCentricity_Email')
+        let username = localStorage.getItem('HopCentricity_Username')
+        let token = localStorage.getItem('HopCentricity_Token')
         fetch('http://localhost:3000/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            token: localStorage.getItem('HopCentricity_Token'),
-            email: this.props.user.email,
-            username: this.props.user.username
+            token: token,
+            email: email,
+            username: username
           })
         })
         .then(res => res.json)
