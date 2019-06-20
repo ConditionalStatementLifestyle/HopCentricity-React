@@ -8,6 +8,7 @@ class BreweryForm extends React.Component {
 
     handleSubmit = (ev) => {
         ev.preventDefault()
+        debugger
         this.props.searchForBeers(this.query.current.value,'brewery')
     }
 

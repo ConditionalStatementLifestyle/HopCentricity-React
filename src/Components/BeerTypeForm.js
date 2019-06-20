@@ -11,7 +11,7 @@ const BeerTypeForm = (props) => {
     return (
         <div className='form-height'>
             <h3>IPA Type</h3>
-            <form className="ui form" onSubmit={() => handleSubmit()}>
+            <form className="ui form" onSubmit={(ev) => handleSubmit(ev)}>
                 <div className='dropDown'>
                     <select className="ui fluid dropdown" id='dropdown'>
                         <option value='IPA - New England'>IPA - New England</option>
