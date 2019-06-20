@@ -54,20 +54,25 @@ class App extends React.Component {
   }
 
   getHopmeterRating = () => {
-    let totalUserRatings = 0
-    let totalGlobalRatings = 0
-    let length = this.state.reviews.length
-    this.state.reviews.map(review => {
-        totalUserRatings += parseFloat(review.rating)
-        totalGlobalRatings += parseFloat(review.beer.rating)
-        return null
-    })
-    let userAverage = totalUserRatings/length
-    let globalAverage = totalGlobalRatings/length
-    let diff = userAverage - globalAverage
-    let hopRating = (diff * 20) + 50
-    hopRating = parseInt(hopRating * length/50)
-    this.setHopmeterRating(hopRating)
+    if (this.state.reviews.length > 0) {
+      let totalUserRatings = 0
+      let totalGlobalRatings = 0
+      let length = this.state.reviews.length
+      this.state.reviews.map(review => {
+          totalUserRatings += parseFloat(review.rating)
+          totalGlobalRatings += parseFloat(review.beer.rating)
+          return null
+      })
+      let userAverage = totalUserRatings/length
+      let globalAverage = totalGlobalRatings/length
+      let diff = userAverage - globalAverage
+      let hopRating = (diff * 20) + 50
+      hopRating = parseInt(hopRating * length/50)
+      this.setHopmeterRating(hopRating)
+    } else {
+      let hopRating = 0
+      this.setHopmeterRating(hopRating)
+    }
 }
 
 setHopmeterRating = (hopRating) => {
@@ -121,10 +126,9 @@ setHopmeterRating = (hopRating) => {
   }
 
   setReviews = (reviews) => {
-    if (reviews.length > 0) {
-      this.setState({reviews})
-    }
-   this.setAlreadyReviewed()
+    console.log(reviews)
+    this.setState({reviews})
+    this.setAlreadyReviewed()
   }
 
   setAlreadyReviewed = () => {
@@ -171,6 +175,7 @@ setHopmeterRating = (hopRating) => {
     user.username = data.raw.names[0].displayName
     user.token = localStorage.getItem('HopCentricity_Token')
     this.setState({user})
+    this.getProfileData()
   }
 
   siteEntered = () => {
@@ -187,7 +192,7 @@ setHopmeterRating = (hopRating) => {
       token: ''
     }
     this.setState({
-      user,
+      user: user,
       siteEntered: false
     })
     if (this.state.audio) {

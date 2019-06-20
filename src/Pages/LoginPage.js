@@ -49,7 +49,7 @@ class LoginPage extends React.Component {
   }
 
   checkIfHopInBeer = () => {
-    console.log('checkinbeer hop',this.state.inHop,'beer',this.state.inBeer)
+    // console.log('checkinbeer hop',this.state.inHop,'beer',this.state.inBeer)
     if (this.state.inBeer && this.state.inHop) {
       if (localStorage.getItem("HopCentricity_Token") !== null) {
         // console.log('made it')
