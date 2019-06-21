@@ -7,13 +7,25 @@ class ReviewModal extends Component {
   state = { open: false }
 
   show = dimmer => () => this.setState({ dimmer, open: true })
-  close = () => this.setState({ open: false })
+  close = () => {
+    this.setState({ open: false })
+    this.props.turnShowOff()
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    if (props.show !== state.open) {
+      return {
+        open: props.show
+      };
+    }
+    return null;
+  }
 
   render() {
     const { open, dimmer } = this.state
     return (
       <div>
-        <Button className='fluid ui teal button 'onClick={this.show('blurring')}>Review</Button>
+        {/* <Button className='fluid ui teal button 'onClick={this.show('blurring')}>Review</Button> */}
         <Modal dimmer={dimmer} open={open} onClose={this.close}>
           <Modal.Header>How do you feel about this beer?</Modal.Header>
           <Modal.Content image>

@@ -53,14 +53,14 @@ const ReviewCard = (props) => {
                     }><br></br>
                     <div className="center floated author">
                         <EditModal 
-                        show={show} 
-                        turnShowOff={turnShowOff}
-                        beer={props.beer}
-                        userRating={props.userRating}
-                        content={props.content}
-                        reviewId={props.reviewId}
-                        updateReview={props.updateReview}
-                        removeReview={props.removeReview}
+                            show={show} 
+                            turnShowOff={turnShowOff}
+                            beer={props.beer}
+                            userRating={props.userRating}
+                            content={props.content}
+                            reviewId={props.reviewId}
+                            updateReview={props.updateReview}
+                            removeReview={props.removeReview}
                         />
                         <img className="image center cardMargin cardImage" src={props.beer.img_url === null ? Pineapple : props.beer.img_url} alt='oh no'></img>
                     </div><br></br>
