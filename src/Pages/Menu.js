@@ -2,13 +2,13 @@ import React from 'react'
 import { withRouter } from "react-router-dom";
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
-import back0 from '../back0.jpg'
-import back1 from '../back1.jpg'
-import back2 from '../back2.jpg'
-import back3 from '../back3.jpg'
-import back4 from '../back4.jpg'
-import back5 from '../back5.jpg'
-import back6 from '../back6.jpg'
+import back0 from '../Pictures/back0.jpg'
+import back1 from '../Pictures/back1.jpg'
+import back2 from '../Pictures/back2.jpg'
+import back3 from '../Pictures/back3.jpg'
+import back4 from '../Pictures/back4.jpg'
+import back5 from '../Pictures/back5.jpg'
+import back6 from '../Pictures/back6.jpg'
 
 var images = {
   0: `url(${back0})`,

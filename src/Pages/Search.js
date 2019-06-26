@@ -49,7 +49,7 @@ class Search extends React.Component {
         //this is intended to give the card page leave transitions time to transition
         this.setState({beers: [] },
             () => {
-                fetch('http://localhost:3000/api/v1/beers', {
+                fetch('https://gentle-everglades-64429.herokuapp.com/api/v1/beers', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

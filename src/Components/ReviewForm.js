@@ -30,7 +30,7 @@ class ReviewForm extends React.Component {
 
     submitReview = (content) => {
         let email = localStorage.getItem('HopCentricity_Email')
-        fetch('http://localhost:3000/api/v1/reviews', {
+        fetch('https://gentle-everglades-64429.herokuapp.com/api/v1/reviews', {
                 method: 'POST',
                 headers: {
                 'Content-Type': 'application/json'

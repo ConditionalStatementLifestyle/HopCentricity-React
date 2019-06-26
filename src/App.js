@@ -111,7 +111,7 @@ setHopmeterRating = (hopRating) => {
 
   getProfileData = () => {
     let email = this.state.user.email
-    fetch('http://localhost:3000/api/v1/userReviews', {
+    fetch('https://gentle-everglades-64429.herokuapp.com/api/v1/userReviews', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

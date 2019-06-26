@@ -35,7 +35,7 @@ class Login extends React.Component {
       let email = localStorage.getItem('HopCentricity_Email')
       let username = localStorage.getItem('HopCentricity_Username')
       let token = localStorage.getItem('HopCentricity_Token')
-      fetch('http://localhost:3000/login', {
+      fetch('https://gentle-everglades-64429.herokuapp.com/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

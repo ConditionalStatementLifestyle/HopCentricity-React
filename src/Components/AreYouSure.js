@@ -4,7 +4,7 @@ import { Button, Header, Icon, Modal } from 'semantic-ui-react'
 const AreYouSure = (props) => {
   
   const deleteReview = () => {
-    fetch('http://localhost:3000/api/v1/review/' + props.reviewId, {
+    fetch('https://gentle-everglades-64429.herokuapp.com/api/v1/review/' + props.reviewId, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',

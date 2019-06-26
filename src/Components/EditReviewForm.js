@@ -34,7 +34,7 @@ class EditReviewForm extends React.Component {
     }
 
     submitEditReview = (content, id) => {
-        fetch('http://localhost:3000/api/v1/review/' + id, {
+        fetch('https://gentle-everglades-64429.herokuapp.com/api/v1/review/' + id, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
