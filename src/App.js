@@ -212,8 +212,9 @@ setHopmeterRating = (hopRating) => {
         <Router>
           {this.state.siteEntered ? <Navbar audio={this.state.audio} toggleAudio={this.toggleAudio} handleLogout={this.handleLogout}/> : null}
           {this.state.siteEntered || this.state.user.username !== '' ? null : <Redirect to='/login'/>}
+          {/* {localStorage.getItem('HopCentricity_Token') !== null ? <Redirect to='/menu'/> : <Redirect to='/login'/>} */}
           <Switch>
-            <Route exact path='/' render={() => <Redirect to='/menu'/>}/>
+            {/* <Route exact path='/' render={() => <Redirect to='/menu'/>}/> */}
             <Route exact path='/menu' render={() => <Menu user={this.state.user} reviews={this.state.reviews.length} getProfileData={this.getProfileData}/>}/>
             <Route exact path='/search' render={() => <Search user={this.state.user} pushReviewToProfile={this.pushReviewToProfile} alreadyReviewed={this.state.alreadyReviewed}/>}/>
             <Route exact path='/profile' render={() => <Profile user={this.state.user} reviews={this.state.reviews} getProfileData={this.getProfileData} hopmeter={this.state.hopmeter} updateReview={this.updateReview} removeReview={this.removeReview}/>}/>
