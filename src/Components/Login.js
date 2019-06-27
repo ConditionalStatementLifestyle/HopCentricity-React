@@ -18,9 +18,8 @@ class Login extends React.Component {
       // Popup Github and ask for authorization
       window.OAuth.popup('google').then((provider) => {
         // Prompts 'welcome' message with User's name on successful login
-        // Check console logs for additional User info
         provider.me().then((data) => {
-          console.log('data from login:',data)
+          // console.log('data from login:',data)
           localStorage.setItem("HopCentricity_Token", provider.id_token)
           localStorage.setItem("HopCentricity_Email", data.email)
           localStorage.setItem("HopCentricity_Username", data.raw.names[0].displayName)
