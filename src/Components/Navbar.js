@@ -34,6 +34,9 @@ class Navbar extends React.Component {
           <div >
             <ul className="main-nav" id="js-menu">
               <li>
+                <Link onClick={() => this.robot()} to="/menu" className='nav-links'>Menu</Link>
+              </li>
+              <li>
                 <Link onClick={() => this.robot()} to="/search" className='nav-links'>Search</Link>
               </li>
               <li>
