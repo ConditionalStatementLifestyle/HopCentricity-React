@@ -110,19 +110,21 @@ setHopmeterRating = (hopRating) => {
 }
 
   getProfileData = () => {
-    let email = this.state.user.email
-    fetch('https://gentle-everglades-64429.herokuapp.com/api/v1/userReviews', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        email: email
+    let UserEmail = this.state.user.email
+    if (UserEmail !== '') {  
+      fetch('https://gentle-everglades-64429.herokuapp.com/api/v1/userReviews', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ 
+          email: UserEmail
+        })
       })
-    })
-    .then(res => res.json())
-    .then(json => this.setReviews(json))
-    .then( _ => this.getHopmeterRating())
+      .then(res => res.json())
+      .then(json => this.setReviews(json))
+      .then( _ => this.getHopmeterRating())
+    }
   }
 
   setReviews = (reviews) => {
