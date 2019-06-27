@@ -111,7 +111,7 @@ setHopmeterRating = (hopRating) => {
 
   getProfileData = () => {
     let UserEmail = this.state.user.email
-    if (UserEmail !== '') {  
+    if (UserEmail === localStorage.getItem('HopCentricity_Email')) {  
       fetch('https://gentle-everglades-64429.herokuapp.com/api/v1/userReviews', {
         method: 'POST',
         headers: {

@@ -33,7 +33,7 @@ const SearchCard = (props) => {
                     hideOnScroll
                     trigger ={
                         <div className="ui left corner label">
-                            <i class="beer icon"></i>
+                            <i className="beer icon"></i>
                         </div>
                     }>
                 </Popup>
