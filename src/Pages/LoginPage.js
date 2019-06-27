@@ -62,7 +62,7 @@ class LoginPage extends React.Component {
           <div className='login-top-space'>
             <h2 className='login-title'>Hop Centricity</h2>
             {
-              localStorage.getItem("HopCentricity_Username") === null ?
+              this.props.user.username === '' ?
                 <Login
                   setStateUsernameEmailToken={this.props.setStateUsernameEmailToken}
                   user={this.props.user}

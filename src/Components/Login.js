@@ -20,11 +20,10 @@ class Login extends React.Component {
         // Prompts 'welcome' message with User's name on successful login
         // Check console logs for additional User info
         provider.me().then((data) => {
-          // debugger
+          console.log('data from login:',data)
           localStorage.setItem("HopCentricity_Token", provider.id_token)
           localStorage.setItem("HopCentricity_Email", data.email)
           localStorage.setItem("HopCentricity_Username", data.raw.names[0].displayName)
-          this.props.setStateUsernameEmailToken(data)
           // this.props.history.push('/menu') //Uncomment to login directly after OAuth
           this.sendAuth()
         });
@@ -35,7 +34,7 @@ class Login extends React.Component {
       let email = localStorage.getItem('HopCentricity_Email')
       let username = localStorage.getItem('HopCentricity_Username')
       let token = localStorage.getItem('HopCentricity_Token')
-      fetch('https://gentle-everglades-64429.herokuapp.com/login', {
+      return fetch('https://gentle-everglades-64429.herokuapp.com/login/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -46,8 +45,8 @@ class Login extends React.Component {
           username: username
         })
       })
-      .then(res => res.json)
-      // .then( json => console.log('here is fetch return:',json))
+      .then(res => res.json())
+      .then(json => this.props.setStateUsernameEmailToken(json))
     }
 
     render() {

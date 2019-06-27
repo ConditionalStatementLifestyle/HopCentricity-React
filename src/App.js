@@ -173,7 +173,7 @@ setHopmeterRating = (hopRating) => {
   setStateUsernameEmailToken = (data) => {
     let user = {...this.state.user}
     user.email = data.email
-    user.username = data.raw.names[0].displayName
+    user.username = data.username
     user.token = localStorage.getItem('HopCentricity_Token')
     this.setState({user})
     this.getProfileData()
