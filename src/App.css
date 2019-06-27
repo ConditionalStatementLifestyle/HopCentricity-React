@@ -347,6 +347,7 @@ body {
   text-align: center;
   font-family: 'Prata', serif;
   margin-top:200px;
+  text-shadow: 1px 1px 2px #000000;
 }
 
 .menu-date {
