@@ -6,7 +6,6 @@ import BeerBottle from '../BeerBottle.png'
 import { withRouter } from "react-router-dom";
 import Box from '../Components/DragHop'
 
-
 class LoginPage extends React.Component {
 
   constructor() {

@@ -45,4 +45,4 @@ export default ({ onStart, onEnd, onDrag }) => (
       onDragEnd={() => onEnd}
       onValueChange={{ x: onDrag, y: onDrag }}
     />
-  );
+)

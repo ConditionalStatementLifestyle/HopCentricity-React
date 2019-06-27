@@ -433,73 +433,6 @@ body {
   margin: 25px;
 }
 
-
-.box {
-  width: 150px;
-  height: 150px;
-  /* background: red; */
-  border-color: black;
-  border: 5px;
-  border-radius: 20px;
-  border-width: 5px;
-  margin-left: 100px;
-  margin-top: 80%;
-  display: inline-block;
-
-}
-
-h2.login-title {
-  font-size: 20ch;
-  height: 240px;
-  margin-top: 100px;
-  width: 100%;
-  text-align: center;
-  background: -webkit-linear-gradient(rgb(238, 44, 135), rgb(14, 219, 255));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  /* font-family: 'Tangerine', cursive; */
-  font-family: 'Sacramento', cursive;
-}
-
-.bottle {
-  /* background: -webkit-linear-gradient(rgb(238, 44, 135), rgb(14, 219, 255)); */
-  width: 300px;
-  /* height: 370px; */
-  text-align: center;
-  border-radius: 20px;
-  /* float: right; */
-  margin-right:20px;
-  margin-left: 80%;
-  /* display: inline-block; */
-}
-
-.beer-bottle {
-  /* background: transparent; */
-  opacity: 0.6;
-  background: -webkit-linear-gradient(rgb(238, 44, 135), rgb(14, 219, 255));
-  text-align: center;
-  /* display: inline-block; */
-  /* margin-top: 10px; */
-}
-
-.hop-login {
-  width: 50px;
-  display: inline-block;
-  /* margin-top: 5%; */
-  /* margin-bottom: auto; */
-}
-
-h3.login-message {
-  text-align: center;
-  font-size: 3ch;
-  /* background: -webkit-linear-gradient(rgb(38, 244, 6), rgb(255, 255, 14));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent; */
-  /* font-family: 'Tangerine', cursive; */
-  font-family: 'Prata', serif;
-  /* height: 60px; */
-}
-
 .login-top-space {
     height: 14vh;
 }
@@ -515,3 +448,139 @@ h3.login-message {
   margin-left: auto;
   margin-right: auto;
 }
+
+@media screen and (min-width: 601px) {
+  h2.login-title {
+    font-size: 20ch;
+    height: 240px;
+    margin-top: 100px;
+    width: 100%;
+    text-align: center;
+    background: -webkit-linear-gradient(rgb(238, 44, 135), rgb(14, 219, 255));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    /* font-family: 'Tangerine', cursive; */
+    font-family: 'Sacramento', cursive;
+  }
+
+  .bottle {
+    /* background: -webkit-linear-gradient(rgb(238, 44, 135), rgb(14, 219, 255)); */
+    width: 300px;
+    /* height: 370px; */
+    text-align: center;
+    border-radius: 20px;
+    /* float: right; */
+    margin-right:20px;
+    margin-left: 80%;
+    margin-top: 10%;
+    /* display: inline-block; */
+  }
+
+  .beer-bottle {
+    /* background: transparent; */
+    opacity: 0.6;
+    background: -webkit-linear-gradient(rgb(238, 44, 135), rgb(14, 219, 255));
+    text-align: center;
+    /* display: inline-block; */
+    /* margin-top: 10px; */
+  }
+
+  .box {
+    width: 150px;
+    height: 150px;
+    /* background: red; */
+    border-color: black;
+    border: 5px;
+    border-radius: 20px;
+    border-width: 5px;
+    margin-left: 100px;
+    margin-top: 80%;
+    display: inline-block;
+    /* position: relative; */
+  
+  }
+
+  .hop-login {
+    width: 50px;
+    display: inline-block;
+    /* margin-top: 5%; */
+    /* margin-bottom: auto; */
+  }
+
+  h3.login-message {
+    text-align: center;
+    font-size: 3ch;
+    /* background: -webkit-linear-gradient(rgb(38, 244, 6), rgb(255, 255, 14));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; */
+    /* font-family: 'Tangerine', cursive; */
+    font-family: 'Prata', serif;
+    /* height: 60px; */
+  }
+}
+
+@media screen and (max-width: 600px) {
+  h2.login-title {
+    font-size: 50px;
+    height: 100px;
+    /* margin-top: 100px; */
+    width: 100%;
+    text-align: center;
+    background: -webkit-linear-gradient(rgb(238, 44, 135), rgb(14, 219, 255));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    /* font-family: 'Tangerine', cursive; */
+    font-family: 'Sacramento', cursive;
+  }
+
+  .bottle {
+    /* background: -webkit-linear-gradient(rgb(238, 44, 135), rgb(14, 219, 255)); */
+    width: 100px;
+    /* height: 370px; */
+    text-align: center;
+    border-radius: 20px;
+    /* float: right; */
+    /* margin-right:10px; */
+    margin-left: 55%;
+    margin-top: 70%;
+    display: relative;
+    /* display: inline-block; */
+  }
+
+  .beer-bottle {
+    /* background: transparent; */
+    opacity: 0.6;
+    background: -webkit-linear-gradient(rgb(238, 44, 135), rgb(14, 219, 255));
+    text-align: center;
+    /* display: inline-block; */
+    /* margin-top: 10px; */
+  }
+  
+  .box {
+    width: 50px;
+    height: 50px;
+    /* background: red; */
+    border-color: black;
+    border: 5px;
+    border-radius: 30px;
+    border-width: 5px;
+    margin-left: 4%;
+    margin-top: 82%;
+    display: inline-block;
+    position: absolute;
+  
+  }
+
+  h3.login-message {
+    text-align: center;
+    font-size: 2ch;
+    width:100%;
+    /* background: -webkit-linear-gradient(rgb(38, 244, 6), rgb(255, 255, 14));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; */
+    /* font-family: 'Tangerine', cursive; */
+    font-family: 'Prata', serif;
+    /* height: 60px; */
+  }
+}
+

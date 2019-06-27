@@ -25,7 +25,7 @@ class Navbar extends React.Component {
       <div>
         <nav className="navbar">
           <span className="navbar-toggle" id="js-navbar-toggle" onClick={() => this.toggle()}>
-            <i className="fa-bars"></i>
+          <img alt='' src="https://img.icons8.com/android/24/000000/menu.png"></img>
           </span>
             <Link to="/menu" className='cursor'>
               <div className='nav-icon'><img src={logo} alt=''></img></div>
