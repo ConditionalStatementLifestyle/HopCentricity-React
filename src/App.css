@@ -509,6 +509,17 @@ body {
     /* height: 60px; */
   }
 
+  h4.login-message {
+    text-align: center;
+    font-size: 3ch;
+    background: -webkit-linear-gradient(rgb(241, 2, 254), rgb(14, 34, 255));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    /* font-family: 'Tangerine', cursive; */
+    font-family: 'Sacramento', cursive;
+    /* height: 60px; */
+  }
+
   .menuButton {
     position: relative;
   }
