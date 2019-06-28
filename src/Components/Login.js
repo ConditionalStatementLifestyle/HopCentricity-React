@@ -25,6 +25,7 @@ class Login extends React.Component {
           localStorage.setItem("HopCentricity_Username", data.raw.names[0].displayName)
           // this.props.history.push('/menu') //Uncomment to login directly after OAuth
           this.sendAuth()
+          this.props.setLoading(true)
         });
       });
     }

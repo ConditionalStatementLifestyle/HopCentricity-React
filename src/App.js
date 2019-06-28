@@ -28,7 +28,8 @@ class App extends React.Component {
       reviews: [],
       audio: false,
       alreadyReviewed: {},
-      siteEntered: true
+      siteEntered: true,
+      isLoading: false
     }
 
   }
@@ -175,9 +176,14 @@ setHopmeterRating = (hopRating) => {
     user.email = data.email
     user.username = data.username
     user.token = localStorage.getItem('HopCentricity_Token')
-    this.setState({user})
+    this.setState({ user })
     this.getProfileData()
+    this.setLoading(false)
     // this.toggleSiteEntered()
+  }
+
+  setLoading = (isLoading) => {
+    this.setState({ isLoading })
   }
 
   setSiteEntered = (siteEntered) => {
@@ -220,7 +226,7 @@ setHopmeterRating = (hopRating) => {
             <Route exact path='/menu' render={() => <Menu user={this.state.user} reviews={this.state.reviews.length} getProfileData={this.getProfileData}/>}/>
             <Route exact path='/search' render={() => <Search user={this.state.user} pushReviewToProfile={this.pushReviewToProfile} alreadyReviewed={this.state.alreadyReviewed}/>}/>
             <Route exact path='/profile' render={() => <Profile user={this.state.user} reviews={this.state.reviews} getProfileData={this.getProfileData} hopmeter={this.state.hopmeter} updateReview={this.updateReview} removeReview={this.removeReview}/>}/>
-            <Route exact path='/login' render={() => <LoginPage setSiteEntered={this.setSiteEntered} setStateUsernameEmailToken={this.setStateUsernameEmailToken} user={this.state.user}/>}/>
+            <Route exact path='/login' render={() => <LoginPage isLoading={this.state.isLoading} setLoading={this.setLoading} setSiteEntered={this.setSiteEntered} setStateUsernameEmailToken={this.setStateUsernameEmailToken} user={this.state.user}/>}/>
             <Route exact path='/404' render={() => <NotFound />}/>
             <Route path='*' render={() => <Redirect to='/404'/>} />
           </Switch>
