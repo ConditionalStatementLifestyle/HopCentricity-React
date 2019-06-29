@@ -1,20 +1,29 @@
-import React, { Component } from 'react'
-import { Header, Image, Modal } from 'semantic-ui-react'
+import React from 'react'
+import { Header, Image, Modal, Button } from 'semantic-ui-react'
 import EditReviewForm from './EditReviewForm'
 import AreYouSure from './AreYouSure'
 import Pineapple from '../pineapple.png'
 
-class EditModal extends Component {
-  state = { open: false }
+class EditModal extends React.Component {
+  // state = { open: false }
+  constructor() {
+    super()
+    this.state={
+      open: false
+    }
+  }
 
   show = dimmer => () => this.setState({ dimmer, open: true })
   close = () => {
-    this.setState({ open: false })
-    this.props.turnShowOff()
+    // this.setState({ open: false })
+    this.props.toggleShow()
+    console.log('close called');
+    
   }
 
   static getDerivedStateFromProps(props, state) {
     if (props.show !== state.open) {
+      console.log('props.show',props.show,'state.open',state.open);
       return {
         open: props.show
       };
@@ -37,7 +46,6 @@ class EditModal extends Component {
 
   render() {
     const { open, dimmer } = this.state
-
     return (
       <div>
         <Modal dimmer={dimmer} open={open} onClose={this.close}>
@@ -53,10 +61,13 @@ class EditModal extends Component {
             </Modal.Description>
           </Modal.Content>
           <Modal.Actions>
+            {/* <Button color='black' onClick={this.close}>
+              Close
+            </Button> */}
             <AreYouSure removeReview={this.props.removeReview} reviewId={this.props.reviewId}/>
             <EditReviewForm
                 reviewId={this.props.reviewId}
-                close={this.close}
+                toggleShow={this.props.toggleShow}
                 userRating={this.props.userRating}
                 content={this.props.content}
                 updateReview={this.props.updateReview}

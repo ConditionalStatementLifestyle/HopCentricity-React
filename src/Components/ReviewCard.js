@@ -1,15 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Pineapple from '../pineapple.png'
 import EditModal from './EditModal';
 import { Popup } from 'semantic-ui-react'
 
-const ReviewCard = (props) => {
+class ReviewCard extends React.Component {
 
-    const [show, setShow] = useState(false)
-    const [isPopupDisabled, setPopupDisabled] = useState(false)
-    const [isHovering, setHovering] = useState(false)
+    constructor() {
+        super()
+        this.state = {
+            show: false,
+            isPopupDisabled: false,
+            isHovering: false
+        }
+    }
 
-    const titleCase = (str) => {
+    titleCase = (str) => {
         str = str.toLowerCase().split(' ');
         for (var i = 0; i < str.length; i++) {
             if (str[i] === 'ipa') {
@@ -22,64 +27,66 @@ const ReviewCard = (props) => {
         return str.join(' ');
     }
 
-    const turnShowOff = () => {
-        setPopupDisabled(false)
-        setShow(false)
+    toggleShow = () => {
+        let isPopupDisabled = !this.state.isPopupDisabled
+        let show = !this.state.show
+        this.setState({ isPopupDisabled, show })
     }
 
-    const handleHoverOn = (isHovering) => {
-        setHovering(true)
-        setTimeout(() => {
-            if (isHovering) { setPopupDisabled(true) }
-        }, 3000)
+    handleHoverOn = () => {
+        this.setState({ isHovering: true })
+        if (this.state.isHovering) {
+            setTimeout(() => {
+                this.setState({ isPopupDisabled: true })
+            }, 3000)
+        }
     }
     
-    const handleHoverOff = () => {
-        setPopupDisabled(false)
-        setHovering(false)
+    handleHoverOff = () => {
+        this.setState({ isPopupDisabled: false })
+        this.setState({ isHovering: false })
     }
 
-    return (
-        <Popup
-            content='Click to Edit or Delete'
-            on={'hover'}
-            disabled={isPopupDisabled}
-            hideOnScroll
-            trigger ={
-            <div className='reviewCard' onMouseEnter={handleHoverOn} onMouseLeave={handleHoverOff}>
-                <div className="ui raised link card" onClick={() => {
-                        setPopupDisabled(true)
-                        setShow(true)}
-                    }><br></br>
-                    <div className="center floated author">
-                        <EditModal 
-                            show={show} 
-                            turnShowOff={turnShowOff}
-                            beer={props.beer}
-                            userRating={props.userRating}
-                            content={props.content}
-                            reviewId={props.reviewId}
-                            updateReview={props.updateReview}
-                            removeReview={props.removeReview}
-                        />
-                        <img className="image center cardMargin cardImage" src={props.beer.img_url === null ? Pineapple : props.beer.img_url} alt='oh no'></img>
-                    </div><br></br>
-                    <div className="content">
-                        <div className="header">{titleCase(props.beer.name)}</div><br></br>
-                        <div className="description">
-                            <div>
-                                <div>{titleCase(props.beer.style)}</div><br></br>
-                                <div>Global Rating {props.beer.rating}</div><br></br>
-                                <div>Your Rating: {props.userRating}</div><br></br>
-                                {props.content === '' ? null : `Your Notes: ${props.content}`}
+    render() {
+        return (
+            <Popup
+                content='Click to Edit or Delete'
+                on={'hover'}
+                disabled={this.state.isPopupDisabled}
+                hideOnScroll
+                trigger ={
+                <div className='reviewCard' onMouseEnter={this.handleHoverOn} onMouseLeave={this.handleHoverOff}>
+                    <div className="ui raised link card" onClick={() => {this.toggleShow()}}><br></br>
+                        <div className="center floated author">
+                            <EditModal 
+                                show={this.state.show} 
+                                toggleShow={this.toggleShow}
+                                beer={this.props.beer}
+                                userRating={this.props.userRating}
+                                content={this.props.content}
+                                reviewId={this.props.reviewId}
+                                updateReview={this.props.updateReview}
+                                removeReview={this.props.removeReview}
+                            />
+                            <img className="image center cardMargin cardImage" src={this.props.beer.img_url === null ? Pineapple : this.props.beer.img_url} alt='oh no'></img>
+                        </div><br></br>
+                        <div className="content">
+                            <div className="header">{this.titleCase(this.props.beer.name)}</div><br></br>
+                            <div className="description">
+                                <div>
+                                    <div>{this.titleCase(this.props.beer.style)}</div><br></br>
+                                    <div>Global Rating {this.props.beer.rating}</div><br></br>
+                                    <div>Your Rating: {this.props.userRating}</div><br></br>
+                                    {this.props.content === '' ? null : `Your Notes: ${this.props.content}`}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div><br></br><br></br>
-            </div>
-            }
-        />
-    )
+                    </div><br></br><br></br>
+                </div>
+                }
+            />
+        )
+    }    
 }
 
 

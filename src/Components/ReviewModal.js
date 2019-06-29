@@ -5,15 +5,27 @@ import ReviewForm from './ReviewForm'
 
 class ReviewModal extends Component {
   state = { open: false }
+  // constructor() {
+  //   super()
+  //   this.state = {
+  //     open: false
+  //   }
+  // }
 
-  show = dimmer => () => this.setState({ dimmer, open: true })
+  show = dimmer => () => {
+    this.setState({ dimmer, open: true })
+    console.log('show called');
+  }
+
   close = () => {
-    this.setState({ open: false })
-    this.props.turnShowOff()
+    this.props.setShow(false, 'from modal')
+    console.log('close called');
   }
 
   static getDerivedStateFromProps(props, state) {
     if (props.show !== state.open) {
+      console.log(props.show,state.open);
+      
       return {
         open: props.show
       };
@@ -26,7 +38,7 @@ class ReviewModal extends Component {
     return (
       <div>
         {/* <Button className='fluid ui teal button 'onClick={this.show('blurring')}>Review</Button> */}
-        <Modal dimmer={dimmer} open={open} onClose={this.close}>
+        <Modal dimmer={dimmer} open={this.state.open} onClose={this.close}>
           <Modal.Header>How do you feel about this beer?</Modal.Header>
           <Modal.Content image>
             <Image wrapped size='medium' src={this.props.img_url} />
@@ -41,8 +53,8 @@ class ReviewModal extends Component {
           </Modal.Content>
           <Modal.Actions>
             <Button color='black' onClick={this.close}>
-              No Feelings On this
-            </Button><br></br>
+              Close
+            </Button><br></br><br></br>
             <ReviewForm 
                 id={this.props.id}
                 name={this.props.name}

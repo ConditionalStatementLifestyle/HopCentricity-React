@@ -329,18 +329,6 @@ body {
   margin: 50px;
 }
 
-.menu-time {
-  font-size: 100px;
-  color:white;
-  width:100%;
-  display:block;
-  height: 120px;
-  text-align: center;
-  font-family: 'Prata', serif;
-  margin-top:200px;
-  text-shadow: 1px 1px 2px #000000;
-}
-
 .menu-date {
   font-size: 100px;
   color: white;
@@ -529,6 +517,18 @@ body {
     margin-left: auto;
     margin-right: auto;
   }
+
+  .menu-time {
+    font-size: 100px;
+    color:white;
+    width:100%;
+    display:block;
+    height: 120px;
+    text-align: center;
+    font-family: 'Prata', serif;
+    margin-top:200px;
+    text-shadow: 1px 1px 2px #000000;
+  }
 }
 
 @media screen and (max-width: 659px) {
@@ -606,6 +606,18 @@ body {
     width: 60%;
     margin-left: auto;
     margin-right: auto;
+  }
+
+  .menu-time {
+    font-size: 50px;
+    color:white;
+    width:100%;
+    display:block;
+    height: 120px;
+    text-align: center;
+    font-family: 'Prata', serif;
+    margin-top:200px;
+    text-shadow: 1px 1px 2px #000000;
   }
 }
 

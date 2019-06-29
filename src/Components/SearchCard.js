@@ -1,17 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Pineapple from '../pineapple.png'
 import ReviewModal from './ReviewModal';
 import { Popup } from 'semantic-ui-react'
 
-const SearchCard = (props) => {
+class SearchCard extends React.Component {
 
-    const [show, setShow] = useState(false)
-
-    const turnShowOff = () => {
-        setShow(false)
+    constructor() {
+        super()
+        this.state = {
+            show: false
+        }
     }
 
-    const titleCase = (str) => {
+    setShow = (show, message) => {
+        this.setState({ show })
+        console.log('setShow called, show', show,'state', this.state.show, message);
+        
+    }
+
+    titleCase = (str) => {
         str = str.toLowerCase().split(' ');
         for (var i = 0; i < str.length; i++) {
             if (str[i] === 'ipa') {
@@ -24,8 +31,8 @@ const SearchCard = (props) => {
         return str.join(' ');
     }
 
-    const renderAlreadyReviewed = () => {
-        if (props.alreadyReviewed[`${props.name}`]) {
+    renderAlreadyReviewed = () => {
+        if (this.props.alreadyReviewed[`${this.props.name}`]) {
             return (
                 <Popup
                     content='You Drank This'
@@ -41,50 +48,52 @@ const SearchCard = (props) => {
         }
     }
 
-    return (
-        <div id='beer-card' className='block-display' onClick={() => setShow(true)}>
-            <div className='ui centered grid'> 
-                <div className='ui raised link card'>
-                    {renderAlreadyReviewed()}
-                    <div className="center floated author">
-                        <img alt='oh no' className="image cardMargin cardImage" src={props.img_url === null ? Pineapple : props.img_url}></img>
-                    </div>
-                <div className="content">
-                    <div className="header">{titleCase(props.name)}</div>
-                        <div className="meta">
-                            <span className="category">{titleCase(props.brewery)}</span>
+    render() {
+        return (
+            <div id='beer-card' className='block-display' onClick={() => this.setShow(true,'parent')}>
+                <div className='ui centered grid'> 
+                    <div className='ui raised link card'>
+                        {this.renderAlreadyReviewed()}
+                        <div className="center floated author">
+                            <img alt='oh no' className="image cardMargin cardImage" src={this.props.img_url === null ? Pineapple : this.props.img_url}></img>
                         </div>
-                        <div className="description">
-                            <div>
-                                <div>{titleCase(props.style)}</div><br></br>
-                                <div>{props.ibu} IBU</div><br></br>
-                                <div>{props.abv}%</div><br></br>
-                                <div>Rating {props.rating}</div><br></br>
+                    <div className="content">
+                        <div className="header">{this.titleCase(this.props.name)}</div>
+                            <div className="meta">
+                                <span className="category">{this.titleCase(this.props.brewery)}</span>
                             </div>
-                            {props.alreadyReviewed[`${props.name}`] ? 
-                                null 
-                            :
-                                <ReviewModal  
-                                    id={props.id}
-                                    name={titleCase(props.name)}
-                                    brewery={titleCase(props.brewery)}
-                                    ibu={props.ibu}
-                                    style={props.style}
-                                    img_url={props.img_url}
-                                    rating={props.rating}
-                                    abv={props.abv}
-                                    pushReviewToProfile={props.pushReviewToProfile}
-                                    onlyIpa={props.onlyIpa}
-                                    reviewAdded={props.reviewAdded}
-                                    show={show}
-                                    turnShowOff={turnShowOff}
-                                />}
+                            <div className="description">
+                                <div>
+                                    <div>{this.titleCase(this.props.style)}</div><br></br>
+                                    <div>{this.props.ibu} IBU</div><br></br>
+                                    <div>{this.props.abv}%</div><br></br>
+                                    <div>Rating {this.props.rating}</div><br></br>
+                                </div>
+                                {this.props.alreadyReviewed[`${this.props.name}`] ? 
+                                    null 
+                                :
+                                    <ReviewModal  
+                                        id={this.props.id}
+                                        name={this.titleCase(this.props.name)}
+                                        brewery={this.titleCase(this.props.brewery)}
+                                        ibu={this.props.ibu}
+                                        style={this.props.style}
+                                        img_url={this.props.img_url}
+                                        rating={this.props.rating}
+                                        abv={this.props.abv}
+                                        pushReviewToProfile={this.props.pushReviewToProfile}
+                                        onlyIpa={this.props.onlyIpa}
+                                        reviewAdded={this.props.reviewAdded}
+                                        show={this.state.show}
+                                        setShow={this.setShow}
+                                    />}
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div><br></br><br></br><br></br><br></br>
-        </div>
-    )
+                </div><br></br><br></br><br></br><br></br>
+            </div>
+        )
+    }
 }
 
 export default SearchCard;

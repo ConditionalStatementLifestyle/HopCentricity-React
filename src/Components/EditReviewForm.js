@@ -30,7 +30,7 @@ class EditReviewForm extends React.Component {
         if (this.props.content !== content || this.props.userRating !== this.state.slider) {
             this.submitEditReview(content, this.props.reviewId)
         }
-        this.props.close()
+        this.props.toggleClose()
     }
 
     submitEditReview = (content, id) => {
