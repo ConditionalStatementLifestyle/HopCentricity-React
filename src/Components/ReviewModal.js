@@ -5,13 +5,7 @@ import ReviewForm from './ReviewForm'
 
 class ReviewModal extends Component {
   state = { open: false }
-  // constructor() {
-  //   super()
-  //   this.state = {
-  //     open: false
-  //   }
-  // }
-
+  
   show = dimmer => () => {
     this.setState({ dimmer, open: true })
   }

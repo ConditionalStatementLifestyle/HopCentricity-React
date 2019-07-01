@@ -6,12 +6,6 @@ import Pineapple from '../pineapple.png'
 
 class EditModal extends React.Component {
   state = { open: false }
-  // constructor() {
-  //   super()
-  //   this.state={
-  //     open: false
-  //   }
-  // }
 
   show = dimmer => () => this.setState({ dimmer, open: true })
   close = () => {
