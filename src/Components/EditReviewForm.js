@@ -13,7 +13,7 @@ class EditReviewForm extends React.Component {
     componentDidMount() {
         let content = document.getElementById('area')
         let userRating = this.props.userRating
-        this.setState({slider: userRating})
+        this.setState({ slider: userRating })
         if (this.props.content !== '') {
             content.value = this.props.content
         }
@@ -30,7 +30,7 @@ class EditReviewForm extends React.Component {
         if (this.props.content !== content || this.props.userRating !== this.state.slider) {
             this.submitEditReview(content, this.props.reviewId)
         }
-        this.props.toggleClose()
+        this.props.setShow(false)
     }
 
     submitEditReview = (content, id) => {

@@ -27,10 +27,13 @@ class ReviewCard extends React.Component {
         return str.join(' ');
     }
 
-    toggleShow = () => {
-        let isPopupDisabled = !this.state.isPopupDisabled
-        let show = !this.state.show
-        this.setState({ isPopupDisabled, show })
+    setShow = (show, origin = null) => {
+        if (origin === 'card' && this.state.show !== true) {
+            this.setState({ show })        
+        }
+        else if (origin === null) {
+            this.setState({ show })
+        }
     }
 
     handleHoverOn = () => {
@@ -43,8 +46,10 @@ class ReviewCard extends React.Component {
     }
     
     handleHoverOff = () => {
-        this.setState({ isPopupDisabled: false })
-        this.setState({ isHovering: false })
+        this.setState({ 
+            isPopupDisabled: false,
+            isHovering: false
+        })
     }
 
     render() {
@@ -56,11 +61,11 @@ class ReviewCard extends React.Component {
                 hideOnScroll
                 trigger ={
                 <div className='reviewCard' onMouseEnter={this.handleHoverOn} onMouseLeave={this.handleHoverOff}>
-                    <div className="ui raised link card" onClick={() => {this.toggleShow()}}><br></br>
+                    <div className="ui raised link card" onClick={() => this.setShow(true, 'card')}><br></br>
                         <div className="center floated author">
                             <EditModal 
                                 show={this.state.show} 
-                                toggleShow={this.toggleShow}
+                                setShow={this.setShow}
                                 beer={this.props.beer}
                                 userRating={this.props.userRating}
                                 content={this.props.content}

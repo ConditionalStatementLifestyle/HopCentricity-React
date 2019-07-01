@@ -14,18 +14,14 @@ class ReviewModal extends Component {
 
   show = dimmer => () => {
     this.setState({ dimmer, open: true })
-    console.log('show called');
   }
 
   close = () => {
-    this.props.setShow(false, 'from modal')
-    console.log('close called');
+    this.props.setShow(false)
   }
 
   static getDerivedStateFromProps(props, state) {
-    if (props.show !== state.open) {
-      console.log(props.show,state.open);
-      
+    if (props.show !== state.open) {      
       return {
         open: props.show
       };
@@ -34,7 +30,7 @@ class ReviewModal extends Component {
   }
 
   render() {
-    const { open, dimmer } = this.state
+    const { dimmer } = this.state
     return (
       <div>
         {/* <Button className='fluid ui teal button 'onClick={this.show('blurring')}>Review</Button> */}

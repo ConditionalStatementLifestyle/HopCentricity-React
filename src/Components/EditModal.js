@@ -5,25 +5,21 @@ import AreYouSure from './AreYouSure'
 import Pineapple from '../pineapple.png'
 
 class EditModal extends React.Component {
-  // state = { open: false }
-  constructor() {
-    super()
-    this.state={
-      open: false
-    }
-  }
+  state = { open: false }
+  // constructor() {
+  //   super()
+  //   this.state={
+  //     open: false
+  //   }
+  // }
 
   show = dimmer => () => this.setState({ dimmer, open: true })
   close = () => {
-    // this.setState({ open: false })
-    this.props.toggleShow()
-    console.log('close called');
-    
+    this.props.setShow(false)     
   }
 
   static getDerivedStateFromProps(props, state) {
     if (props.show !== state.open) {
-      console.log('props.show',props.show,'state.open',state.open);
       return {
         open: props.show
       };
@@ -45,10 +41,10 @@ class EditModal extends React.Component {
 }
 
   render() {
-    const { open, dimmer } = this.state
+    const { dimmer } = this.state
     return (
       <div>
-        <Modal dimmer={dimmer} open={open} onClose={this.close}>
+        <Modal dimmer={dimmer} open={this.state.open} onClose={this.close}>
           <Modal.Header>Edit This Review</Modal.Header>
           <Modal.Content image>
             <Image wrapped size='medium' src={this.props.beer.img_url === null ? Pineapple : this.props.beer.img_url} />
@@ -61,13 +57,13 @@ class EditModal extends React.Component {
             </Modal.Description>
           </Modal.Content>
           <Modal.Actions>
-            {/* <Button color='black' onClick={this.close}>
+            <Button color='black' onClick={this.close}>
               Close
-            </Button> */}
+            </Button>
             <AreYouSure removeReview={this.props.removeReview} reviewId={this.props.reviewId}/>
             <EditReviewForm
                 reviewId={this.props.reviewId}
-                toggleShow={this.props.toggleShow}
+                setShow={this.props.setShow}
                 userRating={this.props.userRating}
                 content={this.props.content}
                 updateReview={this.props.updateReview}

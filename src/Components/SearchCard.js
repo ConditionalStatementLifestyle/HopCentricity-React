@@ -12,10 +12,13 @@ class SearchCard extends React.Component {
         }
     }
 
-    setShow = (show, message) => {
-        this.setState({ show })
-        console.log('setShow called, show', show,'state', this.state.show, message);
-        
+    setShow = (show, origin = null ) => {
+        if (origin === 'card' && this.state.show !== true) {
+            this.setState({ show })        
+        }
+        else if (origin === null) {
+            this.setState({ show })
+        }
     }
 
     titleCase = (str) => {
@@ -50,7 +53,7 @@ class SearchCard extends React.Component {
 
     render() {
         return (
-            <div id='beer-card' className='block-display' onClick={() => this.setShow(true,'parent')}>
+            <div id='beer-card' className='block-display' onClick={() => this.setShow(true, 'card')}>
                 <div className='ui centered grid'> 
                     <div className='ui raised link card'>
                         {this.renderAlreadyReviewed()}
