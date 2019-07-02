@@ -24,7 +24,7 @@ There are great beer rating apps out there already, however none of them are ded
 
 Hop Centricity is focused on the user experience. Once the user authenticates with Google, the site is entered by dragging a hop into a beer glass, where it belongs. During a beer search, if a beer has already been reviewed by the user, the search card renders a small pop-up indicating the user has already reviewed that beer. 
 
-On the profile page, a Hop-o-meter displays the difference between average global beer rating and average user rating for the beers he or she has reviewed already. The rating is also dependent on whether the user has reviewed 50 beers. The rating is fractionally related to 50 beers until the user hits 50 reviews. After 50, the rating will only be dependent on the difference in average ratings, with a 50% rating representing the user rating all beers the same as the global average. 
+On the profile page, a Hop-o-meter displays the difference between average global beer rating and average user rating for the beers he or she has reviewed already. The rating is also dependent on whether the user has reviewed 50 beers. The rating is fractionally related to 50 beers until the user hits 50 reviews. After 50 beers, the rating will only be dependent on the difference in average ratings, with a 50% rating representing that the user has rated all beers virtually the same as the global average. 
 
 As a quirky dedication to the movie Grandma's Boy, there is an audio feature which may be enabled that plays audio from the character JP. Navigation links play a robotic sound of him making a robotic movement and logging out plays a sample of his signature phrase "Adios Turd Nuggets". 
 
@@ -45,6 +45,8 @@ If you would like to play with the code yourself follow these steps:
 - run 'npm install' in your terminal to install dependencies
 - run 'npm start' in your terminal to run the front end on local host
 
+Please note that any reviews that are submitted in this way will be persisted to the Heroku backend. Thus, if you plan on persisting lots of information, it would be preferred that you fork and clone the backend yourself and change the fetch URLs to local host. 
+
 ## API Reference
 
 Hop Centricity utilizes a rails backend serving as an API. This can be found at: https://github.com/ConditionalStatementLifestyle/HopCentricity-Rails
@@ -59,7 +61,10 @@ The Navbar was inspired by this post: https://itnext.io/how-to-build-a-responsiv
 
 Hop Icon In Nav Bar: <div>Icons made by <a href="https://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
 
-
 Hop Icon In Menu: <div>Icons made by <a href="https://www.freepik.com/?__hstc=57440181.b7dd6c098b16a0f1b6aa07dbb03e7523.1560196277027.1560198610411.1560202625999.3&__hssc=57440181.4.1560202625999&__hsfp=2153447817" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
 
 Pineapple Icon (used for beer that have no image): <div>Icons made by <a href="https://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+
+## License
+
+This application was built simply as a proof of concept and in it's current form is not meant handle large amounts of web traffic, primarily due to the fact that on occassion data comes from Untappd servers.  
