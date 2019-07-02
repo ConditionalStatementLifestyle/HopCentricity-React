@@ -1,12 +1,12 @@
-#Hop Centricity
+# Hop Centricity
 
 Hop Centricity is a quirky beer reviewing web app dedicated to the complex world of IPA beers. Users may search for any beer in existence, but may review only IPA's. 
   
-##Motivation
+## Motivation
   
 There are great beer rating apps out there already, however none of them are dedicated to IPA's. In addition, Hop Centricity was created with the idea that web apps should have a simple and orginized layout, without too much clutter. 
 
-![Alt text](HopCentricity-React/src/Pictures/Screen Shot 2019-07-02 at 9.49.30 AM.png?raw=true "Title")
+# ![Alt text](HopCentricity-React/src/Pictures/ScreenShot.png?raw=true "Hop Centricity Search Page")
 
 
 
