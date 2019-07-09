@@ -62,7 +62,7 @@ class LoginPage extends React.Component {
   getPage = () => {
     if (this.state.page) {
       return (
-        <div >
+        <div>
           <div className='login-top-space'>
             <h2 className='login-title'>Hop Centricity</h2>
             {
