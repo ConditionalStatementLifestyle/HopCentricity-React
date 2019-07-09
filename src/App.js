@@ -33,6 +33,10 @@ class App extends React.Component {
     }
 
   }
+  
+  componentWillMount() {
+    this.getUserDataIfRefreshed()
+  }
 
   getUserDataIfRefreshed = () => {
     if (localStorage.getItem('HopCentricity_Token') !== null) {
@@ -48,10 +52,6 @@ class App extends React.Component {
   toggleAudio = () => {
     let audio = !this.state.audio
     this.setState({audio})
-  }
-
-  componentWillMount() {
-    this.getUserDataIfRefreshed()
   }
 
   getHopmeterRating = () => {
