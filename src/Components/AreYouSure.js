@@ -11,7 +11,7 @@ const AreYouSure = (props) => {
         'Accept': 'application/json',
       }
     })
-    .then(_ => props.removeReview(props.reviewId))
+    .then( _ => props.removeReview(props.reviewId))
   }
 
   return (
